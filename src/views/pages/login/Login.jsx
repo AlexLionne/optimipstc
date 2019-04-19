@@ -1,7 +1,5 @@
 import React from 'react';
-import {faTimes} from "@fortawesome/free-solid-svg-icons/index";
 import {Button, Card, CardBody, CardText, CardTitle, Col, Form, FormGroup, Input, Label, Spinner} from "reactstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome/index.es";
 
 
 class Login extends React.Component{
@@ -17,7 +15,7 @@ class Login extends React.Component{
 
     render(){
         return (
-                <Card className={'login_modal'}>
+                <div className={'login'} >
                     <CardBody>
                         <CardTitle style={{
                             width: 'auto',
@@ -62,7 +60,7 @@ class Login extends React.Component{
                             </Form>
                         </CardText>
                     </CardBody>
-                </Card>
+                </div>
             )
     }
 

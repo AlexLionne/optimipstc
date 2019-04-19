@@ -26,7 +26,6 @@ import {
 
 
 import EditView from "./EditView";
-import {Editor} from "react-draft-wysiwyg";
 import MultiRef from 'react-multi-ref';
 import Notification from "./Notification";
 import {reactLocalStorage} from "reactjs-localstorage";
@@ -70,12 +69,15 @@ class View extends React.Component {
         let elements = [];
         let ctx = this;
         firebase.database().ref('pages/' + this.props.route).once('value', function (snapshot) {
-            Object.keys(snapshot.val()).map(((item,i)=>{
-                if(item !== 'inNav' && item !== 'header'){
-                    elements[i] = snapshot.val()[i];
-                }
-            }));
-            ctx.setState({elements:elements});
+            console.log(snapshot.val());
+            if(snapshot.val() !== null ){
+                Object.keys(snapshot.val()).map(((item,i)=>{
+                    if(item !== 'inNav' && item !== 'header'){
+                        elements[i] = snapshot.val()[i];
+                    }
+                }));
+                ctx.setState({elements:elements});
+            }
         })
     };
 
@@ -88,7 +90,7 @@ class View extends React.Component {
         });
     }
     addHtml = (array,html) => {
-        if ((array === null)) {
+        if (array === null) {
            array = this.state.elements;
         }
         array.map((element, i) => {
@@ -250,79 +252,79 @@ class View extends React.Component {
         this.setState({pageName:e.target.value})
     };
     render() {
-
         let elements = this.state.elements;
         return (
-            <div className={'root'}>
-                {elements.length >= 0 ?
+            <div className={'main'}>
                     <div>
-                        {this.state.superAdmin === 'true' ?   <Navbar className={'navigation_bar_two'} dark expand="md">
-                            <NavbarToggler onClick={this.toggle}/>
-                            <Collapse isOpen={this.state.isOpen} navbar>
-                                <Nav className="mr-auto" navbar>
-                                    <NavItem>
-                                        <NavLink
-                                            onClick={(e) => {
-                                                this.addSection();
-                                                e.stopPropagation();
-                                            }}
-                                            className={'nav_link'}>
-                                            <FontAwesomeIcon color={"#fff"} icon={faAlignJustify}/>
-                                        </NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink
-                                            onClick={(e) => {
-                                                this.addColumn();
-                                                e.stopPropagation();
-                                            }}
-                                            className={'nav_link'}>
-                                            <FontAwesomeIcon color={"#fff"} icon={faColumns}/>
-                                        </NavLink>
-                                    </NavItem>
-
-                                    <NavItem>
-                                        <NavLink
-                                            className={'nav_link'}>
-                                            <input type="file" id="file" ref={this.openHeader} style={{display: "none"}}
-                                                   onChange={this.addHeader.bind(this)}/>
-                                            <FontAwesomeIcon
-                                                onClick={(e) => {
-                                                    this.showOpenHeaderFileDlg();
-                                                }}
-                                                color={"#fff"}
-                                                icon={faImage}/>
-                                        </NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink
-                                            onClick={(e) => {
-                                                this.addText();
-                                                e.stopPropagation();
-                                            }}
-                                            className={'nav_link'}>
-                                            <FontAwesomeIcon color={"#fff"} icon={faHeading}/>
-                                        </NavLink>
-                                    </NavItem>
-
-                                    <div className={'right'}>
+                        {this.state.superAdmin === 'true' ?
+                            <Navbar className={'navigation_bar_editor'} dark expand="md">
+                                <NavbarToggler onClick={this.toggle}/>
+                                <Collapse isOpen={this.state.isOpen} navbar>
+                                    <Nav className="mr-auto" navbar>
                                         <NavItem>
                                             <NavLink
                                                 onClick={(e) => {
-                                                    this.save();
+                                                    this.addSection();
                                                     e.stopPropagation();
                                                 }}
                                                 className={'nav_link'}>
-                                                <FontAwesomeIcon color={"#fff"} icon={faSave}/>
+                                                <FontAwesomeIcon color={"#000"} icon={faAlignJustify}/>
+                                            </NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink
+                                                onClick={(e) => {
+                                                    this.addColumn();
+                                                    e.stopPropagation();
+                                                }}
+                                                className={'nav_link'}>
+                                                <FontAwesomeIcon color={"#000"} icon={faColumns}/>
                                             </NavLink>
                                         </NavItem>
 
-                                    </div>
-                                </Nav>
-                            </Collapse>
-                        </Navbar> : null}
+                                        <NavItem>
+                                            <NavLink
+                                                className={'nav_link'}>
+                                                <input type="file" id="file" ref={this.openHeader} style={{display: "none"}}
+                                                       onChange={this.addHeader.bind(this)}/>
+                                                <FontAwesomeIcon
+                                                    onClick={(e) => {
+                                                        this.showOpenHeaderFileDlg();
+                                                    }}
+                                                    color={"#000"}
+                                                    icon={faImage}/>
+                                            </NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink
+                                                onClick={(e) => {
+                                                    this.addText();
+                                                    e.stopPropagation();
+                                                }}
+                                                className={'nav_link'}>
+                                                <FontAwesomeIcon color={"#000"} icon={faHeading}/>
+                                            </NavLink>
+                                        </NavItem>
 
-                        <div className={'root'}>
+                                        <div className={'right'}>
+                                            <NavItem>
+                                                <NavLink
+                                                    onClick={(e) => {
+                                                        this.save();
+                                                        e.stopPropagation();
+                                                    }}
+                                                    className={'nav_link'}>
+                                                    <FontAwesomeIcon color={"#000"} icon={faSave}/>
+                                                </NavLink>
+                                            </NavItem>
+
+                                        </div>
+                                    </Nav>
+                                </Collapse>
+                            </Navbar>
+                            : null}
+
+                        <div>
                             {elements.map((element, j) => {
                                 if (element.name === 'header') {
                                     return (
@@ -352,7 +354,7 @@ class View extends React.Component {
                                             this.selectElement(element.id);
                                             e.stopPropagation();
                                         }}
-                                                   className={this.state.selectedElement === element.id && this.state.superAdmin === 'true' ? 'border-selected' : null}>
+                                                   className={this.state.selectedElement === element.id && this.state.superAdmin === 'true' ? 'border-selected' : 'border'}>
                                             {this.state.selectedElement === element.id &&  this.state.superAdmin === 'true'?
                                                 <div className={'editor_selected_action'}>
                                                     <FontAwesomeIcon color={"#fff"}
@@ -369,7 +371,7 @@ class View extends React.Component {
                                                             return  <Col xs={'11'}  id={column.id} onClick={(e) => {
                                                                 this.selectElement(column.id);
                                                                 e.stopPropagation();
-                                                            }} className={this.state.selectedElement === column.id &&  this.state.superAdmin === 'true' ? 'editor-wrapper-title border-title-selected' : 'editor-wrapper-title'}>
+                                                            }} className={this.state.selectedElement === column.id &&  this.state.superAdmin === 'true' ? 'editor-wrapper-title border-title-selected' : 'editor-wrapper-title border'}>
                                                                 {this.state.selectedElement === column.id &&  this.state.superAdmin === 'true'?
                                                                     <div className={'editor_selected_title_action'}>
                                                                         <FontAwesomeIcon
@@ -385,7 +387,7 @@ class View extends React.Component {
                                                             return <Col key={i} id={column.id} onClick={(e) => {
                                                                 this.selectElement(column.id);
                                                                 e.stopPropagation();
-                                                            }} className={this.state.selectedElement === column.id &&  this.state.superAdmin === 'true' ? 'editor-wrapper border-selected' : 'editor-wrapper'}>
+                                                            }} className={this.state.selectedElement === column.id &&  this.state.superAdmin === 'true' ? 'editor-wrapper border-selected' : 'editor-wrapper border '}>
                                                                 {this.state.selectedElement === column.id && this.state.superAdmin === 'true' ?
                                                                     <div className={'editor_selected_action'}>
                                                                         <FontAwesomeIcon
@@ -408,7 +410,7 @@ class View extends React.Component {
                             })}
                         </div>
                     </div>
-                    :  null}
+
                 {this.state.pageSaved ?<Notification verbose={'success'} message={'page '+this.state.pageName+' sauvegardée'}/>:null}
 
                 <Modal className={'save_modal'} isOpen={this.state.saveModal} fade={false}>

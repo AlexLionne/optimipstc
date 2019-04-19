@@ -10,6 +10,7 @@ import {
     ListGroupItem, Nav, NavItem, NavLink, Row, Spinner,
 
 } from "reactstrap";
+import {reactLocalStorage} from 'reactjs-localstorage';
 import {Badge} from "reactstrap/dist/reactstrap";
 
 
@@ -33,19 +34,22 @@ class Notifications extends React.Component {
             nbAcceptees:0,
             nbRefusees:0,
         };
-        this.props.notifications.map((notification,i)=>{
-           switch (notification.etat){
-               case 0 :
-                   this.setState({nbEnCours:this.state.nbEnCours++});
-                   break;
-               case 1 :
-                   this.setState({nbAcceptees:this.state.nbAcceptees++});
-                   break;
-               case 2 :
-                   this.setState({nbRefusees:this.state.nbRefusees++});
-                   break;
-           }
-        });
+        if(reactLocalStorage.getObject('notifications').notifications !== undefined){
+            reactLocalStorage.getObject('notifications').notifications.map((notification,i)=>{
+                switch (notification.etat){
+                    case 0 :
+                        this.setState({nbEnCours:this.state.nbEnCours++});
+                        break;
+                    case 1 :
+                        this.setState({nbAcceptees:this.state.nbAcceptees++});
+                        break;
+                    case 2 :
+                        this.setState({nbRefusees:this.state.nbRefusees++});
+                        break;
+                }
+            });
+        }
+
     }
 
     
@@ -54,7 +58,7 @@ class Notifications extends React.Component {
         this.setState({activeItem:id});
         let notifications = [];
         if(id !== 4){
-            this.props.notifications.map((notification,i)=>{
+            reactLocalStorage.getObject('notifications').notifications.map((notification,i)=>{
                 if(notification.etat === id){
                     notifications.push(notification);
                 }
@@ -135,7 +139,7 @@ class Notifications extends React.Component {
                             </Nav>
                         </Col>
                         <Col xs="9">
-                            {this.state.notifications.map((notification,i)=>{
+                            {reactLocalStorage.getObject('notifications').notifications.map((notification,i)=>{
                               return (
                                   <div>
                                       <CardTitle>{notification.time}</CardTitle>

@@ -13,8 +13,8 @@ code {
 }
 
 :root{
-    --colorPrimary : "#312c84";
-    --colorPrimaryDark : "#43368c";
+    --colorPrimary : "#686de0";
+    --colorPrimaryDark : "#4834d4";
     --colorAccent : "#FFC107";
     --colorAccentDark : "#FF6F00";
     --colorAccent2 : "#FCE4EC";
@@ -24,8 +24,12 @@ code {
     --white:"#fff";
     --black:"#000";
 }
+h4{
+    margin-top: 24px!important;
+    margin-bottom: 12px!important;
+}
 .color_primary{
-    color:#311B92!important;
+    color:#686de0!important;
 
 }
 .color_secondary{
@@ -38,6 +42,7 @@ code {
 }
 .root{
     width: 100%;
+    height: 100%;
     position:relative;
     font-family:Cabin, sans-serif;
     font-size:100%;
@@ -48,7 +53,7 @@ code {
     background-color:white!important;
     border-color:transparent!important;
     font-weight:bold!important;
-    color:#311B92!important;
+    color:#686de0!important;
     margin-right:18px!important;
 }
 
@@ -70,6 +75,11 @@ code {
     right: 76px;
     margin: auto;
 }
+.admin_chatbot{
+    z-index: 200;
+    display: block;
+    margin-top: 24px;
+}
 .chatbot_image{
     position: fixed;
     bottom: 12px;
@@ -87,12 +97,20 @@ code {
     border-radius: 6px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+.titre{
+    display: inline-block;
+}
+.btn_ajouter_structure{
+    display: inline-block;
+    float: right;
+    background-color:#686de0!important ;
+}
 .chatbot_titre{
-    color: #FFC107;
+    color: #f6e58d;
     font-family:Padauk, sans-serif;
 }
 .chatbot_icon{
-    color:#FFC107;
+    color:#f6e58d;
 }
 .icon_left{
     display:inline;
@@ -116,26 +134,40 @@ NAVIGATION
     top:0;
     z-index: 200;
     border-radius: 0;
-    background-color: #311B92;
+    background-color: #686de0;
     font-family: Cabin, sans-serif;
     border: none;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
 }
-.navigation_bar_two {
+.navigation_bar_admin {
     position: fixed!important;
     top: 55px;
     width: 100%;
     z-index: 190;
     border-radius: 0;
-    background-color: #F06292;
+    background-color: #30336b;
+    color: black;
     font-family: Cabin, sans-serif;
     border: none;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+}
+.navigation_bar_editor {
+    position: fixed!important;
+    bottom: 24px;
+    left: 24px;
+    width: 20%;
+    z-index: 190;
+    border-radius: 0;
+    background-color: white;
+    color: black;
+    font-family: Cabin, sans-serif;
+    border: none;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
 }
 .nav_dropdown{
     border-radius:6px;
     border:none!important;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1);
 }
 .nav_link_active{
     display: inline-block!important;
@@ -197,10 +229,10 @@ NAVIGATION
 .container{
     margin-bottom: 12px;
     margin-top: 12px;
-    min-height: 100%;
+    min-height: 300px;
     position:relative;
-    padding-top:0;
-    padding-bottom:5%;
+}
+.main{padding: 56px;
 }
 .titre{
     font-family:Cabin, sans-serif;
@@ -220,13 +252,15 @@ body,#root{
     height: 100vh!important;
 }
 
-.login_modal{
-    position:absolute!important;
-    left:0;
-    right:0;
-    bottom: 30%;
-    height: auto;
-    margin: auto!important;
+.login{
+    padding-top: 156px;
+    position: absolute!important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto!important;
+    margin: auto;
     font-family:Padauk, sans-serif;
     z-index:100;
     width: 30%;
@@ -234,7 +268,7 @@ body,#root{
     box-shadow:none!important;
 }
 .spinner_login{
-    color:#311B92!important;
+    color:#686de0!important;
     list-style: none;
 }
 .glasgow_modal{
@@ -252,6 +286,8 @@ body,#root{
 
 
 .card{
+    padding: 12px;
+    background-color: white;
     overflow-y: auto;
     border:none!important;
     border-radius: 6px!important;
@@ -345,27 +381,27 @@ body,#root{
     margin: auto;
 }
 .backgroundColorPrimary{
-    background-color:#311B92!important;
+    background-color:#686de0!important;
 }
 .colorPrimary{
-    color:#311B92!important;
+    color:#686de0!important;
 }
 
 .link{
     color:#FF6F00!important;
 }
 .link_primary{
-    color:#311B92!important;
+    color:#686de0!important;
     cursor:pointer;
 }
 .colorAdmin{
-    color:#311B92!important;
+    color:#686de0!important;
 }
 .colorSecondary{
-    color:#FF6F00!important;
+    color:#ffbe76!important;
 }
 .error{
-    color:#dc3545;
+    color:#ff7979;
 }
 .pt10{
      padding-top: 20%;
@@ -418,7 +454,7 @@ body,#root{
 .spinner{
     height: 20px!important;
     width: 20px!important;
-    color:#311B92!important;
+    color:#686de0!important;
     display: inline-block;
     float: right;
     margin: auto 24px;
@@ -434,11 +470,11 @@ body,#root{
 }
 
 .md-editor-toolbar{
-    background-color:#0065FF!important;
+    background-color:#686de0!important;
 }
 .md-RichEditor-activeButton{
-    color:#FFC107!important;
-    background-color:#311B92!important;
+    color:#ffbe76!important;
+    background-color:#686de0!important;
 }
 
 
@@ -448,7 +484,7 @@ body,#root{
 }
 .border-selected{
     border-radius: 6px;
-    border: 2px solid #311B92!important;
+    border: 2px solid #686de0!important;
 }
 .border-title-selected{
     border-radius: 6px;
@@ -478,14 +514,14 @@ body,#root{
 }
 .editor_selected_action{
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 4px;
+    transform: scale(.8);
+    right: 4px;
     margin: auto;
     padding: 6px 12px;
     z-index: 100;
-    border-bottom-left-radius: 6px ;
-    border-top-right-radius: 3px ;
-    background-color:#311B92;
+    border-radius: 20px ;
+    background-color:#686de0;
 }
 .editor_selected_title_action{
     position: absolute;
@@ -496,10 +532,13 @@ body,#root{
     z-index: 100;
     border-bottom-left-radius: 6px ;
     border-top-right-radius: 3px ;
-    background-color:#FFC107;
+    background-color:#ffbe76;
 }
 .editor_selected_action_icon{
-    margin-right: 12px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: auto;
 }
 
 .editor_text_info{
@@ -508,6 +547,7 @@ body,#root{
     text-align: center;
     font-family:Cabin, sans-serif!important;
 }
+
 
 
 .md-editor-toolbar{
@@ -537,12 +577,12 @@ body,#root{
     margin: auto;
     height: auto;
     width: auto;
-      border-color: #311B92!important;
-      color: #311B92!important;
+      border-color: #686de0!important;
+      color: #686de0!important;
   }
 
 .header_btn:hover{
-    background-color: #311B92!important;
+    background-color: #4834d4!important;
     color: white!important;
     display: inline-block!important;
 }
@@ -552,8 +592,8 @@ body,#root{
     height: auto;
     width: auto;
     margin-right: 24px;
-    border-color:#311B92!important;
-    color:#311B92!important;
+    border-color:#686de0!important;
+    color:#686de0!important;
 }
 .field_btn.color_secondary{
     float: right;
@@ -571,7 +611,7 @@ body,#root{
     display: inline-block!important;
 }
 .field_btn.color_primary:hover{
-    background-color: #311B92!important;
+    background-color: #686de0!important;
     color: white!important;
     display: inline-block!important;
 }

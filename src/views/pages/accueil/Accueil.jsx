@@ -7,7 +7,7 @@ import ChatBot from '../../ChatBot'
 import Introduction from "./sections/Introduction";
 import Definition from "./sections/Definition";
 import Parcours from "./sections/Parcours";
-import Notification from "../../Notification";
+
 
 
 

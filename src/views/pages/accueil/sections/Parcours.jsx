@@ -163,7 +163,7 @@ export default class Parcours extends React.Component {
                                 Parcours de soins</h2>
                         </Col>
                     </Row>
-                    <Chart age={this.state.age} schema={parcours_soins} options={options}/>
+                    <Chart schema={parcours_soins} options={options}/>
                     <Card style={styles.ps_options}>
                         <CardBody>
                             <CardTitle style={styles.bold}>Options</CardTitle>
