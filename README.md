@@ -4,6 +4,9 @@
 **Login** admin@optimips.fr
 
 **Mot de passe** 123456
+## **ReactStrap**
+[Framework UI React](https://reactstrap.github.io/)  
+
 ## **Comptes & Démarrage**
 Merci de bien vouloir créer un compte sur le platformes suivantes : 
 ### MapBox
@@ -296,12 +299,49 @@ const parcours_soins = {
 [Documentation](https://vx-demo.now.sh/)
 
 ## **src\views\Views.jsx**
+Vue principale, c'est la même pour toute les pages.
+Elle gère l'intégration du contenu via l'éditeur.
+
+
+### Fonctions
+
+
+##### getPage()
+`getPage()`
+
+Récupère la page en fonction de la route actuelle
+##### addHtml()
+`addHtml()`
+
+Ajoute un block html dans l'éditeur
+##### addSection()
+`addSection()`
+
+Ajoute une section (min-height : 300px)
+##### addColumn()
+`addColumn()`
+
+Ajoute un colonne dans une section
+##### addText()
+`addText()`
+
+Ajout d'une zone de text dans l'editeur
+
 ## **Build**
 commande de construction du site 
 
-`npm run build`
+`npm run build` créer un dossier build
 
-`firebase deploy` (mise en ligne'
+`firebase deploy` (mise en ligne)
+
+en fonction de la gestion de l'accès au ressources du serveur des chemins d'accès sont a changer
+(ajouter un chemin relatif pour toutes les ressources)
+#### /build/index.html (unminified) : 12
+```html
+ <link href="/static/css/2.8d63020b.chunk.css" rel="stylesheet">
+ <link href="./static/css/2.8d63020b.chunk.css" rel="stylesheet">
+```
+
 ## **TODO 25/03/2019**
 Base de données
 - [ ] Rajouter une colonne pour enfant : oui/non 
