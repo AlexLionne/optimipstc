@@ -1,4 +1,5 @@
 import firebase from "firebase";
+
 let config = {
     apiKey: "AIzaSyBeIE_EAfMGhEAmGP1MxVwtm_06izzEbbE",
     authDomain: "optimips-tc.firebaseapp.com",

@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell,faCheck,faTimes,faBug,faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import React, {Component} from "react";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faBell, faBug, faCheck, faExclamationTriangle, faTimes} from '@fortawesome/free-solid-svg-icons'
 import colors from '../css/colors'
 
 
@@ -35,7 +35,7 @@ class Avatar extends Component {
 
     close = () =>{
         this.setState({active:false})
-    }
+    };
     render() {
         const {verbose,message,active} = this.state;
         let className = '';

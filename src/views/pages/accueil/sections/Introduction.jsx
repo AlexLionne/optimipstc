@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-    Row,
-    Col,
-    Container,
-} from 'reactstrap';
+import {Col, Container, Row,} from 'reactstrap';
 import classes from "../../../../css/index.css";
 
 export default class SectionOne extends React.Component {

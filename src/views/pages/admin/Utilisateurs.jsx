@@ -1,14 +1,7 @@
 import React from "react";
 import '../../../css/index.css'
 import firebase from "../../../firebase";
-import {
-    Card,
-    CardBody, CardText,
-    CardTitle, Col, Container,
-    ListGroup,
-    ListGroupItem, Row, Spinner,
-
-} from "reactstrap";
+import {Card, CardBody, CardText, CardTitle, Col, Container, ListGroup, ListGroupItem, Row, Spinner,} from "reactstrap";
 
 
 let utilisateurs =[];

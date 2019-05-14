@@ -8,27 +8,18 @@ import {
     CardText,
     CardTitle,
     Col,
-    Container, FormGroup, Input, Label,
+    Container,
+    Input,
     ListGroup,
     ListGroupItem,
-    Row, Spinner
+    Row
 } from "reactstrap";
 import Autocomplete from "../../Autocomplete";
 import Structure from '../../../models/Struture'
 import firebase from '../../../firebase'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome/index.es";
-import {
-    faEdit,
-    faInfo,
-    faMailBulk,
-    faMap,
-    faPhone,
-    faSearch,
-    faTimes,
-    faUser
-} from "@fortawesome/free-solid-svg-icons/index";
+import {faInfo, faMailBulk, faMap, faPhone, faSearch, faTimes, faUser} from "@fortawesome/free-solid-svg-icons/index";
 import {reactLocalStorage} from "reactjs-localstorage";
-import ContentEditable from "react-sane-contenteditable";
 
 
 const storage = firebase.storage();

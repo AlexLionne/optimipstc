@@ -1,11 +1,12 @@
 import React from "react";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 
 import firebase from "./firebase";
 import {reactLocalStorage} from 'reactjs-localstorage';
 
 import "./css/index.css";
 import {
+    Badge,
     Collapse,
     DropdownItem,
     DropdownMenu,
@@ -16,18 +17,23 @@ import {
     NavbarToggler,
     NavLink,
     UncontrolledDropdown,
-    Badge,
 } from "reactstrap";
+import Accueil from './views/pages/accueil/Accueil'
 import Admin from './views/pages/admin/Index'
-
+import Historique from './views/pages/accueil/sections/Historique'
+import Partenaires from './views/pages/accueil/sections/Partenaires'
+import Public from './views/pages/accueil/sections/contact/Public'
 import Avatar from "./views/Avatar";
 import Controller from "./views/Controller";
 import Login from "./views/pages/login/Login";
 import Notification from "./views/Notification";
+import Enfant from "./views/pages/accueil/sections/TCL/Utilisateur/Enfant"
+import EnfantPro from "./views/pages/accueil/sections/TCL/Professionnel/EnfantPro"
+import Adult from "./views/pages/accueil/sections/TCL/Utilisateur/Adult"
+import AdultPro from "./views/pages/accueil/sections/TCL/Professionnel/AdultPro"
+import SportTCL from "./views/pages/accueil/sections/TCL/Sport/SportTCL"
+import Interface from "./views/pages/accueil/sections/TCL/Utilisateur/Interface"
 import Cartographie from "./views/pages/cartographie/Cartographie";
-import {Switch} from "react-router-dom";
-
-
 
 
 //session : 1H
@@ -112,6 +118,7 @@ Array.prototype.hasMail = function(element,callback) {
 
 class App extends React.Component {
 
+
     componentDidMount() {
         switch (window.location.pathname) {
             case '/' :
@@ -123,7 +130,7 @@ class App extends React.Component {
             case '/admin' :
                 this.setState({activeItem: 10});
                 break;
-            case '/Acceuil' :
+            case '/accueil' :
                 this.setState({activeItem: 3});
                 break;
             case '/admin/structures' :
@@ -195,6 +202,7 @@ class App extends React.Component {
                     firebase.database().ref('/users/' + uid).once('value').then(function (snapshot) {
                         ctx.setState({email:snapshot.val().mail,password:snapshot.val().password.toString()});
                         ctx.login();
+
                     });
                     ctx.registerSession();
                 } else {
@@ -219,9 +227,11 @@ class App extends React.Component {
                     } else {
                         reactLocalStorage.setObject('structures', null);
                     }
+
                 });
                 reactLocalStorage.set('uid', res.user.uid);
                 this.registerSession();
+
             })
             .catch((error) => {
                 ctx.setState({error: error.message});
@@ -230,11 +240,10 @@ class App extends React.Component {
                 }, 300
                 )
             });
-
     };
     logout = () => {
         this.unRegisterSession();
-        window.location.href = '/';
+        window.location.href = '/accueil/accueil';
     };
     registerSession = () => {
         let uid = firebase.auth().currentUser.uid;
@@ -277,13 +286,13 @@ class App extends React.Component {
                                             Présentation
                                         </DropdownToggle>
                                         <DropdownMenu left="true" className={'nav_dropdown'}>
-                                            <DropdownItem href="/presentation#definition">
+                                            <DropdownItem href="/accueil/sections/historique">
                                                 Historique
                                             </DropdownItem>
-                                            <DropdownItem>
+                                            <DropdownItem href="/accueil/accueil">
                                                 Nos actions
                                             </DropdownItem>
-                                            <DropdownItem>
+                                            <DropdownItem href="/accueil/sections/partenaires">
                                                 Nos partenaires / Instances
                                             </DropdownItem>
                                             <DropdownItem>
@@ -297,14 +306,28 @@ class App extends React.Component {
                                             Le traumatisme crânien
                                         </DropdownToggle>
                                         <DropdownMenu left="true" className={'nav_dropdown'}>
-                                            <DropdownItem onClick={()=>this.login}>
+                                            <DropdownItem onClick={()=>this.login} href="/accueil/sections/TCL/Utilisateur/Interface">
                                                 Léger
                                             </DropdownItem>
                                             <DropdownItem>
                                                 Modéré et Sévère
                                             </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle
+                                            className={this.state.activeItem === 3 ? 'nav_link_active' : null} nav>
+                                            Cartographie
+                                        </DropdownToggle>
+                                        <DropdownMenu left="true" className={'nav_dropdown'}>
+                                            <DropdownItem href="/cartographie">
+                                                Carte
+                                            </DropdownItem>
                                             <DropdownItem>
-                                                Du sportif
+                                                Types de structures
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                Soins
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>
@@ -327,24 +350,6 @@ class App extends React.Component {
                                     </UncontrolledDropdown>
                                     <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle
-                                            className={this.state.activeItem === 5 ? 'nav_link_active' : 'nav_link'}
-                                            nav>
-                                            Liens amis
-                                        </DropdownToggle>
-                                        <DropdownMenu left="true" className={'nav_dropdown'}>
-                                            <DropdownItem>
-                                                ARS
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                CHU Toulouse / CHU Montpellier / CHU Nîme
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                Associations (qui ?)
-                                            </DropdownItem>
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
-                                    <UncontrolledDropdown nav inNavbar>
-                                        <DropdownToggle
                                             className={this.state.activeItem === 6 ? 'nav_link_active' : 'nav_link'}
                                             nav>
                                             Contact
@@ -353,28 +358,12 @@ class App extends React.Component {
                                             <DropdownItem href="/contact">
                                                 Vous êtes un professionnel
                                             </DropdownItem>
-                                            <DropdownItem>
+                                            <DropdownItem href="/accueil/sections/contact/public">
                                                 Vous êtes un patient
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>
-                                    <UncontrolledDropdown nav inNavbar>
-                                        <DropdownToggle
-                                            className={this.state.activeItem === 3 ? 'nav_link_active' : null} nav>
-                                            Cartographie
-                                        </DropdownToggle>
-                                        <DropdownMenu left="true" className={'nav_dropdown'}>
-                                            <DropdownItem href="/cartographie">
-                                                Carte
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                Types de structures
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                Soins
-                                            </DropdownItem>
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
+
 
 
 
@@ -452,6 +441,16 @@ class App extends React.Component {
                         <Switch>
                             <Route path="/admin" render={() => <Admin notifications={this.state.notifications} uid={reactLocalStorage.get('uid')}/>}/>
                             <Route path="/cartographie" render={() => <Cartographie/>}/>
+                            <Route path="/accueil/accueil" render={() => <Accueil/>}/>
+                            <Route path="/accueil/sections/historique" render={() => <Historique/>}/>
+                            <Route path="/accueil/sections/TCL/Utilisateur/interface" render={() => <Interface/>}/>
+                            <Route path="/accueil/sections/TCL/Utilisateur/enfant" render={() => <Enfant/>}/>
+                            <Route path="/accueil/sections/TCL/Utilisateur/adult" render={() => <Adult/>}/>
+                            <Route path="/accueil/sections/TCL/Professionnel/adultpro" render={() => <AdultPro/>}/>
+                            <Route path="/accueil/sections/TCL/Professionnel/enfantpro" render={() => <EnfantPro/>}/>
+                            <Route path="/accueil/sections/TCL/Sport/sporttcl" render={() => <SportTCL/>}/>
+                            <Route path="/accueil/sections/partenaires" render={() => <Partenaires/>}/>
+                            <Route path="/accueil/sections/contact/public" render={() => <Public/>}/>
                             <Route path="/login" render={() => <Login login={this.login} handleInputChange={this.handleInputChange}/>}/>
                             <Route render={()=><Controller route={window.location.pathname}/>}/>
                         </Switch>

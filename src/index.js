@@ -13,6 +13,7 @@ const connection_max_time = 3600;
 let notifications = [];
 const uid = reactLocalStorage.get('uid');
 
+
 if(uid !== null){
     checkSession(uid);
 }

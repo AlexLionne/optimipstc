@@ -1,20 +1,20 @@
 import React from "react";
 import '../../../css/index.css'
-import firebase from "../../../firebase";
 import {
-    Breadcrumb, BreadcrumbItem,
-    Button,
     Card,
-    CardBody, CardText,
-    CardTitle, Col, Collapse, Container, FormGroup, Input, Label,
+    CardBody,
+    CardText,
+    CardTitle,
+    Col,
+    Container,
+    FormGroup,
+    Input,
     ListGroup,
-    ListGroupItem, Nav, NavItem, NavLink, Row,
-
+    ListGroupItem,
+    Row,
 } from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowLeft, faSave} from "@fortawesome/free-solid-svg-icons";
-
-
+import {faSave} from "@fortawesome/free-solid-svg-icons";
 
 
 const questions = [

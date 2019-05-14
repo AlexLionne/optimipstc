@@ -1,15 +1,15 @@
 import React from 'react';
-import { Group } from '@vx/group';
-import { Tree } from '@vx/hierarchy';
-import { LinkHorizontal } from '@vx/shape';
-import { hierarchy } from 'd3-hierarchy';
-import { LinearGradient } from '@vx/gradient';
+import {Group} from '@vx/group';
+import {Tree} from '@vx/hierarchy';
+import {LinkHorizontal} from '@vx/shape';
+import {hierarchy} from 'd3-hierarchy';
+import {LinearGradient} from '@vx/gradient';
 import styles from '../css/styles'
 import anime from "../anime.es";
 import {Card, CardBody, CardImg, CardText, CardTitle} from "reactstrap";
 import test from "../assets/images/test.png"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faTimes} from '@fortawesome/free-solid-svg-icons'
 import posed from "react-pose/lib/index";
 
 
@@ -291,7 +291,7 @@ class ParcoursSoins extends React.Component {
                                     }
 
                                     // si on veut animer les branches
-                                        // this.animate(node)
+                                        //this.animate(node)
                                 }
 
                                 )}

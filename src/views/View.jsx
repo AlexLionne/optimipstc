@@ -2,26 +2,28 @@ import React from "react";
 
 import '../css/index.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import firebase from'../firebase';
-import {
-    faColumns,
-    faTimes,
-    faImage,
-    faAlignJustify,
-    faSave,
-    faHeading
-} from "@fortawesome/free-solid-svg-icons/index";
+import firebase from '../firebase';
+import {faAlignJustify, faColumns, faHeading, faImage, faSave, faTimes} from "@fortawesome/free-solid-svg-icons/index";
 import {
     Button,
-    CardBody, CardText,
+    CardBody,
+    CardText,
     CardTitle,
     Col,
-    Collapse, Container, DropdownItem, Form, FormGroup, Input, Label, Modal,
+    Collapse,
+    Container,
+    DropdownItem,
+    Form,
+    FormGroup,
+    Input,
+    Label,
+    Modal,
     Nav,
     Navbar,
     NavbarToggler,
     NavItem,
-    NavLink, Row, Spinner,
+    NavLink,
+    Row,
 } from "reactstrap";
 
 

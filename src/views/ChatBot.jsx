@@ -3,8 +3,8 @@ import {Button, Card, CardBody, CardText, CardTitle} from 'reactstrap';
 import '../css/index.css';
 import chatBot from '../assets/chat_bot_button.svg'
 import posed from 'react-pose';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 
 const BotAnim = posed.div({
     pressable: true,
@@ -17,46 +17,203 @@ const CardAnim = posed.div({
 });
 const questions = [
     {
-        text: "Je peux recueillir vos questions afin de vous accompagner au mieux",
+        text: "Bonjour,\n" +
+            "vous vous intéressez au Parcours de Soins des personnes ayant fait un Traumatisme Crânien (TC) ?\n" +
+            "Je suis là pour vous aider ! \n",
         actions: [
             {text: "COMMENCER",link:1},
         ],
         links:[]
     },
     {
-        text: "Vous, un de vos proches ou votre patient avez été victime d’un traumatisme cranien léger ? ",
+        text: "J'aurais juste 3 petites questions pour pouvoir bien vous guider. Êtes-vous ?",
         actions: [
-            {text: "OUI",link:2},
-            {text: "NON",link:2},
+            {text :"Une personne ayant subi un TC ?", link:2},
+            {text :"Un proche d'une personne TC ?", link:9},
+            {text :"Un professionnel de santé ?", link:16},
         ],
         links:[]
     },
     {
-        text: "S’agit-il d’un enfant ou d’un adulte ?",
+        text: "Bien noté. Quelle était la gravité de votre traumatisme crânien ?",
         actions: [
-            {text: "ENFANT",link:3},
-            {text: "ADULTE",link:3},
+            {text: "TC Léger : vous n'êtes pas resté hospitalisé après le TC",link:3},
+            {text: "TC Modéré : il a fallu vous hospitaliser après le TC mais vous n'êtes pas passés en service de réanimation",link:6},
+            {text: "TC Sévère : vous avez fait un séjour en  réanimation à la suite du TC",link:6},
         ],
+        links:[]
+    },
+    {
+        text: "C'est aussi noté. Pour mieux vous renseigner, il me faudrait savoir si vous êtes un adulte ou un enfant." +
+            "Attention, je ne parle pas ici de votre âge au moment du TC, mais de votre âge actuel ! Êtes-vous ?",
+        actions: [
+            {text: "Un enfant ?",link:4},
+            {text: "Un adulte ?",link:5},
+        ],
+        links:[]
+    },
+    {
+        text: "Voici des renseignements.",
+        actions: [],
         links:[{
-            text:"Le traumatisme léger",
-            href:"/traumas_cranniens"
+            text:"Le traumatisme crânien léger chez l'enfant",
+            href:"/accueil/sections/TCL/Utilisateur/enfant"
         }]
     },
     {
-        text: "Êtes vous professionnel de santé ou patient/famille ?",
-        actions: [
-            {text: "PROFESSIONEL",link:3},
-            {text: "PATIENT/FAMILLE",link:3},
-        ],
+        text: "Voici des renseignements.",
+        actions: [],
         links:[{
-            text:"Trauma cranien léger ",
-            href:"/traumas_cranniens"
-        },
-            {
-                text:"Trauma cranien sévère",
-                href:"/traumas_cranniens"
-            }]
-    }
+            text:"Le traumatisme crânien léger chez l'adulte",
+            href:"/accueil/sections/TCL/Utilisateur/adult"
+        }]
+    },
+    {
+        text: "C'est aussi noté. Pour mieux vous renseigner, il me faudrait savoir si vous êtes un adulte ou un enfant." +
+            "Attention, je ne parle pas ici de votre âge au moment du TC, mais de votre âge actuel ! Êtes-vous ?",
+        actions: [
+            {text: "Un enfant ?",link:7},
+            {text: "Un adulte ?",link:8},
+        ],
+        links:[]
+    },
+    {
+        text: "Voici des renseignements.",
+        actions: [],
+        links:[{
+            text:"Le traumatisme crânien modéré ou sévère chez l'enfant",
+            href:"/accueil/sections/TCL/Utilisateur/enfant"
+        }]
+    },
+    {
+        text: "Voici des renseignements.",
+        actions: [],
+        links:[{
+            text:"Le traumatisme crânien modéré ou sévère chez l'adulte",
+            href:"/accueil/sections/TCL/Utilisateur/adult"
+        }]
+    },
+    {
+        text: "Bien noté ! Quelle était la gravité du traumatisme crânien de votre proche ?",
+        actions: [
+            {text: "TC Léger : il ou elle n’est pas resté hospitalisé après le TC ",link:10},
+            {text: "TC Modéré : il a fallu l’hospitaliser après le TC mais il ou elle n’est pas passé en service de réanimation ",link:13},
+            {text: "TC Sévère : il ou elle a fait un séjour en réanimation à la suite du TC ",link:13},
+        ],
+        links:[]
+    },
+    {
+        text: "C'est aussi noté. Pour mieux vous renseigner, il me faudrait savoir si votre proche est un adulte ou un enfant." +
+            " Attention, je ne parle pas ici de son âge au moment du TC, mais de son âge actuel ! Est-il ?",
+        actions: [
+            {text: "Un enfant ?",link:11},
+            {text: "Un adulte ?",link:12},
+        ],
+        links:[]
+    },
+    {
+        text: "Voici des renseignements.",
+        actions: [],
+        links:[{
+            text:"Le traumatisme crânien léger chez l'enfant",
+            href:"/accueil/sections/TCL/Utilisateur/enfant"
+        }]
+    },
+    {
+        text: "Voici des renseignements.",
+        actions: [],
+        links:[{
+            text:"Le traumatisme crânien léger chez l'adulte",
+            href:"/accueil/sections/TCL/Utilisateur/adult"
+        }]
+    },
+    {
+        text: "C'est aussi noté. Pour mieux vous renseigner, il me faudrait savoir si votre proche est un adulte ou un enfant." +
+            " Attention, je ne parle pas ici de son âge au moment du TC, mais de son âge actuel ! Est-il ?",
+        actions: [
+            {text: "Un enfant ?",link:14},
+            {text: "Un adulte ?",link:15},
+        ],
+        links:[]
+    },
+    {
+        text: "Voici des renseignements.",
+        actions: [],
+        links:[{
+            text:"Le traumatisme crânien modéré ou sévère chez l'enfant",
+            href:"/accueil/sections/TCL/Utilisateur/enfant"
+        }]
+    },
+    {
+        text: "Voici des renseignements.",
+        actions: [],
+        links:[{
+            text:"Le traumatisme crânien modéré ou sévère chez l'adulte",
+            href:"/accueil/sections/TCL/Utilisateur/adult"
+        }]
+    },
+    {
+        text: "Bien noté ! \n" +
+            "Sur quelle gravité de traumatisme crânien souhaitez vous des renseignements ?",
+        actions: [
+            {text: "TC Léger : la personne n’est pas restée hospitalisé après le TC ",link:17},
+            {text: "TC Modéré : il a fallu l’hospitaliser après le TC mais elle n’est pas passé en service de réanimation ",link:20},
+            {text: "TC Sévère : la personne a fait un séjour en réanimation à la suite du TC",link:20},
+        ],
+        links:[]
+    },
+    {
+        text: "C'est aussi noté. Pour mieux vous renseigner, il me faudrait savoir si votre intérêt se porte sur le parcours" +
+            "de soin d'adulte ou d'enfant ayant eu un TC. Attention, je ne parle pas ici de l'âge au moment du TC, mais" +
+            "bien du parcours de soin pour un adulte ou un enfant ! Vous intéressez-vous au parcours de soins :",
+        actions: [
+            {text: "D'un enfant ?",link:18},
+            {text: "D'un adulte ?",link:19},
+        ],
+        links:[]
+    },
+    {
+        text: "Voici des renseignements.",
+        actions: [],
+        links:[{
+            text:"Le traumatisme crânien léger chez l'enfant",
+            href:"/accueil/sections/TCL/Professionnel/enfantpro"
+        }]
+    },
+    {
+        text: "Voici des renseignements.",
+        actions: [],
+        links:[{
+            text:"Le traumatisme crânien léger chez l'adulte",
+            href:"/accueil/sections/TCL/Professionnel/adultpro"
+        }]
+    },
+    {
+        text: "C'est aussi noté. Pour mieux vous renseigner, il me faudrait savoir si votre intérêt se porte sur le parcours" +
+            "de soin d'adulte ou d'enfant ayant eu un TC. Attention, je ne parle pas ici de l'âge au moment du TC, mais" +
+            "bien du parcours de soin pour un adulte ou un enfant ! Vous intéressez-vous au parcours de soins :",
+        actions: [
+            {text: "D'un enfant ?",link:21},
+            {text: "D'un adulte ?",link:22},
+        ],
+        links:[]
+    },
+    {
+        text: "Voici des renseignements.",
+        actions: [],
+        links:[{
+            text:"Le traumatisme crânien modéré ou sévère chez l'enfant",
+            href:"/accueil/sections/TCL/Professionnel/enfantpro"
+        }]
+    },
+    {
+        text: "Voici des renseignements.",
+        actions: [],
+        links:[{
+            text:"Le traumatisme crânien modéré ou sévère chez l'adulte",
+            href:"/accueil/sections/TCL/Professionnel/adultpro"
+        }]
+    },
 ];
 
 

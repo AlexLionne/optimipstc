@@ -3,33 +3,31 @@ import React from 'react';
 
 import ReactMapboxGl, {Feature, Layer} from "react-mapbox-gl";
 import styles from '../../../css/styles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faInfo} from '@fortawesome/free-solid-svg-icons'
-import {  faPhone } from '@fortawesome/free-solid-svg-icons'
-import {  faMap } from '@fortawesome/free-solid-svg-icons'
-import {  faMailBulk } from '@fortawesome/free-solid-svg-icons'
-import {  faSearch } from '@fortawesome/free-solid-svg-icons'
-import {  faUser } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faInfo, faMailBulk, faMap, faPhone, faSearch, faUser} from '@fortawesome/free-solid-svg-icons'
 import Autocomplete from "../../Autocomplete"
-
-
-
 
 
 import axios from 'axios';
 import _ from 'lodash';
 
 import {
+    Button,
     Card,
-    CardBody, CardHeader,
+    CardBody,
+    CardHeader,
     CardSubtitle,
-    Col, Collapse,
-    Container, DropdownItem, Dropdown, DropdownMenu, DropdownToggle, ListGroup, ListGroupItem,
-    Row, Button
+    Col,
+    Collapse,
+    Container,
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    ListGroup,
+    ListGroupItem,
+    Row
 } from "reactstrap";
-
-
-
 
 
 export default class TCSevere extends React.Component {
@@ -176,7 +174,7 @@ export default class TCSevere extends React.Component {
         render() {
 
         const Map = ReactMapboxGl({
-            accessToken: "pk.eyJ1Ijoib3B0aW1pcHN0YyIsImEiOiJjanFwZTkzNXMwMG1oNDJydHNqbnRnb3Y3In0.ltciym2mWxIxH-4hJIHKRw"
+            accessToken: "pk.eyJ1IjoidmFsZW50aW5kZWxweSIsImEiOiJjanZjM2pqNjAxZWw5NDRteWI2bmVnMGJpIn0.dwS7LAXg_MLPkvZKkgK_yA"
         });
 
         return (

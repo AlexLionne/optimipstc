@@ -1,13 +1,10 @@
 import React from 'react';
-import {
-    Card, CardBody, CardSubtitle, CardText, CardTitle,
-    Col,
-    Container, FormGroup, Input, Label, Row,
-} from 'reactstrap';
+import {Card, CardBody, CardTitle, Col, Container, FormGroup, Input, Label, Row,} from 'reactstrap';
 import BarGraph from "../../../parcoursSoins";
-import { withParentSize } from '@vx/responsive';
+import {withParentSize} from '@vx/responsive';
 import colors from '../../../../css/colors'
 import styles from '../../../../css/styles';
+import {Route, Switch} from "react-router-dom";
 
 let Chart = withParentSize(BarGraph);
 
@@ -49,10 +46,121 @@ const parcours_soins = {
                                 "text":"Texte descriptif Neurochirurgie",
                             },
 
-                            {   "name": "Chir Ortho",
+                            {   "name": "Chirurgie orthopédique",
                                 "id":"chirortho",
                                 "common_child":"child_two",
+                                "size":200,
+                                "color":"#4DB6AC",
+                                "text":"Texte descriptif Chir Ortho",
+                                "children": [
+                                    {   "name": " ",
+                                        "id":"child_two",
+                                        "common_child":"mpr",
+                                        "size":150,
+                                        "color":null,
+                                        "text":null,
+                                        "children": [
+                                            {   "name": "Domicile",
+                                                "id":"domicile",
+                                                "common_child":null,
+                                                "size":100,
+                                                "color":"#FF8A65",
+                                                "text":"Texte descriptif Domicile",
+                                            },
+                                            {   "name": "Unité Eveil",
+                                                "id":"uniteeveil",
+                                                "common_child":null,
+                                                "size":120,
+                                                "color":"#FF8A65",
+                                                "text":"Texte descriptif Unité Eveil",
+                                            },
+                                            {   "name": "Service de Rééducation",
+                                                "id":"servicedereeducation",
+                                                "common_child":null,
+                                                "size":220,
+                                                "color":"#FF8A65",
+                                                "text":"Texte descriptif Service de Rééducation",
+                                            }]
+                                    }],
+                            },
+                            {   "name": "Neurologie",
+                                "id":"neurologie",
+                                "common_child":"child_two",
                                 "size":150,
+                                "color":"#4DB6AC",
+                                "text":"Texte descriptif Neurologie",
+                            },
+                        ]
+                    }]
+            },
+            {   "name": "Réanimation",
+                "id":"reanimation",
+                "common_child":"child_one",
+                "size":120,
+                "color":"#F06292",
+                "text":"Texte descriptif Réanimation",
+                "children": [
+                    {   "name": " ",
+                        "id":"null",
+                        "common_child":null,
+                        "color":null,
+                        "text":null,
+                        "children": [
+                            {   "name": "SRPR",
+                                "id":"srpr",
+                                "common_child":"child_two",
+                                "size":80,
+                                "color":"#4DB6AC",
+                                "text":"Texte descriptif SRPR",
+                            }]
+                    }]
+            },
+        ]},
+    ],
+};
+
+const parcours_soins_enfant = {
+    "name": "Accident",
+    "id":"accident",
+    "common_child":null,
+    "size":100,
+    "color":null,
+    "text":null,
+    "illustration":null,
+    "children": [{
+        "name": "Samu",
+        "id":"samu",
+        "common_child":null,
+        "size":80,
+        "color":"#9575CD",
+        "text":"Texte descriptif Samu",
+        "children": [
+            {   "name": "Urgences",
+                "id":"urgences",
+                "common_child":"child_one",
+                "size":100,
+                "color":"#F06292",
+                "text":"Texte descriptif Urgences",
+                "children": [
+                    {   "name": " ",
+                        "id":"child_one",
+                        "common_child":null,
+                        "size":150,
+                        "color":null,
+                        "text":null,
+                        "children": [
+                            {   "name": "Neurochirurgie",
+                                "id":"neurochirurgie",
+                                "common_child":"child_two",
+                                "size":150,
+                                "color":"#4DB6AC",
+                                "text":"Texte descriptif Neurochirurgie",
+                            },
+
+                            {   "name": "Chirurgie orthopédique",
+                                "id":"chirortho",
+                                "common_child":"child_two",
+                                "size":200,
                                 "color":"#4DB6AC",
                                 "text":"Texte descriptif Chir Ortho",
                                 "children": [
@@ -99,9 +207,6 @@ const parcours_soins = {
                                 "color":"#4DB6AC",
                                 "text":"Texte descriptif Pédiatrie",
                                 "size":150,
-                                "visible":{
-                                    "age":"Enfant"
-                                }
                             },
                         ]
                     }]
@@ -140,18 +245,12 @@ const options = {
     textSize:18
 };
 
-
-
 export default class Parcours extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            age: 'Adulte'
-        }
-    }
-    handleChange = (event) => {
-        this.setState({ age: event.target.value })
-    };
+    super(props);
+    this.state = {isAdult: true};
+}
+
 
     render() {
         return (
@@ -163,22 +262,16 @@ export default class Parcours extends React.Component {
                                 Parcours de soins</h2>
                         </Col>
                     </Row>
-                    <Chart schema={parcours_soins} options={options}/>
-                    <Card style={styles.ps_options}>
-                        <CardBody>
-                            <CardTitle style={styles.bold}>Options</CardTitle>
-                                <FormGroup>
-                                    <Label for="select">Age</Label>
-                                    <Input onChange={this.handleChange} type="select" name="select" id="select">
-                                        <option>Adulte</option>
-                                        <option>Enfant</option>
-                                    </Input>
-                                </FormGroup>
-
-                        </CardBody>
-                    </Card>
+                    <Switch>
+                        <Route path="/accueil/sections/TCL/Utilisateur/enfant" render={() => <Chart schema={parcours_soins_enfant} options={options}/>}/>
+                        <Route path="/accueil/sections/TCL/Utilisateur/adult" render={() => <Chart schema={parcours_soins} options={options}/>}/>
+                        <Route path="/accueil/sections/TCL/Professionnel/adultpro" render={() => <Chart schema={parcours_soins} options={options}/>}/>
+                        <Route path="/accueil/sections/TCL/Professionnel/enfantpro" render={() => <Chart schema={parcours_soins_enfant} options={options}/>}/>
+                    </Switch>
                 </Container>
             </section>
         );
     }
+
+
 }

@@ -1,4 +1,3 @@
-import Background from '../assets/images/header.jpg'
 import colors from './colors'
 
 

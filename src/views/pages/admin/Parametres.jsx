@@ -5,14 +5,16 @@ import {
     Card,
     CardBody,
     CardText,
-    CardTitle, Col,
+    CardTitle,
+    Col,
     Form,
     FormGroup,
     Input,
     Label,
     ListGroup,
     ListGroupItem,
-    Modal, NavLink, Spinner
+    Modal,
+    Spinner
 } from "reactstrap";
 import firebase from '../../../firebase'
 import {faTimes} from "@fortawesome/free-solid-svg-icons/index";

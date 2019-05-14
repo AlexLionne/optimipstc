@@ -1,14 +1,11 @@
 import React from 'react';
-import {
-    DropdownItem,
-} from 'reactstrap';
+import {DropdownItem,} from 'reactstrap';
+
 import '../../../css/index.css';
 import ChatBot from '../../ChatBot'
 import Introduction from "./sections/Introduction";
 import Definition from "./sections/Definition";
 import Parcours from "./sections/Parcours";
-
-
 
 
 export default class App extends React.Component {
@@ -26,7 +23,6 @@ export default class App extends React.Component {
                 <DropdownItem divider />
                 <Definition/>
                 <DropdownItem divider />
-                <Parcours/>
                 <ChatBot/>
             </div>
         );

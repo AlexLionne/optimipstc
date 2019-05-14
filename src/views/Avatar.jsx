@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import React, {Component} from "react";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
+
 //user-circle
 
 class Avatar extends Component {

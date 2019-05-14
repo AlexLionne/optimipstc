@@ -1,8 +1,6 @@
-import React, { Component, Fragment } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {
-    Input, InputGroup, InputGroupAddon, ListGroup, ListGroupItem, Spinner,
-} from "reactstrap";
+import {Input, InputGroup, ListGroup, ListGroupItem, Spinner,} from "reactstrap";
 import '../css/index.css';
 
 class Autocomplete extends Component {

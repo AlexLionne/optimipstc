@@ -1,23 +1,14 @@
 import React from 'react';
-
-import {stateToHTML} from 'draft-js-export-html';
 import mediumDraftImporter from 'medium-draft/lib/importer';
 
-import {
-    ImageSideButton,
-    Block,
-    addNewBlock,
-    createEditorState,
-    Editor,
-
-} from 'medium-draft';
-import {convertFromRaw, convertToRaw} from 'draft-js';
+import {addNewBlock, Block, BLOCK_BUTTONS, createEditorState, Editor, ImageSideButton,} from 'medium-draft';
+import {convertToRaw} from 'draft-js';
 
 
 import createImagePlugin from "draft-js-image-plugin";
-import { BLOCK_BUTTONS } from 'medium-draft';
 import firebase from "../firebase";
 import mediumDraftExporter from 'medium-draft/lib/exporter';
+
 const blockButtons = [
     {
     label: 'H1',

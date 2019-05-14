@@ -4,16 +4,21 @@ import firebase from "../../../firebase";
 import {
     Button,
     Card,
-    CardBody, CardText,
-    CardTitle, Col, Container, Input,
+    CardBody,
+    CardText,
+    CardTitle,
+    Col,
+    Container,
+    Input,
     ListGroup,
-    ListGroupItem, Nav, NavItem, NavLink, Row, Spinner,
-
+    ListGroupItem,
+    Nav,
+    NavItem,
+    NavLink,
+    Row,
 } from "reactstrap";
 import {reactLocalStorage} from 'reactjs-localstorage';
 import {Badge} from "reactstrap/dist/reactstrap";
-
-
 
 
 class Notifications extends React.Component {

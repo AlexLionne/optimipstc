@@ -1,26 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 
 import '../../../css/index.css'
-import {
-    Collapse,
-    Nav,
-    Navbar,
-    NavbarToggler,
-    NavItem,
-    NavLink,
-} from "reactstrap";
+import {Collapse, Nav, Navbar, NavbarToggler, NavItem, NavLink,} from "reactstrap";
 import Structures from "./Structures";
 import Parametres from "./Parametres";
 import Utilisateurs from "./Utilisateurs";
 import {reactLocalStorage} from "reactjs-localstorage";
 import Notifications from "./Notifications";
 import ChatBot from "./ChatBot";
-
-
-
-
 
 
 class Index extends React.Component{

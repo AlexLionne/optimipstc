@@ -87,8 +87,9 @@ h4{
     margin: auto;
     display: inline-block;
 }
+
 .chatbot_card{
-    width: 400px; /*TODO : responsive*/
+    width: 600px; /*TODO : responsive*/
     margin-right: 24px;
     display: inline-block;
 }
@@ -124,7 +125,29 @@ h4{
 .m_24p{
     margin-top: 24px;
 }
+.sport{
+    z-index: 200;
+    display: block;
+    position: fixed;
+    bottom: 12px;
+    right: 110px;
+    margin: auto;
+}
 
+.sport_image{
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+}
+
+.sport_title{
+    margin-bottom: 5px;
+    color: green;
+}
+
+.sport_text{
+    margin-bottom: 15px;
+}
 /*
 NAVIGATION
  */
@@ -230,7 +253,7 @@ NAVIGATION
     margin-bottom: 12px;
     margin-top: 12px;
     min-height: 300px;
-    position:relative;
+    margin-left:0;
 }
 .main{padding: 56px;
 }
