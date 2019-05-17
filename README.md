@@ -108,6 +108,37 @@ Composant d'autocompletion
 ## **src\views\Avatar.jsx**
 Avatar dans le menu de Navigation
 
+## **src\views\Sportontroller**
+Envoie vers la page Sport
+
+## **src\views\accueil\sections\Parcours\InterfaceParcours**
+Page redirigeant vers le parcours modéré / sévère pour adulte ou enfant.
+
+## **src\views\accueil\sections\Parcours\ParcoursAdulte**
+Page composé des deux blocs "ParcoursMedicalAdulte" et ParcousVieAdulte" pour le parcours
+d'un TC modéré / sèvère adulte.
+
+## **src\views\accueil\sections\Parcours\ParcoursEnfant**
+Page composé des deux blocs "ParcoursMedicalEnfant" et ParcousVieEnfant" pour le parcours
+d'un TC modéré / sèvère Enfant.
+
+## **src\views\accueil\sections\TCL\Professionnel**
+Contient les parcours des TCL Adulte et Enfant affichés pour le professionnel
+
+## **src\views\accueil\sections\TCL\Utilisateur**
+Contient les parcours des TCL Adulte et Enfant affichés pour le particulier
+
+## **src\views\accueil\sections\Equipe**
+Page affichant l'équipe du projet
+
+## **src\views\accueil\sections\Historique**
+Page affichant l'historique du projet
+
+## **src\views\accueil\sections\Partenaires**
+Page affichant les partenaires du projet
+
+## **src\views\accueil\sections\TCL\Sport
+Contient des généralités sur les TC dans le sport.
 
 ## **src\views\ChatBot.jsx**
 ChatBot du site
@@ -128,6 +159,7 @@ Met a jour la prochaine question
 Met a jour la prochaine question
 ##### openCard()
 `function openCard()`
+
 
 
 Affiche le ChatBot
