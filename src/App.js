@@ -21,6 +21,9 @@ import {
 import Accueil from './views/pages/accueil/Accueil'
 import Admin from './views/pages/admin/Index'
 import Historique from './views/pages/accueil/sections/Historique'
+import Actions from './views/pages/accueil/sections/Actions'
+import Definition from './views/pages/accueil/sections/Definition'
+import Equipe from './views/pages/accueil/sections/Equipe'
 import Partenaires from './views/pages/accueil/sections/Partenaires'
 import Public from './views/pages/accueil/sections/contact/Public'
 import Avatar from "./views/Avatar";
@@ -34,8 +37,12 @@ import AdultPro from "./views/pages/accueil/sections/TCL/Professionnel/AdultPro"
 import SportTCL from "./views/pages/accueil/sections/TCL/Sport/SportTCL"
 import Interface from "./views/pages/accueil/sections/TCL/Utilisateur/Interface"
 import Cartographie from "./views/pages/cartographie/Cartographie";
-
-
+import ParcoursMedicalAdulte from "./views/pages/accueil/sections/Parcours/ParcoursMedicalAdulte";
+import ParcoursMedicalEnfant from "./views/pages/accueil/sections/Parcours/ParcoursMedicalEnfant";
+import ParcoursVieAdulte from "./views/pages/accueil/sections/Parcours/ParcoursVieAdulte";
+import ParcoursAdulte from "./views/pages/accueil/sections/Parcours/ParcoursAdulte";
+import ParcoursEnfant from "./views/pages/accueil/sections/Parcours/ParcoursEnfant";
+import InterfaceParcours from "./views/pages/accueil/sections/Parcours/InterfaceParcours";
 //session : 1H
 const connection_max_time = 3600;
 const WEB_DATA = '/web_data';
@@ -275,7 +282,7 @@ class App extends React.Component {
                         {this.state.error ? <Notification verbose={'error'} message={'Impossible de se connecter'}/>:null}
                         <Navbar className={this.state.activeItem !== 10 ? 'navigation_bar' : 'navigation_bar low'} dark
                                 expand="md">
-                            <NavbarBrand href="/">OptimipsTC</NavbarBrand>
+                            <NavbarBrand href="/accueil/accueil">OptimipsTC</NavbarBrand>
                             <NavbarToggler onClick={this.toggle}/>
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="mr-auto" navbar>
@@ -289,13 +296,13 @@ class App extends React.Component {
                                             <DropdownItem href="/accueil/sections/historique">
                                                 Historique
                                             </DropdownItem>
-                                            <DropdownItem href="/accueil/accueil">
+                                            <DropdownItem href="/accueil/sections/actions">
                                                 Nos actions
                                             </DropdownItem>
                                             <DropdownItem href="/accueil/sections/partenaires">
                                                 Nos partenaires / Instances
                                             </DropdownItem>
-                                            <DropdownItem>
+                                            <DropdownItem href="/accueil/sections/equipe">
                                                 Équipe de coordination
                                             </DropdownItem>
                                         </DropdownMenu>
@@ -306,11 +313,17 @@ class App extends React.Component {
                                             Le traumatisme crânien
                                         </DropdownToggle>
                                         <DropdownMenu left="true" className={'nav_dropdown'}>
-                                            <DropdownItem onClick={()=>this.login} href="/accueil/sections/TCL/Utilisateur/Interface">
+                                            <DropdownItem href='/accueil/sections/Definition'>
+                                                Généralités
+                                            </DropdownItem>
+                                            <DropdownItem href="/accueil/sections/TCL/Utilisateur/Interface">
                                                 Léger
                                             </DropdownItem>
-                                            <DropdownItem>
+                                            <DropdownItem href='/accueil/sections/parcours/interfaceparcours'>
                                                 Modéré et Sévère
+                                            </DropdownItem>
+                                            <DropdownItem href="/accueil/sections/TCL/Sport/SportTCL">
+                                                Sport et TC
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>
@@ -443,6 +456,9 @@ class App extends React.Component {
                             <Route path="/cartographie" render={() => <Cartographie/>}/>
                             <Route path="/accueil/accueil" render={() => <Accueil/>}/>
                             <Route path="/accueil/sections/historique" render={() => <Historique/>}/>
+                            <Route path="/accueil/sections/actions" render={() => <Actions/>}/>
+                            <Route path="/accueil/sections/definition" render={() => <Definition/>}/>
+                            <Route path="/accueil/sections/equipe" render={() => <Equipe/>}/>
                             <Route path="/accueil/sections/TCL/Utilisateur/interface" render={() => <Interface/>}/>
                             <Route path="/accueil/sections/TCL/Utilisateur/enfant" render={() => <Enfant/>}/>
                             <Route path="/accueil/sections/TCL/Utilisateur/adult" render={() => <Adult/>}/>
@@ -451,6 +467,12 @@ class App extends React.Component {
                             <Route path="/accueil/sections/TCL/Sport/sporttcl" render={() => <SportTCL/>}/>
                             <Route path="/accueil/sections/partenaires" render={() => <Partenaires/>}/>
                             <Route path="/accueil/sections/contact/public" render={() => <Public/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursmedicaladulte" render={() => <ParcoursMedicalAdulte/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursmedicalenfant" render={() => <ParcoursMedicalEnfant/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursvieadulte" render={() => <ParcoursVieAdulte/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursadulte" render={() => <ParcoursAdulte/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursenfant" render={() => <ParcoursEnfant/>}/>
+                            <Route path="/accueil/sections/parcours/interfaceparcours" render={() => <InterfaceParcours/>}/>
                             <Route path="/login" render={() => <Login login={this.login} handleInputChange={this.handleInputChange}/>}/>
                             <Route render={()=><Controller route={window.location.pathname}/>}/>
                         </Switch>

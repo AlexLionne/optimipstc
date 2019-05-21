@@ -254,12 +254,16 @@ export default class Parcours extends React.Component {
 
     render() {
         return (
-            <section>
+            <section className={'section grandtexte'}>
                 <Container style={styles.container}>
                     <Row>
                         <Col xs="12">
-                            <h2 style={styles.section_titre}>
-                                Parcours de soins</h2>
+                            <h2 className={'titre'}>
+                                Prise en charge initiale</h2>
+                            <p>
+                                Dans le cas d'un traumatisme crânien modéré ou sévère, la parcours de soins varie en fonction de la gravité, des individus et du lieu de prise en charge.<br/>
+                                Vous pourrez retrouver les différentes étapes parcourues dans la prise en charge initiale, avec des informations supplémentaires pour certaines d'entre-elles en cliquant sur la case correspondante.<br/>
+                            </p>
                         </Col>
                     </Row>
                     <Switch>

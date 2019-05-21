@@ -13,6 +13,8 @@ import {
     Table,
 } from 'reactstrap';
 
+import ChatBot from '../../../ChatBot'
+
 import '../../../../css/index.css';
 import header2 from '../../../../assets/images/header2.png';
 
@@ -32,9 +34,9 @@ export default class SectionTwo extends React.Component {
         return (
             <section className={'section'}>
                 <img style={{position:'absolute',top:0,bottom:0,right:0,margin:'auto'}} height={'100%'} width={'auto'} src={header2}/>
-                <Container fluid className={'container-justify'}>
-                    <Row>
-                        <Col xs="6" className={'testtt'}>
+                <Container fluid className={'container-set-bis'}>
+                    <Row className={'row-top-3'}>
+                        <Col xs="9">
                             <h2 className={'titre'}>
                                Le Traumatisme crânien
                             </h2>
@@ -169,11 +171,9 @@ export default class SectionTwo extends React.Component {
                                 Parfois, ils ont des conséquences importantes dans la vie professionnelle et familiale.
                             </p>
                         </Col>
-
-
                     </Row>
-
                 </Container>
+                <ChatBot/>
                 <Modal className={'glasgow_modal'} isOpen={this.state.modal} fade={false} >
                     <ModalHeader >Score de Glasgow</ModalHeader>
                     <ModalBody>
