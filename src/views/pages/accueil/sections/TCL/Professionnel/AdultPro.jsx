@@ -74,7 +74,7 @@ export default class SectionTwo extends React.Component {
                                 fréquent. Parmi eux : environ 8 % des patients
                                 présentent des lésions hémorragiques
                                 intracrâniennes non neurochirurgicales et 1 %
-                                nécessitent un recours à la neurochirurgie [1].
+                                nécessitent un recours à la neurochirurgie¹.
                             </p>
                             <br/>
                             <h3 className={'bold colorPrimary'}>
@@ -90,7 +90,7 @@ export default class SectionTwo extends React.Component {
                             </ul>
                             <p>
                                 Pour évaluer ce risque, vous pouvez vous aider des tableaux suivants,
-                                issus des recommandations SFMU 2012 :
+                                issus des recommandations SFMU de 2012² :
                             </p>
                                 <div className={'orientation'}>
                                     <img src={tb1}></img>
@@ -98,9 +98,10 @@ export default class SectionTwo extends React.Component {
                                     <img src={tb3}></img>
                                 </div>
                             <br/>
+                            <br/>
                             <h3 className={'bold colorPrimary'}>
                                 Complications
-                            </h3><br/>
+                            </h3>
                             <p className={'text-danger'}>Syndrome post-commotionnel :</p>
                             <p>
                                 Il apparait dans les jours qui suivent et peut associer : céphalées, cervicalgies, sensations vertigineuses, asthénie, troubles du sommeil, cauchemars, intolérance au bruit et à la lumière, des difficultés cognitives avec des troubles de l’attention, de la concentration voire mnésiques et des troubles émotionnels avec une irritabilité, une anxiété, une labilité émotionnelle.
@@ -111,7 +112,7 @@ export default class SectionTwo extends React.Component {
                             </p>
                                 <ul>
                                     <li><strong>Rassurer,</strong> expliquer que la pathologie régresse dans la majorité des cas.</li>
-                                    <li><strong>faire une contre-indication aux activités sportives</strong> pendnat un mois,
+                                    <li><strong>faire une contre-indication aux activités sportives</strong> pendant un mois,
                                     réduire les activités pour favoriser le repos. Un arrêt de travail peut être justifié.</li>
                                     <li>faire une prise en charge symptomatique des douleurs.</li>
                                 </ul>
@@ -121,6 +122,23 @@ export default class SectionTwo extends React.Component {
                                 Cela permettra d'évaluer la nécessité d'un bilan neuropsychologique et/ou d'une rééducation spécifique.<br/>
                                 <a onClick={this.triggerModalRisques} href={"#"} className={'link'}>Des facteurs de risques </a>ont été mis en évidence,
                                 permettant d'identifier les patients nécessitant une surveillance.
+                            </p><br/>
+                            <h3 className={'bold colorPrimary'}>
+                                Sources et informations
+                            </h3>
+                            <p><a href='http://www.france-traumatisme-cranien.fr/upload/ga-na-ralistes.pdf' target='_blank'>
+                                Plaquette informative pour médecin généraliste
+                            </a><br/>
+                                <a href='http://www.france-traumatisme-cranien.fr/upload/urgentistes.pdf' target='_blank'>
+                                    Plaquette informative pour urgentiste
+                                </a><br/>
+                                <a href='http://www.france-traumatisme-cranien.fr/upload/adultes.pdf' target='_blank'>
+                                    Traumatisme crânien chez l'adulte
+                                </a>
+                            </p>
+                            <p>
+                                [1]	I. G. Stiell et al., « The Canadian CT Head Rule for patients with minor head injury », Lancet Lond. Engl., vol. 357, no 9266, p. 1391‑1396, mai 2001.<br/>
+                                [2]	comité de pilotage et al., « Traumatisme crânien léger (score de Glasgow de 13 à 15) : triage, évaluation, examens complémentaires et prise en charge précoce chez le nouveau-né, l’enfant et l’adulte: Société française de médecine d’urgence », Ann. Fr. Médecine Urgence, vol. 2, no 3, p. 199‑214, mai 2012.<br/>
                             </p>
                         </Col>
                     </Row>
@@ -135,7 +153,7 @@ export default class SectionTwo extends React.Component {
                         <Button onClick={this.triggerModalGlasgow} className={'buttonSecondary'}>Fermer</Button>
                     </ModalFooter>
                 </Modal>
-                <Modal className={'tc_modal'} isOpen={this.state.modalScanner} fade={false}>
+                <Modal className={'tc_modal'} size="lg" isOpen={this.state.modalScanner} fade={false}>
                     <ModalHeader >Scanner cérébral</ModalHeader>
                     <ModalBody>
                         <img src={scanner} width={'100%'}></img>
@@ -144,7 +162,7 @@ export default class SectionTwo extends React.Component {
                         <Button onClick={this.triggerModalScanner} className={'buttonSecondary'}>Fermer</Button>
                     </ModalFooter>
                 </Modal>
-                <Modal className={'tc_modal'} isOpen={this.state.modalSD} fade={false}>
+                <Modal className={'tc_modal'} size="lg" isOpen={this.state.modalSD} fade={false}>
                     <ModalHeader >Surveillance à domicile</ModalHeader>
                     <ModalBody>
                         <p>Il  faut que l'entourage soit adapté. Expliquer au patient dans un
@@ -166,7 +184,7 @@ export default class SectionTwo extends React.Component {
                         <Button onClick={this.triggerModalSD} className={'buttonSecondary'}>Fermer</Button>
                     </ModalFooter>
                 </Modal>
-                <Modal className={'tc_modal'} isOpen={this.state.modalRisques} fade={false}>
+                <Modal className={'tc_modal'} size="lg" isOpen={this.state.modalRisques} fade={false}>
                     <ModalHeader >Facteurs de risques</ModalHeader>
                     <ModalBody>
                         <img src={risques} width={'100%'}></img>
@@ -175,7 +193,6 @@ export default class SectionTwo extends React.Component {
                         <Button onClick={this.triggerModalRisques} className={'buttonSecondary'}>Fermer</Button>
                     </ModalFooter>
                 </Modal>
-                <Parcours/>
             </section>
         );
     }

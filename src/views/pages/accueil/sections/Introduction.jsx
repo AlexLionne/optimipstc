@@ -11,7 +11,8 @@ export default class SectionOne extends React.Component {
                     <Row className={'row-top'}>
                         <Col xs="6"  className={'testtt'}>
                                 <h2 className={'titre'}>
-                                    Traumatisme Crânien en Occitanie - Que faire et où aller ?</h2>
+                                    Traumatisme Crânien en Occitanie<br/>
+                                    Que faire et où aller ?</h2>
                                 <p>
                                     Bienvenue<br/>
                                     Dans le cadre d'un projet soutenu par l'Agence Régionale de Santé Occitanie, le projet OPTIMIPS-TC (pour Optimiser le Parcours de Soin du Patients attenit de Traumatisme Cranien) est né en 2018.<br/>

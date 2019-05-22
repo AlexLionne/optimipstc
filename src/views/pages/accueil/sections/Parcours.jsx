@@ -255,8 +255,8 @@ export default class Parcours extends React.Component {
     render() {
         return (
             <section className={'section grandtexte'}>
-                <Container style={styles.container}>
-                    <Row>
+                <Container>
+                    <Row className={'row-top-5'}>
                         <Col xs="12">
                             <h2 className={'titre'}>
                                 Prise en charge initiale</h2>
@@ -267,10 +267,8 @@ export default class Parcours extends React.Component {
                         </Col>
                     </Row>
                     <Switch>
-                        <Route path="/accueil/sections/TCL/Utilisateur/enfant" render={() => <Chart schema={parcours_soins_enfant} options={options}/>}/>
-                        <Route path="/accueil/sections/TCL/Utilisateur/adult" render={() => <Chart schema={parcours_soins} options={options}/>}/>
-                        <Route path="/accueil/sections/TCL/Professionnel/adultpro" render={() => <Chart schema={parcours_soins} options={options}/>}/>
-                        <Route path="/accueil/sections/TCL/Professionnel/enfantpro" render={() => <Chart schema={parcours_soins_enfant} options={options}/>}/>
+                        <Route path="/accueil/sections/Parcours/parcoursenfant" render={() => <Chart schema={parcours_soins_enfant} options={options}/>}/>
+                        <Route path="/accueil/sections/Parcours/parcoursadulte" render={() => <Chart schema={parcours_soins} options={options}/>}/>
                     </Switch>
                 </Container>
             </section>

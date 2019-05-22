@@ -30,7 +30,7 @@ export default class SectionTwo extends React.Component {
                                             </p>
                                         </Media>
                                         <p className={'equipe-texte'}>
-                                            PU-PH, Médecine Physique et de Réadaptation, CHU de
+                                            Pr, Médecine Physique et de Réadaptation, CHU de
                                             Toulouse
                                         </p>
                                     </Media>
@@ -65,7 +65,7 @@ export default class SectionTwo extends React.Component {
                                             </p>
                                         </Media>
                                         <p className={'equipe-texte'}>
-                                            PU, Médecine Physique et de Réadaptation, CHU de Toulouse
+                                            Dr, Médecine Physique et de Réadaptation, CHU de Toulouse
                                         </p>
                                     </Media>
                                 </Media>
@@ -118,7 +118,7 @@ export default class SectionTwo extends React.Component {
                                             </p>
                                         </Media>
                                         <p className={'equipe-texte'}>
-                                            PU-PH, Neurologie, CHU de Toulouse
+                                            Pr, Neurologie, CHU de Toulouse
                                         </p>
                                     </Media>
                                 </Media>

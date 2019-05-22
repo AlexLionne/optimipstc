@@ -266,9 +266,8 @@ export default class Bot extends React.Component {
                                                     <a key={i} href={link.href}>{link.text}</a></div>)
                                         })
                                         }
-
                                     </CardText>
-                                    <div className={'m_24p'}> { questions[this.state.current_question].text}</div>
+                                    <div className={'m_24p chatbot-texte'}> { questions[this.state.current_question].text}</div>
                                     {questions[this.state.current_question].actions.map((action, i) => {
                                         return (<Button key={i} className={'buttonSecondary'} onClick={()=>{this.url(action.link)}}>
                                            {action.text}

@@ -78,7 +78,7 @@ export default class SectionTwo extends React.Component {
                             <h3 className={'bold colorPrimary'}>
                                 Orientation
                             </h3>
-                            <p>La Société Française de Pédiatrie et la Société Française de Médecine d’Urgence utilisent l’algorithme de décision PECARN [1] qui permet de classer l’enfant dans un des 3 groupes de risque:
+                            <p>La Société Française de Pédiatrie et la Société Française de Médecine d’Urgence utilisent l’algorithme de décision PECARN¹ qui permet de classer l’enfant dans un des 3 groupes de risque:
                                 <a onClick={this.triggerModalDetection} href={"#"} className={'link'}> haut , intermédiaire ou faible.</a>
                                 Ce classement est basé sur l’anamnèse et l’examen clinique.
                                 En fonction du risque, l’orientation sera :
@@ -109,13 +109,14 @@ export default class SectionTwo extends React.Component {
                             <p>
                                 Pour plus de détails, voir :
                                 <ul>
-                                    <li>recommandations SFMU, 2012 [2]</li>
-                                    <li>Actualisation des recommandations, 2014 [3]</li>
+                                    <li>recommandations SFMU, 2012²</li>
+                                    <li>Actualisation des recommandations, 2014³</li>
                                 </ul>
                             </p>
+                            <br/>
                             <h3 className={'bold colorPrimary'}>
                                 Complications
-                            </h3><br/>
+                            </h3>
                             <p className={'text-danger'}>Syndrome post-commotionnel :</p>
                             <p>
                                 Il apparait dans les jours qui suivent et peut associer : céphalées, cervicalgies, sensations vertigineuses, asthénie, troubles du sommeil, cauchemars, intolérance au bruit et à la lumière, des difficultés cognitives avec des troubles de l’attention, de la concentration voire mnésiques et des troubles émotionnels avec une irritabilité, une anxiété, une labilité émotionnelle.
@@ -143,6 +144,25 @@ export default class SectionTwo extends React.Component {
                                 <a onClick={this.triggerModalRisques} href={"#"} className={'link'}>Des facteurs de risques </a>ont été mis en évidence,
                                 permettant d'identifier les patients nécessitant une surveillance.
                             </p>
+                            <br/>
+                            <h3 className={'bold colorPrimary'}>
+                                Sources et informations
+                            </h3>
+                            <p><a href='http://www.france-traumatisme-cranien.fr/upload/enfants.pdf' target='_blank'>
+                                Plaquette informative pour parents et enfants.
+                                </a><br/>
+                                <a href='http://www.france-traumatisme-cranien.fr/upload/actions/tc-leger/document-scol.-long-da-finitif-et-justifia-.pdf' target='_blank'>
+                                    Plaquette informative pour enseignant, infirmière et médecin scolaire.
+                                </a><br/>
+                                <a href='http://www.sfmu.org/upload/70_formation/02_eformation/02_congres/Urgences/urgences2015/donnees/pdf/039.pdf' target='_blank'>
+                                    Traumatisme crânien chez l'enfant
+                                </a>
+                            </p>
+                            <p>
+                                [1]	N. Kuppermann et al., « Identification of children at very low risk of clinically-important brain injuries after head trauma: a prospective cohort study », Lancet Lond. Engl., vol. 374, no 9696, p. 1160‑1170, oct. 2009.<br/>
+                                [2]	comité de pilotage et al., « Traumatisme crânien léger (score de Glasgow de 13 à 15) : triage, évaluation, examens complémentaires et prise en charge précoce chez le nouveau-né, l’enfant et l’adulte: Société française de médecine d’urgence », Ann. Fr. Médecine Urgence, vol. 2, no 3, p. 199‑214, mai 2012.<br/>
+                                [3]	F. Lorton et al., « Actualisation des recommandations pour la prise en charge du traumatisme crânien léger chez l’enfant », Arch. Pédiatrie, vol. 21, no 7, p. 790‑796, juill. 2014.<br/>
+                            </p>
                         </Col>
                     </Row>
                 </Container>
@@ -155,7 +175,7 @@ export default class SectionTwo extends React.Component {
                         <Button onClick={this.triggerModalGlasgow} className={'buttonSecondary'}>Fermer</Button>
                     </ModalFooter>
                 </Modal>
-                <Modal className={'tc_modal'} isOpen={this.state.modalDetection} fade={false}>
+                <Modal className={'tc_modal'} size="lg" isOpen={this.state.modalDetection} fade={false}>
                     <ModalHeader >Groupes de risque</ModalHeader>
                     <ModalBody>
                         <img src={detection1} width={'100%'}></img><img src={detection2} width={'100%'}></img>
@@ -164,7 +184,7 @@ export default class SectionTwo extends React.Component {
                         <Button onClick={this.triggerModalDetection} className={'buttonSecondary'}>Fermer</Button>
                     </ModalFooter>
                 </Modal>
-                <Modal className={'tc_modal'} isOpen={this.state.modalPEC} fade={false}>
+                <Modal className={'tc_modal'} size="lg" isOpen={this.state.modalPEC} fade={false}>
                     <ModalHeader >Principes de surveillance et de prise en charge</ModalHeader>
                     <ModalBody>
                         <img src={pec} width={'100%'}></img>
@@ -173,7 +193,7 @@ export default class SectionTwo extends React.Component {
                         <Button onClick={this.triggerModalPEC} className={'buttonSecondary'}>Fermer</Button>
                     </ModalFooter>
                 </Modal>
-                <Modal className={'tc_modal'} isOpen={this.state.modalRisques} fade={false}>
+                <Modal className={'tc_modal'} size="lg" isOpen={this.state.modalRisques} fade={false}>
                     <ModalHeader >Facteurs de risques</ModalHeader>
                     <ModalBody>
                         <img src={risques} width={'100%'}></img>
@@ -182,7 +202,6 @@ export default class SectionTwo extends React.Component {
                         <Button onClick={this.triggerModalRisques} className={'buttonSecondary'}>Fermer</Button>
                     </ModalFooter>
                 </Modal>
-                <Parcours/>
             </section>
         );
     }

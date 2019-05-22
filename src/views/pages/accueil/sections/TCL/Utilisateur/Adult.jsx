@@ -160,7 +160,6 @@ export default class SectionTwo extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-                <Parcours/>
                 <SportController/>
                 <Modal className={'tc_modal'} isOpen={this.state.modal} fade={false} >
                     <ModalHeader >Le traumatisme crânien</ModalHeader>

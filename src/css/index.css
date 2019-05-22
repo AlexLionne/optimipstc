@@ -60,10 +60,12 @@ h4{
 .buttonSecondary{
     display : inline-block!important;
     background-color:white!important;
-    border-color:transparent!important;
     font-weight:bold!important;
+    border: transparent!important;
     color:#FFC107!important;
     margin-right:18px!important;
+    box-shadow: 1px 1px 12px #D5D5D5;
+    margin:4px!important;
 }
 
 
@@ -89,7 +91,7 @@ h4{
 }
 
 .chatbot_card{
-    width: 600px; /*TODO : responsive*/
+    width: 800px; /*TODO : responsive*/
     margin-right: 24px;
     display: inline-block;
 }
@@ -109,6 +111,11 @@ h4{
 .chatbot_titre{
     color: #f6e58d;
     font-family:Padauk, sans-serif;
+    font-size:30px;
+}
+
+.chatbot-texte{
+    font-size:25px;
 }
 .chatbot_icon{
     color:#f6e58d;

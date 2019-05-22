@@ -28,12 +28,13 @@ export default class SectionTwo extends React.Component {
 
             <section className={'section'}>
                 <img style={{position:'absolute',top:0,bottom:0,right:0,margin:'auto'}} height={'100%'} width={'auto'} src={header2}/>
-                <Container  className={'second-container-set'}>
+                <Container fluid className={'second-container-set'}>
                     <h2>
                         Nos partenaires / Instances
                     </h2>
                     <Row>
                         <Col xs="9">
+                            <div className={'margin-historique'}>
                             <Card>
                             <Collapsible trigger="Agence Régionale de Santé Occitanie">
                                 <div  className={'img-center'}>
@@ -94,7 +95,7 @@ export default class SectionTwo extends React.Component {
                             <Collapsible trigger="Ecole d'Ingénieurs ISIS">
                                 <div  className={'img-center'}>
                                 <a href="http://isis.univ-jfc.fr" target="_blank">
-                                    <img src={isis} alt="Ecole ISIS" className={'img-equipe'}></img>
+                                    <img src={isis} alt="École ISIS" className={'img-equipe'}></img>
                                 </a>
                                 </div>
                                 <CardText>L’école d’ingénieurs ISIS Castres est une entité de l’Institut National Universitaire Jean-François Champollion (4000 étudiants) et partenaire du groupe INSA. ISIS délivre des diplômes d’ingénieur en Informatique pour la santé. Cette école compte aujourd’hui dans les leaders Français en ingénierie dédiée à la santé. La recherche en e-santé a débuté il y a une dizaine d’année avec une équipe multidisciplinaire d’enseignants chercheurs rattachés aux différents laboratoires Toulousains. ISIS représente aujourd’hui l’antenne ‘santé’ du laboratoire de recherche en informatique de Toulouse (IRIT) sur le Tarn. Cette école possède un living lab CHL (Connected Health Lab) qui a été lancé il y a quatre ans dans l’objectif d’accélérer l’innovation dans l'écosystème de la e-santé. Autant les experts internes qu’externes au CHL peuvent être fédéré ensemble autour de projets R&D innovants. Le CHL est une plateforme technologique de 220 m2 dont la vocation est d’évaluer des usages et des pratiques de santé connectée. À ce titre, il est reconnu comme un living lab et est membre du forum des living labs en santé et autonomie (réseau national). Par son positionnement stratégique, le CHL offre une infrastructure et des services pour faciliter l’innovation ouverte au service du progrès de la santé publique autour de la notion de parcours du patient (parcours de vie, de santé et de soins). Il dispose de 5 pièces emblématiques des épisodes de santé en établissement hospitalier ou au domicile. En tant que Living lab, le CHL favorise le développement d’approches centrées utilisateur qui permettent de réduire les écarts entre la communauté d’ingénierie, les acteurs socio-économiques ainsi que la communauté industrielle.</CardText>
@@ -132,6 +133,7 @@ export default class SectionTwo extends React.Component {
                                 <p>L'Union Nationale des Associations de Familles de Traumatisés crâniens et de Cérébro-lésés créée en 1986. Il s'agit d'une association loi 1901 à but non lucratif reconnue d'intérêt général qui regroupe 52 Associations de Familles de Traumatisés crâniens et de Cérébro-lésés (AFTC), 96 établissements et services dédiés à l'accueil des personnes cérébro-lésées et 40 Groupes d'Entraide Mutuelle (GEM) portés par des associations de personnes cérébro-lésées. L’AFTC 31 est extrêmement active.</p>
                             </Collapsible>
                             </Card>
+                            </div>
                         </Col>
                     </Row>
                 </Container>

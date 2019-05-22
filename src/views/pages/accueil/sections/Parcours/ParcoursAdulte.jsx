@@ -4,6 +4,7 @@ import '../../../../../css/container.css'
 import ParcoursMedicalAdulte from '../../../../pages/accueil/sections/Parcours/ParcoursMedicalAdulte'
 import ParcoursVieAdulte from '../../../../pages/accueil/sections/Parcours/ParcoursVieAdulte'
 import {DropdownItem} from "reactstrap";
+import Parcours from "../Parcours";
 
 
 export default class SectionTwo extends React.Component {
@@ -14,6 +15,7 @@ export default class SectionTwo extends React.Component {
     render() {
         return (
             <div>
+                <Parcours/>
                 <DropdownItem divider />
                     <ParcoursMedicalAdulte/>
                 <DropdownItem divider />
