@@ -26,6 +26,7 @@ import Definition from './views/pages/accueil/sections/Definition'
 import Equipe from './views/pages/accueil/sections/Equipe'
 import Partenaires from './views/pages/accueil/sections/Partenaires'
 import Public from './views/pages/accueil/sections/contact/Public'
+import Pro from './views/pages/accueil/sections/contact/Pro'
 import Avatar from "./views/Avatar";
 import Controller from "./views/Controller";
 import Login from "./views/pages/login/Login";
@@ -52,59 +53,62 @@ const storage = firebase.storage();
 const storage_reference = storage.ref(ROOT);
 
 
-
 let structures = [];
 let structures_valides = [];
 let passwords = [];
 let notifications = [];
 let result = [];
+
 //641 = 1
 
-function createAndLogUsers(structures){
-    structures.map((structure,i)=>{
+function createAndLogUsers(structures) {
+    structures.map((structure, i) => {
         firebase.auth().createUserWithEmailAndPassword(structure.mail, structure.password).then((res) => {
             firebase.auth().signInWithEmailAndPassword(structure.mail, structure.password).then((res) => {
                 let uid = res.user.uid;
                 firebase.database().ref('users/' + uid).set(structure);
             })
-        }).catch((error) => {});
+        }).catch((error) => {
+        });
     })
 }
+
 function setStructuresValides() {
     let count = {};
 
 
     firebase.database().ref('structures/').once('value', function (snapshot) {
 
-        snapshot.val().map((structure,i) =>{
+        snapshot.val().map((structure, i) => {
             let structure_valide = {};
             if (structure.mail !== "Non communiqué") {
 
                 count[structure.mail] = count[structure.mail] ? count[structure.mail] + 1 : 1;
-                        snapshot.val().hasMail(structure.mail,function (terminated,ids) {
-                            if(terminated){
-                                structure_valide['mail'] = structure.mail;
-                                structure_valide['nom'] = structure.nom;
-                                structure_valide['structure_id'] = ids;
-                                structure_valide['password'] = generatePassword();
-                                structure_valide['admin'] = true;
-                                structure_valide['super_admin'] = false;
-                                structures_valides.push(structure_valide);
-                            }
-                        });
-                }
+                snapshot.val().hasMail(structure.mail, function (terminated, ids) {
+                    if (terminated) {
+                        structure_valide['mail'] = structure.mail;
+                        structure_valide['nom'] = structure.nom;
+                        structure_valide['structure_id'] = ids;
+                        structure_valide['password'] = generatePassword();
+                        structure_valide['admin'] = true;
+                        structure_valide['super_admin'] = false;
+                        structures_valides.push(structure_valide);
+                    }
                 });
-            result = structures_valides.reduce((unique, o) => {
-            if(!unique.some(obj => obj.mail === o.mail)) {
+            }
+        });
+        result = structures_valides.reduce((unique, o) => {
+            if (!unique.some(obj => obj.mail === o.mail)) {
                 unique.push(o);
             }
             return unique;
-        },[]);
+        }, []);
         //createAndLogUsers(result);
 
-        });
+    });
 
 }
+
 function generatePassword() {
     return Math.random()
         .toString(36)
@@ -112,7 +116,7 @@ function generatePassword() {
 }
 
 
-Array.prototype.hasMail = function(element,callback) {
+Array.prototype.hasMail = function (element, callback) {
     let i;
     let ids = [];
     for (i = 0; i < this.length; i++) {
@@ -120,11 +124,30 @@ Array.prototype.hasMail = function(element,callback) {
             ids.push(this[i].id);
         }
     }
-    callback(true,ids);
+    callback(true, ids);
 };
 
 class App extends React.Component {
 
+
+    constructor(props) {
+        super(props);
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            activeItem: 0,
+            isOpen: false,
+            logged: false,
+            email: '',
+            password: '',
+            error: null,
+            notifications: [],
+            navbarItems: []
+        };
+        const uid = reactLocalStorage.get('uid');
+        if (uid !== null) {
+            this.checkSession(uid);
+        }
+    }
 
     componentDidMount() {
         switch (window.location.pathname) {
@@ -162,29 +185,11 @@ class App extends React.Component {
         }
     }
 
-    constructor(props) {
-        super(props);
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            activeItem: 0,
-            isOpen: false,
-            logged: false,
-            email: '',
-            password: '',
-            error: null,
-            notifications : [],
-            navbarItems:[]
-        };
-        const uid = reactLocalStorage.get('uid');
-        if(uid !== null){
-            this.checkSession(uid);
-        }
-    }
     getNotifications = () => {
         firebase.database().ref('demandes/').once('value', function (snapshot) {
-            if(snapshot.val() !== null){
-                Object.values(snapshot.val()).map((notification,i)=>{
-                    if(reactLocalStorage.get('super_admin') === 'true'){
+            if (snapshot.val() !== null) {
+                Object.values(snapshot.val()).map((notification, i) => {
+                    if (reactLocalStorage.get('super_admin') === 'true') {
                         notifications.push(notification)
                     }
                 });
@@ -204,10 +209,10 @@ class App extends React.Component {
         let to = time.getHours() * 3600 + time.getMinutes() * 60 + time.getSeconds();
         let ctx = this;
         firebase.database().ref('/sessions/' + uid).once('value').then(function (snapshot) {
-            if(snapshot.val() !== null){
+            if (snapshot.val() !== null) {
                 if (to <= snapshot.val().session_max_time) {
                     firebase.database().ref('/users/' + uid).once('value').then(function (snapshot) {
-                        ctx.setState({email:snapshot.val().mail,password:snapshot.val().password.toString()});
+                        ctx.setState({email: snapshot.val().mail, password: snapshot.val().password.toString()});
                         ctx.login();
 
                     });
@@ -243,8 +248,8 @@ class App extends React.Component {
             .catch((error) => {
                 ctx.setState({error: error.message});
                 setTimeout(function () {
-                        ctx.setState({error:null})
-                }, 300
+                        ctx.setState({error: null})
+                    }, 300
                 )
             });
     };
@@ -266,6 +271,7 @@ class App extends React.Component {
         firebase.database().ref('sessions/' + uid).remove();
         reactLocalStorage.clear();
     };
+
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
@@ -276,10 +282,11 @@ class App extends React.Component {
 
         return (
             <Route
-                render={({ location }) => (
+                render={({location}) => (
                     <div className={'root'}>
 
-                        {this.state.error ? <Notification verbose={'error'} message={'Impossible de se connecter'}/>:null}
+                        {this.state.error ?
+                            <Notification verbose={'error'} message={'Impossible de se connecter'}/> : null}
                         <Navbar className={this.state.activeItem !== 10 ? 'navigation_bar' : 'navigation_bar low'} dark
                                 expand="md">
                             <NavbarBrand href="/accueil/accueil">OptimipsTC</NavbarBrand>
@@ -368,7 +375,7 @@ class App extends React.Component {
                                             Contact
                                         </DropdownToggle>
                                         <DropdownMenu left="true" className="nav_dropdown">
-                                            <DropdownItem href="/contact">
+                                            <DropdownItem href="/accueil/sections/contact/pro">
                                                 Vous êtes un professionnel
                                             </DropdownItem>
                                             <DropdownItem href="/accueil/sections/contact/public">
@@ -378,8 +385,6 @@ class App extends React.Component {
                                     </UncontrolledDropdown>
 
 
-
-
                                     <div className={'right'}>
                                         {
                                             reactLocalStorage.get('uid') ?
@@ -387,72 +392,76 @@ class App extends React.Component {
                                                 <UncontrolledDropdown nav inNavbar>
                                                     <DropdownToggle className={'nav_link'} nav>
                                                         <Avatar/>
-                                                        {reactLocalStorage.getObject('notifications').notifications !== undefined && reactLocalStorage.getObject('notifications').notifications.length > 0?
-                                                        <Badge  className={'background_color_secondary'}>{reactLocalStorage.getObject('notifications').notifications.length }</Badge> :null}
+                                                        {reactLocalStorage.getObject('notifications').notifications !== undefined && reactLocalStorage.getObject('notifications').notifications.length > 0 ?
+                                                            <Badge
+                                                                className={'background_color_secondary'}>{reactLocalStorage.getObject('notifications').notifications.length}</Badge> : null}
                                                     </DropdownToggle>
                                                     {(() => {
 
                                                         let super_admin = reactLocalStorage.get('super_admin');
                                                         if (super_admin === 'true') {
-                                                            return (<DropdownMenu right="true" className={'nav_dropdown'}>
-                                                                <DropdownItem disabled={true}>
-                                                                    Mon compte
-                                                                </DropdownItem>
-                                                                <DropdownItem href="/admin/structures">
-                                                                    Gestion des centres
-                                                                </DropdownItem>
-                                                                <DropdownItem href="/admin/utilisateurs">
-                                                                    Gestion des utilisateurs
-                                                                </DropdownItem>
-                                                                <DropdownItem href="/admin/chatbot">
-                                                                    Gestion du chatbot
-                                                                </DropdownItem>
-                                                                <DropdownItem href="/admin/parametres">
-                                                                    Paramètres
-                                                                </DropdownItem>
-                                                                <DropdownItem href="/admin/notifications">
-                                                                    {reactLocalStorage.getObject('notifications').notifications !== undefined
-                                                                    && reactLocalStorage.getObject('notifications').notifications.length > 0
-                                                                        ? reactLocalStorage.getObject('notifications').notifications.length : ''} Notifications
-                                                                </DropdownItem>
-                                                                <DropdownItem onClick={this.logout} href="#"
-                                                                              className={'colorSecondary bold'}>
-                                                                    Déconnexion
-                                                                </DropdownItem>
-                                                            </DropdownMenu>);
+                                                            return (
+                                                                <DropdownMenu right="true" className={'nav_dropdown'}>
+                                                                    <DropdownItem disabled={true}>
+                                                                        Mon compte
+                                                                    </DropdownItem>
+                                                                    <DropdownItem href="/admin/structures">
+                                                                        Gestion des centres
+                                                                    </DropdownItem>
+                                                                    <DropdownItem href="/admin/utilisateurs">
+                                                                        Gestion des utilisateurs
+                                                                    </DropdownItem>
+                                                                    <DropdownItem href="/admin/chatbot">
+                                                                        Gestion du chatbot
+                                                                    </DropdownItem>
+                                                                    <DropdownItem href="/admin/parametres">
+                                                                        Paramètres
+                                                                    </DropdownItem>
+                                                                    <DropdownItem href="/admin/notifications">
+                                                                        {reactLocalStorage.getObject('notifications').notifications !== undefined
+                                                                        && reactLocalStorage.getObject('notifications').notifications.length > 0
+                                                                            ? reactLocalStorage.getObject('notifications').notifications.length : ''} Notifications
+                                                                    </DropdownItem>
+                                                                    <DropdownItem onClick={this.logout} href="#"
+                                                                                  className={'colorSecondary bold'}>
+                                                                        Déconnexion
+                                                                    </DropdownItem>
+                                                                </DropdownMenu>);
 
                                                         } else {
-                                                            return (<DropdownMenu right="true" className={'nav_dropdown'}>
-                                                                <DropdownItem disabled={true}>
-                                                                    Mon compte
-                                                                </DropdownItem>
-                                                                <DropdownItem href="/admin/structures">
-                                                                    Gestion des centres
-                                                                </DropdownItem>
-                                                                <DropdownItem href="/admin/parametres">
-                                                                    Paramètres
-                                                                </DropdownItem>
-                                                                <DropdownItem href="/admin/notifications">
-                                                                    {reactLocalStorage.getObject('notifications').notifications !== undefined
-                                                                    && reactLocalStorage.getObject('notifications').notifications.length > 0
-                                                                        ? reactLocalStorage.getObject('notifications').notifications.length : ''} Notifications
-                                                                </DropdownItem>
-                                                                <DropdownItem onClick={this.logout} href="#"
-                                                                              className={'colorSecondary bold'}>
-                                                                    Déconnexion
-                                                                </DropdownItem>
-                                                            </DropdownMenu>);
+                                                            return (
+                                                                <DropdownMenu right="true" className={'nav_dropdown'}>
+                                                                    <DropdownItem disabled={true}>
+                                                                        Mon compte
+                                                                    </DropdownItem>
+                                                                    <DropdownItem href="/admin/structures">
+                                                                        Gestion des centres
+                                                                    </DropdownItem>
+                                                                    <DropdownItem href="/admin/parametres">
+                                                                        Paramètres
+                                                                    </DropdownItem>
+                                                                    <DropdownItem href="/admin/notifications">
+                                                                        {reactLocalStorage.getObject('notifications').notifications !== undefined
+                                                                        && reactLocalStorage.getObject('notifications').notifications.length > 0
+                                                                            ? reactLocalStorage.getObject('notifications').notifications.length : ''} Notifications
+                                                                    </DropdownItem>
+                                                                    <DropdownItem onClick={this.logout} href="#"
+                                                                                  className={'colorSecondary bold'}>
+                                                                        Déconnexion
+                                                                    </DropdownItem>
+                                                                </DropdownMenu>);
                                                         }
                                                     })()}
                                                 </UncontrolledDropdown>
                                                 : <NavLink className={'nav_link_active'} href="/login"
-                                                           >Connexion</NavLink>}
+                                                >Connexion</NavLink>}
                                     </div>
                                 </Nav>
                             </Collapse>
                         </Navbar>
                         <Switch>
-                            <Route path="/admin" render={() => <Admin notifications={this.state.notifications} uid={reactLocalStorage.get('uid')}/>}/>
+                            <Route path="/admin" render={() => <Admin notifications={this.state.notifications}
+                                                                      uid={reactLocalStorage.get('uid')}/>}/>
                             <Route path="/cartographie" render={() => <Cartographie/>}/>
                             <Route path="/accueil/accueil" render={() => <Accueil/>}/>
                             <Route path="/accueil/sections/historique" render={() => <Historique/>}/>
@@ -467,14 +476,20 @@ class App extends React.Component {
                             <Route path="/accueil/sections/TCL/Sport/sporttcl" render={() => <SportTCL/>}/>
                             <Route path="/accueil/sections/partenaires" render={() => <Partenaires/>}/>
                             <Route path="/accueil/sections/contact/public" render={() => <Public/>}/>
-                            <Route path="/accueil/sections/parcours/parcoursmedicaladulte" render={() => <ParcoursMedicalAdulte/>}/>
-                            <Route path="/accueil/sections/parcours/parcoursmedicalenfant" render={() => <ParcoursMedicalEnfant/>}/>
-                            <Route path="/accueil/sections/parcours/parcoursvieadulte" render={() => <ParcoursVieAdulte/>}/>
+                            <Route path="/accueil/sections/contact/pro" render={() => <Pro/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursmedicaladulte"
+                                   render={() => <ParcoursMedicalAdulte/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursmedicalenfant"
+                                   render={() => <ParcoursMedicalEnfant/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursvieadulte"
+                                   render={() => <ParcoursVieAdulte/>}/>
                             <Route path="/accueil/sections/parcours/parcoursadulte" render={() => <ParcoursAdulte/>}/>
                             <Route path="/accueil/sections/parcours/parcoursenfant" render={() => <ParcoursEnfant/>}/>
-                            <Route path="/accueil/sections/parcours/interfaceparcours" render={() => <InterfaceParcours/>}/>
-                            <Route path="/login" render={() => <Login login={this.login} handleInputChange={this.handleInputChange}/>}/>
-                            <Route render={()=><Controller route={window.location.pathname}/>}/>
+                            <Route path="/accueil/sections/parcours/interfaceparcours"
+                                   render={() => <InterfaceParcours/>}/>
+                            <Route path="/login" render={() => <Login login={this.login}
+                                                                      handleInputChange={this.handleInputChange}/>}/>
+                            <Route render={() => <Controller route={window.location.pathname}/>}/>
                         </Switch>
                     </div>
                 )}/>

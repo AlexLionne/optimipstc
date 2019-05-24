@@ -18,24 +18,27 @@ import Parcours from '../../../../../pages/accueil/sections/Parcours'
 import SportController from '../../../../../SportController'
 
 export default class SectionTwo extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            modal : false
+            modal: false
         }
     }
-    triggerModal = () =>{
-        this.setState({modal:!this.state.modal})
+
+    triggerModal = () => {
+        this.setState({modal: !this.state.modal})
     };
 
 
     render() {
         return (
             <section className={'section grandtexte'}>
-                <img style={{position:'absolute',top:0,bottom:0,right:0,margin:'auto'}} height={'100%'} width={'auto'} src={header2}/>
+                <img style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
+                     width={'auto'} src={header2}/>
                 <Container fluid className={'container-justify'}>
                     <Row>
                         <Col xs="9">
+                            <div className={'action-responsive'}>
                             <h2 className={'titre TCL'}>
                                 Le Traumatisme crânien léger chez l'adulte
                             </h2>
@@ -45,14 +48,19 @@ export default class SectionTwo extends React.Component {
                             <p>
                                 Il s'agit d'un
                                 <a onClick={this.triggerModal} href={"#"} className={'link'}> traumatisme crânien </a>
-                                léger si les troubles neurologiques ont duré très peu de temps. Ces troubles neurologiques peuvent être :
+                                léger si les troubles neurologiques ont duré très peu de temps. Ces troubles
+                                neurologiques peuvent être :
                                 <br/><br/>
                                 <ul>
                                     <li>une perte de connaissance.</li>
-                                    <li>une confusion : discours incohérent, l'enfant ne sait pas à quel endroit il se trouve.</li>
+                                    <li>une confusion : discours incohérent, l'enfant ne sait pas à quel endroit il se
+                                        trouve.
+                                    </li>
                                     <li>une crise d épilepsie.</li>
                                     <li>une paralysie.</li>
-                                    <li>une amnésie post-traumatique : oubli de la conversation au fur et à mesure, répète sans cesse les mêmes questions, cela doit durer moins de 24h.</li>
+                                    <li>une amnésie post-traumatique : oubli de la conversation au fur et à mesure,
+                                        répète sans cesse les mêmes questions, cela doit durer moins de 24h.
+                                    </li>
                                 </ul>
                             </p>
                             <br/>
@@ -63,8 +71,9 @@ export default class SectionTwo extends React.Component {
                                 Les signes d'alerte qui doivent vous faire appeler le 15 immédiatement :
                             </p>
                             <ul>
-                                <li>une somnolence : difficulté à rester éveiller.</li>
-                                <li>une perte de force dans un membre ou un engourdissement, une perte de sensibilité.</li>
+                                <li>une somnolence : difficulté à rester éveiller.</li>
+                                <li>une perte de force dans un membre ou un engourdissement, une perte de sensibilité.
+                                </li>
                                 <li>difficulté à parler.</li>
                                 <li>comportement inhabituel.</li>
                                 <li>trouble de la vision, vision double.</li>
@@ -75,15 +84,19 @@ export default class SectionTwo extends React.Component {
                                 <li>convulsions, mouvements anormaux.</li>
                             </ul>
                             <p>
-                                Votre interlocuteur du SAMU vous posera des questions et vous guidera sur la conduite à tenir.
+                                Votre interlocuteur du SAMU vous posera des questions et vous guidera sur la conduite à
+                                tenir.
                             </p>
+                            </div>
+
                         </Col>
                     </Row>
                     <hr/>
                     <Row>
                         <Col xs="9" className={'col-espacement'}>
                             <h5 className={'text-primary'}>
-                                Les signes d'alerte qui doivent vous faire consulter votre médecin traitant ou votre pédiatre:
+                                Les signes d'alerte qui doivent vous faire consulter votre médecin traitant ou votre
+                                pédiatre:
                             </h5>
                             <p>
                                 Si dans les jours qui suivent, vous ressentez :
@@ -98,7 +111,8 @@ export default class SectionTwo extends React.Component {
                                 <li>irritabilité, impatience.</li>
                                 <li>acouphènes, bourdonnements d'oreille.</li>
                                 <li>cauchemars, souvenirs de l'accident qui reviennent sans cesse.</li>
-                            </ul><br/><br/>
+                            </ul>
+                            <br/><br/>
                             <h5 className={'text-primary'}>
                                 Dans les jours qui suivent, vous devez :
                             </h5>
@@ -109,28 +123,33 @@ export default class SectionTwo extends React.Component {
                                     L’arrêt de l’école peut être nécessaire 1
                                     ou plusieurs jours en fonction des
                                     symptômes et de la gravité du TC, pour
-                                    permettre de se reposer à la maison.</li>
+                                    permettre de se reposer à la maison.
+                                </li>
                                 <li><strong>Ne pas pratiquer d'activité sportive : </strong>Il faut attendre
                                     4 semaines avant de reprendre le
                                     sport,ou que les maux de tête
                                     aient disparus depuis plusieurs jours
-                                    avant de reprendre le sport.</li>
+                                    avant de reprendre le sport.
+                                </li>
                                 <li><strong>Eviter l'alcool.</strong></li>
                                 <li><strong>Ne conduire que si vous vous en sentez pleinement capable.</strong></li>
-                            </ul><br/>
+                            </ul>
+                            <br/>
                             <h3 className={'bold colorPrimary'}>
                                 Quels sont les risques possibles ?
                             </h3><br/>
                             <p className={'text-danger'}>
                                 Dans les heures à venir :
                             </p>
-                            <p> Un saignement dans le cerveau est rare mais grave. Il survient habituellement dans les premières heures
+                            <p> Un saignement dans le cerveau est rare mais grave. Il survient habituellement dans les
+                                premières heures
                                 après l'accident, mais il est préférable de surveiller votre enfant pendant 48 heures.
-                                Et s'i l'un des « signes
+                                Et s'i l'un des « signes
                                 d’alerte qui doivent vous faire appeler le
-                                15 » cité <a href="#appel15">ci-dessus</a> apparaît, vous ne devez pas perdre de temps.
+                                15 » cité <a href="#appel15">ci-dessus</a> apparaît, vous ne devez pas perdre de temps.
                                 Le service du SAMU est le plus compétent pour juger de ce risque.
-                                Il pourra alors soit choisir de : venir sur place, vous envoyer une ambulance, vous demander de venir consulter
+                                Il pourra alors soit choisir de : venir sur place, vous envoyer une ambulance, vous
+                                demander de venir consulter
                                 aux urgence, ou chez votre médecin traitant.<br/>
                                 Un scanner n'est pas toujours nécessaire, il expose à des radiations ionisantes.</p>
                             <p className={'text-danger'}>
@@ -139,7 +158,7 @@ export default class SectionTwo extends React.Component {
                             <p>
                                 Dans la majorité des cas tout rentre dans
                                 l’ordre rapidement.
-                                Chez certaines personnes il peut apparaitre les
+                                Chez certaines personnes il peut apparaitre les
                                 jours suivants : des maux de tête, des difficultés à
                                 se concentrer, à retenir des informations, une
                                 fatigue, des troubles de la vision, une intolérance
@@ -161,15 +180,17 @@ export default class SectionTwo extends React.Component {
                     </Row>
                 </Container>
                 <SportController/>
-                <Modal className={'tc_modal'} isOpen={this.state.modal} fade={false} >
-                    <ModalHeader >Le traumatisme crânien</ModalHeader>
+                <Modal className={'tc_modal'} isOpen={this.state.modal} fade={false}>
+                    <ModalHeader>Le traumatisme crânien</ModalHeader>
                     <ModalBody>
                         <p>
                             Il s’agit d’une altération du fonctionnement cérébral provoqué par une force externe.
                             Il est parfois appelé commotion cérébrale.
-                            Suite à un choc violent sur la boite crânienne le cerveau peut souffrir et cela peut se manifester de manières très différentes selon la sévérité du traumatisme, le mécanisme,
+                            Suite à un choc violent sur la boite crânienne le cerveau peut souffrir et cela peut se
+                            manifester de manières très différentes selon la sévérité du traumatisme, le mécanisme,
                             la localisation des lésions, les antécédents et les médicaments que prend la personne.
-                            Un choc indirect par accélération et/ou décélération brutale (lors d’un accident de voiture à vitesse élevée par exemple),
+                            Un choc indirect par accélération et/ou décélération brutale (lors d’un accident de voiture
+                            à vitesse élevée par exemple),
                             peut aussi provoquer des lésions cérébrales.
                         </p>
                     </ModalBody>

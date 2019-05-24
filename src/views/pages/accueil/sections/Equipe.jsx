@@ -7,8 +7,9 @@ import header2 from '../../../../assets/images/header2.png';
 import deborah from '../../../../assets/images/deborah.PNG'
 import jeremie from '../../../../assets/images/jeremie.PNG'
 import christophe from '../../../../assets/images/christophe.PNG'
+
 export default class SectionTwo extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
@@ -17,7 +18,7 @@ export default class SectionTwo extends React.Component {
             <section className={'section'}>
                 <Container fluid>
                     <Row className={'equipe-top'}>
-                        <Col xs='6' xl='6'>
+                        <Col xs='12' xl='6'>
                             <div className={'media-margin'}>
                                 <Media>
                                     <Media left>
@@ -69,26 +70,25 @@ export default class SectionTwo extends React.Component {
                                         </p>
                                     </Media>
                                 </Media>
-                            </div>
-                            <div className={'media-margin'}>
-                                <Media>
-                                    <Media left>
-                                        <Media object src={deborah} alt="Claire Jourdan" className={'img-equipe'}/>
-                                    </Media>
-                                    <Media body>
-                                        <Media heading>
-                                            <p className={'equipe-nom'}>
-                                                Claire Jourdan
-                                            </p>
-                                        </Media>
-                                        <p className={'equipe-texte'}>
-                                            PU, Médecine Physique et de Réadaptation, CHU de Montpellier
+                            </div>                            <div className={'media-margin'}>
+                            <Media>
+                                <Media left>
+                                    <Media object src={deborah} alt="Claire Jourdan" className={'img-equipe'}/>
+                                </Media>
+                                <Media body>
+                                    <Media heading>
+                                        <p className={'equipe-nom'}>
+                                            Claire Jourdan
                                         </p>
                                     </Media>
+                                    <p className={'equipe-texte'}>
+                                        PU, Médecine Physique et de Réadaptation, CHU de Montpellier
+                                    </p>
                                 </Media>
-                            </div>
+                            </Media>
+                        </div>
                         </Col>
-                        <Col xs="6" xl='6'>
+                        <Col xs="12" xl='6'>
                             <div className={'media-margin'}>
                                 <Media>
                                     <Media left>

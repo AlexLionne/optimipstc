@@ -6,14 +6,14 @@ import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
 
 class Avatar extends Component {
     constructor(props) {
-       super(props)
+        super(props)
     }
 
 
     render() {
 
         return (
-           <FontAwesomeIcon color={"#fff"} icon={faUserCircle}/>
+            <FontAwesomeIcon color={"#fff"} icon={faUserCircle}/>
         );
     }
 }

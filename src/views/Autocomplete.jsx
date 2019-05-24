@@ -11,7 +11,7 @@ class Autocomplete extends Component {
 
     static defaultProps = {
         suggestions: [],
-        marker:[]
+        marker: []
     };
 
 
@@ -20,7 +20,7 @@ class Autocomplete extends Component {
 
         this.state = {
             // The active selection's index
-            placeholder:props.placeholder,
+            placeholder: props.placeholder,
             activeSuggestion: 0,
             // The suggestions that match the user's input
             filteredSuggestions: [],
@@ -28,15 +28,17 @@ class Autocomplete extends Component {
             showSuggestions: false,
             // What the user has entered
             userInput: "",
-            isLoading:props.isLoading,
+            isLoading: props.isLoading,
         };
     }
+
     componentWillReceiveProps(nextProps) {
         this.setState({isLoading: nextProps.isLoading})
     }
+
     onChange = e => {
-        const { suggestions } = this.props;
-        const { markers } = this.props;
+        const {suggestions} = this.props;
+        const {markers} = this.props;
         const userInput = e.currentTarget.value;
 
         // Filter our suggestions that don't contain the user's input
@@ -63,7 +65,7 @@ class Autocomplete extends Component {
     };
 
     onKeyDown = e => {
-        const { activeSuggestion, filteredSuggestions } = this.state;
+        const {activeSuggestion, filteredSuggestions} = this.state;
 
         // User pressed the enter key
         if (e.keyCode === 13) {
@@ -79,7 +81,7 @@ class Autocomplete extends Component {
             if (activeSuggestion === 0) {
                 return;
             }
-            this.setState({ activeSuggestion: activeSuggestion - 1 });
+            this.setState({activeSuggestion: activeSuggestion - 1});
         }
         // User pressed the down arrow
         else if (e.keyCode === 40) {
@@ -87,7 +89,7 @@ class Autocomplete extends Component {
                 return;
             }
 
-            this.setState({ activeSuggestion: activeSuggestion + 1 });
+            this.setState({activeSuggestion: activeSuggestion + 1});
         }
     };
 
@@ -114,7 +116,8 @@ class Autocomplete extends Component {
                         {filteredSuggestions.map((suggestion, index) => {
                             // Flag the active suggestion with a class
                             return (
-                                <p  className={(index === activeSuggestion ?'active' : 'clickable')} key={suggestion} onClick={onClick}>
+                                <p className={(index === activeSuggestion ? 'active' : 'clickable')} key={suggestion}
+                                   onClick={onClick}>
                                     {suggestion}
                                 </p>
                             );
@@ -123,7 +126,7 @@ class Autocomplete extends Component {
                 );
             } else {
                 suggestionsListComponent = (
-                        <ListGroupItem className={'clickable'}>Aucune suggestion</ListGroupItem>
+                    <ListGroupItem className={'clickable'}>Aucune suggestion</ListGroupItem>
                 );
             }
         }
@@ -138,7 +141,7 @@ class Autocomplete extends Component {
                     onKeyDown={onKeyDown}
                     value={userInput}
                 />
-                {this.state.isLoading === true ?  <Spinner className={'spinner'}/>
+                {this.state.isLoading === true ? <Spinner className={'spinner'}/>
                     : null
                 }
 
@@ -148,7 +151,7 @@ class Autocomplete extends Component {
                     value={userInput}
                 />
                 <ListGroup className={'w100'}>
-                {suggestionsListComponent}
+                    {suggestionsListComponent}
                 </ListGroup>
             </InputGroup>
         );

@@ -13,7 +13,7 @@ const connection_max_time = 3600;
 let notifications = [];
 const uid = reactLocalStorage.get('uid');
 
-if(uid !== null){
+if (uid !== null) {
     checkSession(uid);
 }
 
@@ -27,10 +27,10 @@ function checkSession(uid) {
     let to = time.getHours() * 3600 + time.getMinutes() * 60 + time.getSeconds();
 
     firebase.database().ref('/sessions/' + uid).once('value').then(function (snapshot) {
-        if(snapshot.val() !== null){
+        if (snapshot.val() !== null) {
             if (to <= snapshot.val().session_max_time) {
                 firebase.database().ref('/users/' + uid).once('value').then(function (snapshot) {
-                    login(snapshot.val().mail,snapshot.val().password.toString());
+                    login(snapshot.val().mail, snapshot.val().password.toString());
                 });
                 registerSession();
             } else {
@@ -43,7 +43,7 @@ function checkSession(uid) {
 /**
  *
  */
-function registerSession(){
+function registerSession() {
     let uid = firebase.auth().currentUser.uid;
     let time = new Date();
     firebase.database().ref('sessions/' + uid).set({
@@ -52,20 +52,22 @@ function registerSession(){
     });
 }
 
-function unRegisterSession(){
+function unRegisterSession() {
     let uid = firebase.auth().currentUser.uid;
     firebase.database().ref('sessions/' + uid).remove();
     reactLocalStorage.clear();
 }
-function logout(){
+
+function logout() {
     unRegisterSession();
     window.location.href = '/';
 }
-function getNotifications(){
+
+function getNotifications() {
     firebase.database().ref('demandes/').once('value', function (snapshot) {
-        if(snapshot.val() !== null){
-            Object.values(snapshot.val()).map((notification,i)=>{
-                if(reactLocalStorage.get('super_admin') === 'true'){
+        if (snapshot.val() !== null) {
+            Object.values(snapshot.val()).map((notification, i) => {
+                if (reactLocalStorage.get('super_admin') === 'true') {
                     notifications.push(notification)
                 }
             });
@@ -74,7 +76,7 @@ function getNotifications(){
     });
 };
 
-function login(email,password){
+function login(email, password) {
     firebase.auth()
         .signInWithEmailAndPassword(email, password)
         .then((res) => {

@@ -8,7 +8,7 @@ import Parcours from "../Parcours";
 
 
 export default class SectionTwo extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
@@ -16,9 +16,9 @@ export default class SectionTwo extends React.Component {
         return (
             <div>
                 <Parcours/>
-                <DropdownItem divider />
+                <DropdownItem divider/>
                 <ParcoursMedicalEnfant/>
-                <DropdownItem divider />
+                <DropdownItem divider/>
                 <ParcoursVieEnfant/>
             </div>
         );

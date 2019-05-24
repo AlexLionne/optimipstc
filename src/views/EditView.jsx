@@ -11,11 +11,11 @@ import mediumDraftExporter from 'medium-draft/lib/exporter';
 
 const blockButtons = [
     {
-    label: 'H1',
-    style: 'header-one',
-    icon: 'header',
-    description: 'Heading 1',
-},
+        label: 'H1',
+        style: 'header-one',
+        icon: 'header',
+        description: 'Heading 1',
+    },
     {
         label: 'H2',
         style: 'header-two',
@@ -23,7 +23,6 @@ const blockButtons = [
         description: 'Heading 2',
     },
 ].concat(BLOCK_BUTTONS);
-
 
 
 const ROOT = '/optimips/pages/';
@@ -45,8 +44,8 @@ class CustomImageSideButton extends ImageSideButton {
             let filename = Math.random()
                 .toString(36)
                 .slice(-4);
-            let upload = storage_reference.child(filename+'/').put(file);
-            upload.on('state_changed', function(snapshot){
+            let upload = storage_reference.child(filename + '/').put(file);
+            upload.on('state_changed', function (snapshot) {
                 // Observe state change events such as progress, pause, and resume
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                 let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -59,12 +58,12 @@ class CustomImageSideButton extends ImageSideButton {
                         console.log('Upload is running');
                         break;
                 }
-            }, function(error) {
+            }, function (error) {
                 // Handle unsuccessful uploads
-            }, function() {
+            }, function () {
                 // Handle successful uploads on complete
                 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                upload.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                     ctx.props.setEditorState(addNewBlock(
                         ctx.props.getEditorState(),
                         Block.IMAGE, {
@@ -84,30 +83,30 @@ class CustomImageSideButton extends ImageSideButton {
 class App extends React.Component {
 
     constructor(props) {
-            super(props);
+        super(props);
 
-            this.sideButtons = [{
-                title: 'Image',
-                component: CustomImageSideButton,
-            }];
+        this.sideButtons = [{
+            title: 'Image',
+            component: CustomImageSideButton,
+        }];
 
-            this.state = {
-                editorState: this.props.html ? createEditorState(convertToRaw(mediumDraftImporter(this.props.html))) : createEditorState() , // for empty content
-            };
-       this.imagePlugin = createImagePlugin();
-       this.plugins = [this.imagePlugin];
-       this.refsEditor = React.createRef();
+        this.state = {
+            editorState: this.props.html ? createEditorState(convertToRaw(mediumDraftImporter(this.props.html))) : createEditorState(), // for empty content
+        };
+        this.imagePlugin = createImagePlugin();
+        this.plugins = [this.imagePlugin];
+        this.refsEditor = React.createRef();
     }
 
 
     onChange = (editorState) => {
-        this.setState({ editorState });
+        this.setState({editorState});
         this.props.onChange(mediumDraftExporter(editorState.getCurrentContent()));
     };
 
 
     render() {
-        const { editorState } = this.state;
+        const {editorState} = this.state;
 
         return (
             <Editor
@@ -119,9 +118,10 @@ class App extends React.Component {
                 editorEnabled={this.props.readOnly}
                 placeholder={'ajouter du texte'}
                 editorState={editorState}
-                onChange={this.onChange} />
+                onChange={this.onChange}/>
         );
     }
 }
+
 export default App;
 

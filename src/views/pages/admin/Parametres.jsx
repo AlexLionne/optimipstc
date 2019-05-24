@@ -28,49 +28,49 @@ class Parametres extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            uid : props.uid,
-            isNewEmailOpen : false,
-            email:null,
-            loading_email:false,
-            error:false,
-            validation:false,
+            uid: props.uid,
+            isNewEmailOpen: false,
+            email: null,
+            loading_email: false,
+            error: false,
+            validation: false,
         };
 
     }
+
     handleInputChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
+        this.setState({[event.target.name]: event.target.value});
     };
 
-    updateUserEmail = () =>{
+    updateUserEmail = () => {
         let email = this.state.email.toString();
-        let ctx =this;
+        let ctx = this;
         let user = firebase.auth().currentUser;
-        this.setState({loading_login:true});
-        user.updateEmail(email).then(function() {
+        this.setState({loading_login: true});
+        user.updateEmail(email).then(function () {
             ctx.setState({loading_login: false});
             ctx.setState({isNewEmailOpen: !ctx.state.isNewEmailOpen});
-            ctx.setState({validation:true});
-        }).catch(function(error) {
-            ctx.setState({error:true});
+            ctx.setState({validation: true});
+        }).catch(function (error) {
+            ctx.setState({error: true});
             ctx.setState({loading_login: false});
         });
 
     };
-    openEmail= ()=>{
+    openEmail = () => {
         this.setState({
-            isNewEmailOpen:  !this.state.isNewEmailOpen
+            isNewEmailOpen: !this.state.isNewEmailOpen
         });
     };
-    unRegisterSession = () =>{
+    unRegisterSession = () => {
         let uid = firebase.auth().currentUser.uid;
-        firebase.database().ref('sessions/'+uid).remove();
+        firebase.database().ref('sessions/' + uid).remove();
         reactLocalStorage.remove('uid');
     };
-    logout = () =>{
+    logout = () => {
         this.unRegisterSession();
-        window.location.href ='/';
+        window.location.href = '/';
     };
-
 
 
     render() {
@@ -82,38 +82,46 @@ class Parametres extends React.Component {
                     : null}
                 <Card className={'card'}>
                     <CardBody>
-                        <CardTitle style={{width:'auto',fontWeight:'bold', color:'#000',display:'inline-block'}} className={'titre'}>Général</CardTitle>
+                        <CardTitle style={{width: 'auto', fontWeight: 'bold', color: '#000', display: 'inline-block'}}
+                                   className={'titre'}>Général</CardTitle>
                         <CardText>
                             <ListGroup flush>
-                                    <ListGroupItem  className={'link_primary'} href="#">Changer de mot de passe</ListGroupItem>
-                                    <ListGroupItem  className={'link_primary'} href="#" onClick={this.openEmail} >Changer d'email</ListGroupItem>
-                                    <ListGroupItem  className={'link_primary'} href="#">Afficher les paramètres de confidentialité</ListGroupItem>
+                                <ListGroupItem className={'link_primary'} href="#">Changer de mot de
+                                    passe</ListGroupItem>
+                                <ListGroupItem className={'link_primary'} href="#" onClick={this.openEmail}>Changer
+                                    d'email</ListGroupItem>
+                                <ListGroupItem className={'link_primary'} href="#">Afficher les paramètres de
+                                    confidentialité</ListGroupItem>
                             </ListGroup>
                         </CardText>
                     </CardBody>
                 </Card>
 
-                <Modal className={'login_modal'} isOpen={this.state.isNewEmailOpen} fade={false} >
+                <Modal className={'login_modal'} isOpen={this.state.isNewEmailOpen} fade={false}>
                     <CardBody>
-                        <CardTitle style={{width:'auto',fontWeight:'bold', color:'#000',display:'inline-block'}}>Changement d'email</CardTitle>
-                        <FontAwesomeIcon  color={"#000"} style={{float:'right',display:'inline-block'}} onClick={this.openEmail} icon={faTimes} />
+                        <CardTitle style={{width: 'auto', fontWeight: 'bold', color: '#000', display: 'inline-block'}}>Changement
+                            d'email</CardTitle>
+                        <FontAwesomeIcon color={"#000"} style={{float: 'right', display: 'inline-block'}}
+                                         onClick={this.openEmail} icon={faTimes}/>
                         <CardText>
                             <Form>
-                                { this.state.error ?
+                                {this.state.error ?
                                     <h5 className={'error'}>Verifiez votre email ou réessayer</h5>
                                     :
                                     null
                                 }
-                                <h6 style={{marginBottom:'24px'}}>Changez votre email, un email confirmant la modification vous sera envoyé sur votre ancien mail.</h6>
+                                <h6 style={{marginBottom: '24px'}}>Changez votre email, un email confirmant la
+                                    modification vous sera envoyé sur votre ancien mail.</h6>
                                 <FormGroup row>
                                     <Label for="email" sm={2}>Email</Label>
-                                    { this.state.error ?
+                                    {this.state.error ?
                                         <Col sm={10}>
-                                            <Input invalid />
+                                            <Input invalid/>
                                         </Col>
                                         :
                                         <Col sm={10}>
-                                            <Input type="email" name="email" onChange={this.handleInputChange} id="email" placeholder="Votre nouveau email" />
+                                            <Input type="email" name="email" onChange={this.handleInputChange}
+                                                   id="email" placeholder="Votre nouveau email"/>
                                         </Col>
                                     }
                                 </FormGroup>

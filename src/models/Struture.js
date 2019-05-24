@@ -1,10 +1,7 @@
-
 class Struture {
 
 
-
-
-    constructor(activites,adresse,age,created_at,horaires,id,latitude,longitude,mail,modalite_adressage,nb_lits,nom,num_tel,oragnisme_gestionnaire,site_web,specificites,statut,type,updated_at){
+    constructor(activites, adresse, age, created_at, horaires, id, latitude, longitude, mail, modalite_adressage, nb_lits, nom, num_tel, oragnisme_gestionnaire, site_web, specificites, statut, type, updated_at) {
 
         this.activites = activites;
         this.adresse = adresse;
@@ -29,4 +26,5 @@ class Struture {
 
 
 }
+
 export default Struture;

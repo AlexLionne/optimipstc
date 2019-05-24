@@ -6,10 +6,11 @@ import colors from '../css/colors'
 
 const time = 4000;
 
-function NotificationText({color, text}){
-    return <p style={{color:color}} className={'notification_text'}>{text}</p>
+function NotificationText({color, text}) {
+    return <p style={{color: color}} className={'notification_text'}>{text}</p>
 }
-function NotificationIcon({color, icon,onClick}){
+
+function NotificationIcon({color, icon, onClick}) {
     return <FontAwesomeIcon color={color} className={'notification_icon'} icon={icon} onClick={onClick}/>
 
 }
@@ -18,29 +19,30 @@ function NotificationIcon({color, icon,onClick}){
 class Avatar extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            verbose : props.verbose,
-            message : props.message,
-            defaut_color:colors.colorPrimary,
-            active:true,
+        this.state = {
+            verbose: props.verbose,
+            message: props.message,
+            defaut_color: colors.colorPrimary,
+            active: true,
         };
         let ctx = this;
-            setTimeout(function () {
-                ctx.setState({ active: false });
-                if(props.action) props.action();
-            },time)
+        setTimeout(function () {
+            ctx.setState({active: false});
+            if (props.action) props.action();
+        }, time)
 
 
     }
 
-    close = () =>{
-        this.setState({active:false})
+    close = () => {
+        this.setState({active: false})
     };
+
     render() {
-        const {verbose,message,active} = this.state;
+        const {verbose, message, active} = this.state;
         let className = '';
         let icon = null;
-        switch(verbose){
+        switch (verbose) {
             case 'success' :
                 className = 'n_green';
                 icon = faCheck;
@@ -63,7 +65,7 @@ class Avatar extends Component {
                 break
         }
         return (
-            <div className={active ? className+' notification visible' : className+' notification invisible'}>
+            <div className={active ? className + ' notification visible' : className + ' notification invisible'}>
                 <NotificationIcon icon={icon}/>
                 <NotificationText text={message}/>
                 <NotificationIcon icon={faTimes} onClick={this.close}/>

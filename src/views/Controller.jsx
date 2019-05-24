@@ -4,7 +4,7 @@ import View from "./View";
 class Controller extends React.Component {
 
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             route: this.props.route,
@@ -12,12 +12,12 @@ class Controller extends React.Component {
     }
 
 
-    render(){
+    render() {
         let route = this.state.route;
 
-        return(
+        return (
             <div>
-            <View route={route === '/' ? 'accueil' : route} />
+                <View route={route === '/' ? 'accueil' : route}/>
             </div>
 
         )
