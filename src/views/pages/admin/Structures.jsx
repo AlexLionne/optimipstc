@@ -241,59 +241,65 @@ class Index extends React.Component {
                                             {Object.keys(this.state.selected).map((key, i) => {
                                                 let textual_key = '';
                                                 switch (key) {
-                                                    case 'activites' :
-                                                        textual_key = "Activités";
+                                                    case 'date' :
+                                                        textual_key = "Créé le";
                                                         break;
-                                                    case 'age' :
-                                                        textual_key = "Age";
-                                                        break;
-                                                    case 'horaires' :
-                                                        textual_key = "Horaires";
-                                                        break;
-                                                    case 'modalite_adressage' :
-                                                        textual_key = "Adressage";
-                                                        break;
-                                                    case 'nb_lits' :
-                                                        textual_key = "Nombre de lits";
-                                                        break;
-                                                    case 'organisme_gestionnaire' :
-                                                        textual_key = "Organisme Gestionnaire";
-                                                        break;
-                                                    case 'specificites' :
-                                                        textual_key = "Spécificites";
-                                                        break;
-                                                    case 'statut' :
-                                                        textual_key = "Statut";
-                                                        break;
-                                                    case 'adresse' :
-                                                        textual_key = "Adresse";
-                                                        break;
-                                                    case 'mail' :
-                                                        textual_key = "eMail";
-                                                        break;
-                                                    case 'num_tel' :
-                                                        textual_key = "Téléphone";
-                                                        break;
-                                                    case 'site_web' :
-                                                        textual_key = "Site Web";
-                                                        break;
-                                                    case 'nom' :
+                                                    case 'denomination_structure':
                                                         textual_key = "Nom";
                                                         break;
-                                                    case 'type' :
-                                                        textual_key = "Type";
+                                                    case 'organisme_gestionnaire':
+                                                        textual_key = "Organisme gestionnaire";
                                                         break;
-                                                    case 'longitude' :
-                                                        textual_key = "Longitude";
+                                                    case 'catégorie':
+                                                        textual_key = "Catégorie";
                                                         break;
-                                                    case 'latitude' :
+                                                    case 'sous_catégorie':
+                                                        textual_key = "Sous-catégorie";
+                                                        break;
+                                                    case 'adresse':
+                                                        textual_key = "Adresse";
+                                                        break;
+                                                    case 'cp':
+                                                        textual_key = "Code postal";
+                                                        break;
+                                                    case 'ville':
+                                                        textual_key = "Ville";
+                                                        break;
+                                                    case 'téléphone':
+                                                        textual_key = "Numéro de téléphone";
+                                                        break;
+                                                    case 'fax':
+                                                        textual_key = "Numéro de fax";
+                                                        break;
+                                                    case 'contact_mail':
+                                                        textual_key = "Adresse mail";
+                                                        break;
+                                                    case 'site_internet':
+                                                        textual_key = "Site internet";
+                                                        break;
+                                                    case 'statut_structure':
+                                                        textual_key = "Statut";
+                                                        break;
+                                                    case "activites":
+                                                        textual_key = "Activités";
+                                                        break;
+                                                    case "age":
+                                                        textual_key = "Age";
+                                                        break;
+                                                    case "nécessite_une_notification_MDPH":
+                                                        textual_key = "Besoin d'une notification MDPH";
+                                                        break;
+                                                    case "demande_effectue_patient_entourage":
+                                                        textual_key = "Demande à effectuer par le patient ou l'entourage";
+                                                        break;
+                                                    case "document_medical_a_remplir_par_medecin":
+                                                        textual_key = "Document médical à faire remplir par le médecin";
+                                                        break;
+                                                    case "Latitude":
                                                         textual_key = "Latitude";
                                                         break;
-                                                    case 'created_at' :
-                                                        textual_key = "Créée a";
-                                                        break;
-                                                    case 'updated_at' :
-                                                        textual_key = "Mise à jour à";
+                                                    case "Longitude":
+                                                        textual_key = "Longitude";
                                                         break;
                                                 }
                                                 if (!Number.isInteger(parseInt(key)) &&

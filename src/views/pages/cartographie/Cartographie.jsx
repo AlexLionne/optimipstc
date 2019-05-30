@@ -1,13 +1,13 @@
 import React from 'react';
 
-
+import Geocoder from 'react-mapbox-gl-geocoder'
 import ReactMapboxGl, {Feature, Layer} from "react-mapbox-gl";
 import styles from '../../../css/styles';
+import '../../../css/container.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faInfo, faMailBulk, faMap, faPhone, faSearch, faUser} from '@fortawesome/free-solid-svg-icons'
 import Autocomplete from "../../Autocomplete"
-
-
+import firebase from "../../../firebase";
 import axios from 'axios';
 import _ from 'lodash';
 
@@ -28,8 +28,7 @@ import {
     ListGroupItem,
     Row
 } from "reactstrap";
-
-
+const database = firebase.database();
 export default class TCSevere extends React.Component {
 
     constructor() {
@@ -63,6 +62,15 @@ export default class TCSevere extends React.Component {
 
     }
 
+    componentWillMount(){
+        const ref = firebase.database().ref('structures');
+        ref.on('value', snapshot =>{
+            this.setState({
+                structures: snapshot.val()
+            })
+        })
+
+    }
 
     toggle() {
         this.setState(prevState => ({
@@ -114,7 +122,7 @@ export default class TCSevere extends React.Component {
         let grouped;
         this.state.markers.map((marker, id) => {
             axios.get(
-                "https://api.mapbox.com/geocoding/v5/mapbox.places/" + marker.longitude + "," + marker.latitude + ".json?access_token=pk.eyJ1Ijoib3B0aW1pcHN0YyIsImEiOiJjanFwZTkzNXMwMG1oNDJydHNqbnRnb3Y3In0.ltciym2mWxIxH-4hJIHKRw")
+                "https://api.mapbox.com/geocoding/v5/mapbox.places/" + marker.longitude + "," + marker.latitude + ".json?access_token=sk.eyJ1Ijoib3B0aW1pcHMtdGMiLCJhIjoiY2p3N2gxaDVuMGEzNjQ2bzd2bGp5NmZqMyJ9.0LHiTH1srTZnSa1IdBiAQw")
                 .then(res => {
                     let code = {marker: marker, code: res.data.features[1].text, region: res.data.features[3].text};
                     code_array.push(code);
@@ -171,21 +179,56 @@ export default class TCSevere extends React.Component {
                 return faInfo;
         }
     };
+    onSelect = (value) => {
+        this.setState({value: value});
+        this.setState({lng: value.longitude});
+        this.setState({lat: value.latitude});
+    };
+    onStyleLoad = (map: any) => {
+        map.addSource('museums', {
+            type: 'vector',
+            url: 'mapbox://mapbox.2opop9hr'
+        });
+        map.addLayer({
+            'id': 'museums',
+            'type': 'circle',
+            'source': 'museums',
+            'layout': {
+                'visibility': 'visible'
+            },
+            'paint': {
+                'circle-radius': 8,
+                'circle-color': 'rgba(55,148,179,1)'
+            },
+            'source-layer': 'museum-cusco'
+        });
+    };
 
     render() {
 
         const Map = ReactMapboxGl({
-            accessToken: "pk.eyJ1IjoidmFsZW50aW5kZWxweSIsImEiOiJjanZjM2pqNjAxZWw5NDRteWI2bmVnMGJpIn0.dwS7LAXg_MLPkvZKkgK_yA"
+            accessToken: "pk.eyJ1Ijoib3B0aW1pcHMtdGMiLCJhIjoiY2p3N2d5OTdkMGVuZzRhcWh4a3ZvNnBoZyJ9.VSgYcQ5wRChWFU4KSqmzUA"
         });
 
         return (
             <section>
                 <Container>
                     <Row>
+
                         <Col style={styles.map} sm="12" md={{size: 12, offset: 0}}>
                             <h2 style={styles.section_titre}>
                                 Filtres de recherche
                             </h2>
+                            <Card className={'filtre'}>
+                            <div>
+                                <div className='clearfix pad1'>
+                                    <Geocoder
+                                     mapboxApiAccessToken="pk.eyJ1Ijoib3B0aW1pcHMtdGMiLCJhIjoiY2p3N2d5OTdkMGVuZzRhcWh4a3ZvNnBoZyJ9.VSgYcQ5wRChWFU4KSqmzUA"
+                                     onSelected={this.onSelect}
+                                     viewport={true}/>
+                                </div>
+                            </div>
+                            </Card>
                             <div style={styles.map_filter}>
                                 <Autocomplete placeholder="Nom"
                                               suggestions={this.state.markers_names}/>
@@ -211,6 +254,7 @@ export default class TCSevere extends React.Component {
 
                                                     })
                                                     :
+
                                                     console.log(this.state.markers_zips.length)}
                                             </Row>
                                         </DropdownMenu>
@@ -251,17 +295,19 @@ export default class TCSevere extends React.Component {
                                 </Col>
                             </Row>
                             <DropdownItem style={styles.divider_margin} divider/>
+                            <button onClick={Map.style='mapbox://styles/optimips-tc/cjw7k2wut02uo1dnz4mu8ibal'}>test</button>
                             <Map
+
                                 movingMethod="jumpTo"
                                 zoom={this.state.zoom}
-                                style="mapbox://styles/optimipstc/cjqpecocn09hv2smowo6gy56u"
+                                style="mapbox://styles/optimips-tc/cjw97dur7096z1cl61f6tkids"
                                 center={[this.state.lng, this.state.lat]}
                                 containerStyle={{
                                     height: "500px",
                                     width: "100%",
                                     borderRadius: '2px',
                                     position: 'relative'
-                                }}>
+                                }} >
 
                                 {this.state.selected !== null ?
                                     <Card style={styles.cardMap}>

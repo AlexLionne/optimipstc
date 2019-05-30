@@ -34,7 +34,7 @@ export default class SectionTwo extends React.Component {
                      width={'auto'} src={header2}/>
                 <Container fluid className={'container-justify'}>
                     <Row>
-                        <Col xs="9">
+                        <Col xs="12" xl="9">
                             <div className={'action-responsive'}>
                             <h2 className={'titre TCL'}>
                                 Le Traumatisme crânien léger chez l'enfant

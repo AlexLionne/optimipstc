@@ -33,7 +33,8 @@ export default class SectionTwo extends React.Component {
                      width={'auto'} src={header2}/>
                 <Container fluid className={'container-justify'}>
                     <Row>
-                        <Col xs="12" xl="6">
+                        <Col xs="12" xl="9">
+                            <div className={'action-responsive'}>
                             <h2 className={'titre TCL'}>
                                 Traumatisme crânien et pratique sportive
                             </h2>
@@ -129,6 +130,7 @@ export default class SectionTwo extends React.Component {
                                 maladie d’ Alzheimer. Ceci est montré chez les sportifs ayant subi plus de 3 commotions
                                 cérébrales.
                             </p>
+                            </div>
                         </Col>
                     </Row>
                 </Container>

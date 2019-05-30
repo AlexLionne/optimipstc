@@ -9,7 +9,7 @@ export default class SectionOne extends React.Component {
             <section className={'section _1'}>
                 <Container fluid className={'container-justify'}>
                     <Row className={'row-top row-introduction'}>
-                        <Col xs="9" xl="9" className={'testtt'}>
+                        <Col xs="12" xl="9" className={'testtt'}>
                             <h2 className={'titre'}>
                                 Traumatisme Crânien en Occitanie<br/>
                                 Que faire et où aller ?</h2>

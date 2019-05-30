@@ -47,8 +47,8 @@ import InterfaceParcours from "./views/pages/accueil/sections/Parcours/Interface
 //session : 1H
 const connection_max_time = 3600;
 const WEB_DATA = '/web_data';
-const WEB_URL = 'http://localhost:3000'
-const ROOT = '/optimips';
+const WEB_URL = 'http://localhost:8888'
+const ROOT = '/optimips-tc-160ea';
 const storage = firebase.storage();
 const storage_reference = storage.ref(ROOT);
 
@@ -141,7 +141,7 @@ class App extends React.Component {
             password: '',
             error: null,
             notifications: [],
-            navbarItems: []
+            navbarItems: [],
         };
         const uid = reactLocalStorage.get('uid');
         if (uid !== null) {
@@ -181,8 +181,16 @@ class App extends React.Component {
             case '/admin/utilisateurs' :
                 this.setState({activeItem: 10});
                 break;
-
         }
+    }
+
+    componentWillMount(){
+        const ref = firebase.database().ref('structures')
+        ref.on('value', snapshot =>{
+            this.setState({
+                structures: snapshot.val()
+            })
+        })
     }
 
     getNotifications = () => {

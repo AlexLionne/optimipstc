@@ -1,21 +1,21 @@
 import React from 'react';
-import {Button, CardBody, CardText, CardTitle, Col, Form, FormGroup, Input, Spinner} from "reactstrap";
+import {Button, Card, CardBody, CardText, CardTitle, Col, Form, FormGroup, Input, Label, Spinner} from "reactstrap";
 
 
-class Login extends React.Component {
+class Login extends React.Component{
 
 
-    constructor(props) {
+    constructor(props){
         super(props);
 
-        this.state = {
-            error: null
+        this.state={
+            error:null
         };
     }
 
-    render() {
+    render(){
         return (
-            <div className={'login'}>
+            <div className={'login'} >
                 <CardBody>
                     <CardTitle style={{
                         width: 'auto',
@@ -37,9 +37,8 @@ class Login extends React.Component {
                                     </Col>
                                     :
                                     <Col sm={10}>
-                                        <Input key="editor1" type="email" name="email"
-                                               onChange={this.props.handleInputChange}
-                                               id="email" placeholder="Votre email"/>
+                                        <Input key="editor1" type="email" name="email" onChange={this.props.handleInputChange}
+                                               id="email"  placeholder="Votre email"/>
                                     </Col>
                                 }
                             </FormGroup>
@@ -50,8 +49,7 @@ class Login extends React.Component {
                                     </Col>
                                     :
                                     <Col sm={10}>
-                                        <Input key="editor" type="password" name="password"
-                                               onChange={this.props.handleInputChange}
+                                        <Input key="editor" type="password" name="password" onChange={this.props.handleInputChange}
                                                id="password" placeholder="Votre mot de passe"/>
                                     </Col>
                                 }

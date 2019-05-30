@@ -1,27 +1,30 @@
 class Struture {
 
 
-    constructor(activites, adresse, age, created_at, horaires, id, latitude, longitude, mail, modalite_adressage, nb_lits, nom, num_tel, oragnisme_gestionnaire, site_web, specificites, statut, type, updated_at) {
-
-        this.activites = activites;
+    constructor(date, denomination_structure, organisme_gestionnaire, catégorie, sous_catégorie, adresse, cp, ville, téléphone, fax, contact_mail, site_internet, statut_structure,
+                activites, age, nécessite_une_notification_MDPH, demande_effectue_patient_entourage, document_medical_a_remplir_par_medecin, latitude, longitude) {
+        this.date = date;
+        this.denomination_structure = denomination_structure;
+        this.organisme_gestionnaire = organisme_gestionnaire;
+        this.catégorie = catégorie;
+        this.sous_catégorie = sous_catégorie;
         this.adresse = adresse;
+        this.cp = cp;
+        this.ville = ville;
+        this.téléphone = téléphone;
+        this.fax = fax;
+        this.contact_mail = contact_mail;
+        this.site_internet = site_internet;
+        this.statut_structure = statut_structure;
+        this.activites = activites;
         this.age = age;
-        this.created_at = created_at;
-        this.horaires = horaires;
-        this.id = id;
+        this.nécessite_une_notification_MDPH = nécessite_une_notification_MDPH;
+        this.demande_effectue_patient_entourage = demande_effectue_patient_entourage;
+        this.document_medical_a_remplir_par_medecin = document_medical_a_remplir_par_medecin;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.mail = mail;
-        this.modalite_adressage = modalite_adressage;
-        this.nb_lits = nb_lits;
-        this.nom = nom;
-        this.num_tel = num_tel;
-        this.oragnisme_gestionnaire = oragnisme_gestionnaire;
-        this.site_web = site_web;
-        this.specificites = specificites;
-        this.statut = statut;
-        this.type = type;
-        this.updated_at = updated_at;
+
+
     }
 
 
