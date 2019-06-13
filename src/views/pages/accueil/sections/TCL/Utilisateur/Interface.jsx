@@ -27,7 +27,7 @@ export default class SectionTwo extends React.Component {
                      width={'auto'} src={header2}/>
                 <Container fluid>
                     <Row className={'justify-content-start'}>
-                        <Col xs="9" xl="4" className={'no-gutter'}>
+                        <Col xs="9" xl="4">
                             <Card className={'container-set reposition text-center'}>
                                 <CardTitle className={'titre'}>
                                     Vous êtes un professionnel ?

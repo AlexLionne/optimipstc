@@ -41,17 +41,19 @@ import Cartographie from "./views/pages/cartographie/Cartographie";
 import ParcoursMedicalAdulte from "./views/pages/accueil/sections/Parcours/ParcoursMedicalAdulte";
 import ParcoursMedicalEnfant from "./views/pages/accueil/sections/Parcours/ParcoursMedicalEnfant";
 import ParcoursVieAdulte from "./views/pages/accueil/sections/Parcours/ParcoursVieAdulte";
-import ParcoursAdulte from "./views/pages/accueil/sections/Parcours/ParcoursAdulte";
-import ParcoursEnfant from "./views/pages/accueil/sections/Parcours/ParcoursEnfant";
+import ParcoursAdulteInterface from "./views/pages/accueil/sections/Parcours/ParcoursAdulteInterface";
+import ParcoursEnfantPEC from "./views/pages/accueil/sections/Parcours/ParcoursEnfantPEC";
+import ParcoursEnfantMed from "./views/pages/accueil/sections/Parcours/ParcoursEnfantMed";
+import ParcoursAdultePEC from "./views/pages/accueil/sections/Parcours/ParcoursAdultePEC";
+import ParcoursAdulteMed from "./views/pages/accueil/sections/Parcours/ParcoursAdulteMed";
 import InterfaceParcours from "./views/pages/accueil/sections/Parcours/InterfaceParcours";
+import ParcoursEnfantInterface from "./views/pages/accueil/sections/Parcours/ParcoursEnfantInterface";
 //session : 1H
 const connection_max_time = 3600;
 const WEB_DATA = '/web_data';
-const WEB_URL = 'http://localhost:8888'
-const ROOT = '/optimips-tc-160ea';
+const ROOT = '/optimips-tc-160ea/accueil/accueil';
 const storage = firebase.storage();
 const storage_reference = storage.ref(ROOT);
-
 
 let structures = [];
 let structures_valides = [];
@@ -491,8 +493,12 @@ class App extends React.Component {
                                    render={() => <ParcoursMedicalEnfant/>}/>
                             <Route path="/accueil/sections/parcours/parcoursvieadulte"
                                    render={() => <ParcoursVieAdulte/>}/>
-                            <Route path="/accueil/sections/parcours/parcoursadulte" render={() => <ParcoursAdulte/>}/>
-                            <Route path="/accueil/sections/parcours/parcoursenfant" render={() => <ParcoursEnfant/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursenfantinterface" render={() => <ParcoursEnfantInterface/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursenfantpec" render={() => <ParcoursEnfantPEC/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursenfantmed" render={() => <ParcoursEnfantMed/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursadulteinterface" render={() => <ParcoursAdulteInterface/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursadultepec" render={() => <ParcoursAdultePEC/>}/>
+                            <Route path="/accueil/sections/parcours/parcoursadultemed" render={() => <ParcoursAdulteMed/>}/>
                             <Route path="/accueil/sections/parcours/interfaceparcours"
                                    render={() => <InterfaceParcours/>}/>
                             <Route path="/login" render={() => <Login login={this.login}

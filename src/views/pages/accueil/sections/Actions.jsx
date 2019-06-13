@@ -87,7 +87,7 @@ export default class SectionTwo extends React.Component {
                 </Container>
                 <Modal className={'tc_modal'} isOpen={this.state.modalHandi} fade={false}>
                     <ModalHeader>DELPHI-OptimiPS-TC : Identifier les Facteurs médicaux et socio-économiques pertinents
-                        permettant d’optimiser le parcours de soins des patients TC </ModalHeader>
+                        permettant d’optimiser le parcours de soins des patients traumatisés crânien </ModalHeader>
                     <ModalBody>
                         <p>
                             Description : Identifier des marqueurs médicaux et socio-économiques primordiaux à la
@@ -109,7 +109,7 @@ export default class SectionTwo extends React.Component {
                         <p>
                             Description : Explorer l’expérience du handicap chez les personnes ayant subi un TC, celle
                             de leurs proches et des professionnels impliqués dans leur prise en charge, en documentant
-                            les besoins de compensation et l’impact du TC et des parcours de soins sur leur
+                            les besoins de compensation et l’impact du traumatisme crânien et des parcours de soins sur leur
                             participation sociale et leur autonomie.<br/>
                             Partenaires : CHU Toulouse (IHNPS), LISST CERS UMR 5193 CNRS, Association AFTC<br/>
                             Financement : IReSP<br/>
@@ -126,8 +126,7 @@ export default class SectionTwo extends React.Component {
                     <ModalBody>
                         <p>
                             Description : Démarche globale d’amélioration du parcours de soin du patient Traumatisé
-                            Crânien par analyse et l’étude rétrospective des parcours de soins des patients traumatisé
-                            crânien en Occitanie<br/>
+                            Crânien par l'analyse et l’étude rétrospective de leurs parcours de soins<br/>
                             Partenaires : DSIO, DIMs et services MPR des CHU Toulouse (Porteur) et Montpellier (Centre
                             associé), l’IRIT (CNRS/UPS), l’université Champollion d’Albi, et l’IMT (CNRS/UPS)<br/>
                             Financement : ARS Occitanie<br/>
@@ -144,7 +143,7 @@ export default class SectionTwo extends React.Component {
                     <ModalBody>
                         <p>
                             Description : Apporter traçabilité et sécurité (via la blockchain) sur l’usage des données
-                            de santé pour les patients TC & acteurs TC (professionnels, famille) afin de limiter le
+                            de santé pour les patients traumatisme crânien & acteurs du traumatisme crânien (professionnels, famille) afin de limiter le
                             parcours de soin chaotique et les perdus de vue : prototypage d'une blockchain<br/>
                             Partenaires : CHU Toulouse (IHNPS, DSIO), IRIT (CNRS/UPS + Univ. Champollion Albi),
                             ISIS<br/>

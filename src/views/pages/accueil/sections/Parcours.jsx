@@ -266,7 +266,7 @@ const parcours_soins_enfant = {
 
 const options = {
     backgroundColor: colors.colorPrimaryDark,
-    lineColor: colors.colorPrimary,
+    lineColor: colors.white,
     lineHeight: 4,
     textColor: colors.white,
     textSize: 18
@@ -294,9 +294,9 @@ export default class Parcours extends React.Component {
                         </Col>
                     </Row>
                     <Switch>
-                        <Route path="/accueil/sections/Parcours/parcoursenfant"
+                        <Route path="/accueil/sections/Parcours/parcoursenfantpec"
                                render={() => <Chart schema={parcours_soins_enfant} options={options}/>}/>
-                        <Route path="/accueil/sections/Parcours/parcoursadulte"
+                        <Route path="/accueil/sections/Parcours/parcoursadultepec"
                                render={() => <Chart schema={parcours_soins} options={options}/>}/>
                     </Switch>
                 </Container>

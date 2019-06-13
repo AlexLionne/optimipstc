@@ -17,9 +17,10 @@ import detection2 from "../../../../../../assets/images/decision_enfant_moins_2a
 import detection1 from "../../../../../../assets/images/decision_enfant_plus_2a.png";
 import pec from "../../../../../../assets/images/pec.png";
 import risques from '../../../../../../assets/images/risques.png'
-import tb1 from '../../../../../../assets/images/tb1a.png'
-import tb2 from '../../../../../../assets/images/tb2a.png'
-import tb3 from '../../../../../../assets/images/tb3a.png'
+import tb1 from '../../../../../../assets/images/tb1e.PNG'
+import tb2 from '../../../../../../assets/images/tb2e.PNG'
+import tb3 from '../../../../../../assets/images/tb3e.PNG'
+import SportController from "../../../../../SportController";
 
 export default class SectionTwo extends React.Component {
     constructor(props) {
@@ -52,20 +53,19 @@ export default class SectionTwo extends React.Component {
                      width={'auto'} src={header2}/>
                 <Container fluid className={'container-justify'}>
                     <Row>
-                        <Col xs="9">
+                        <Col xs="12" xl="9">
                             <div className={'action-responsive'}>
                             <h2 className={'titre TCL'}>
                                 Le Traumatisme crânien léger chez l'enfant
                             </h2>
+                            <br/><br/>
                             <h3 className={'bold colorPrimary'}>
                                 Définition
                             </h3>
                             <p>
-                                Il n'ya pas de consensus sur la définition du traumatisme crânien léger mais des
-                                critères peuvent être retenus, comme un
-                                état de vigilance entre
+                                Il n'y a pas de consensus sur la définition du traumatisme crânien léger mais la plus utilisée est celle-ci : un traumatisme crânien avec un état de vigilance entre
                                 <a onClick={this.triggerModalGlasgow} href={"#"} className={'link'}> Glasgow </a>
-                                13 et 15 (lors de l'accès aux soins ou 30 minutes après le traumatisme crânien).
+                                13 et 15 lors de l'accès aux soins ou 30 minutes après le traumatisme crânien.
                                 <br/><br/>
                                 Ce score peut être associé à :
                                 <ul>
@@ -157,7 +157,7 @@ export default class SectionTwo extends React.Component {
                                     <li><strong>Rassurer,</strong> expliquer que la pathologie régresse dans la grande
                                         majorité des cas.
                                     </li>
-                                    <li><strong>faire une contre-indication aux activités sportives</strong> pendant 4
+                                    <li><strong>contre-indiquer aux activités sportives</strong> pendant 4
                                         semaines.
                                     </li>
                                     <li>réduire les activités pour <strong>favoriser le repos.</strong> Une adaptation
@@ -171,7 +171,7 @@ export default class SectionTwo extends React.Component {
                                 </ul>
                             </p>
                             <p>L'évolution est favorable dans 90% des cas en moins de 3 à 6 mois.<br/>
-                                Mais si les troubles persistent à un mois du TC : il faut orienter le patient vers une
+                                Mais si les troubles persistent à un mois du traumatisme crânien : il faut orienter le patient vers une
                                 <strong>consultation de neurologie ou de médecine physique et réadaptation.</strong>
                                 Cela permettra d'évaluer la nécessité d'un bilan neuropsychologique et/ou d'une
                                 rééducation spécifique.<br/>
@@ -211,6 +211,7 @@ export default class SectionTwo extends React.Component {
                         </Col>
                     </Row>
                 </Container>
+                <SportController/>
                 <Modal className={'tc_modal'} size="lg" isOpen={this.state.modalGlasgow} fade={false}>
                     <ModalHeader>Le score de Glasgow</ModalHeader>
                     <ModalBody>
@@ -222,8 +223,14 @@ export default class SectionTwo extends React.Component {
                 </Modal>
                 <Modal className={'tc_modal'} size="lg" isOpen={this.state.modalDetection} fade={false}>
                     <ModalHeader>Groupes de risque</ModalHeader>
-                    <ModalBody>
-                        <img src={detection1} width={'100%'}></img><img src={detection2} width={'100%'}></img>
+                    <ModalBody><p>
+                        Pour les plus de 2 ans
+                    </p>
+                        <img src={detection1} width={'100%'}></img>
+                        <p>
+                            Pour les moins de 2 ans
+                        </p>
+                        <img src={detection2} width={'100%'}></img>
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={this.triggerModalDetection} className={'buttonSecondary'}>Fermer</Button>

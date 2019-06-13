@@ -151,8 +151,6 @@ export default class SectionTwo extends React.Component {
     render() {
         return (
             <section className={'section'}>
-                <img style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
-                     width={'auto'} src={header2}/>
                 <Container fluid className={'container-justify'}>
                     <Row>
                         <Col xs='12' xl='6' className={'pm'}>

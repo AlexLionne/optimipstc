@@ -56,7 +56,7 @@ export default class SectionTwo extends React.Component {
                                         (Neurologie cognitive et Neuropsychologie), la FHU HoPeS englobe les différentes
                                         disciplines qui touchent à la thématique des handicaps dans le cadre de
                                         pathologies chroniques dans le champ des maladies neurologiques, psychiatriques
-                                        et sensorielles. Son but : fédérer les expertises complémentaires, optimiser la
+                                        et sensorielles.<br/><br/> Son but : fédérer les expertises complémentaires, optimiser la
                                         lisibilité et la visibilité de la recherche et renforcer les synergies entre
                                         soin, enseignement et recherche. Sa création repose sur une base d'interactions
                                         fortes entre ces différentes disciplines. Une perspective originale « tout au

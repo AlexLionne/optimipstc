@@ -53,8 +53,7 @@ export default class SectionTwo extends React.Component {
                                 <br/><br/>
                                 <ul>
                                     <li>une perte de connaissance.</li>
-                                    <li>une confusion : discours incohérent, l'enfant ne sait pas à quel endroit il se
-                                        trouve.
+                                    <li>une confusion : la personne tient un discours incohérent, elle ne sait pas à quel endroit elle se trouve, ou se trompe sur la date.
                                     </li>
                                     <li>une crise d épilepsie.</li>
                                     <li>une paralysie.</li>
@@ -94,10 +93,9 @@ export default class SectionTwo extends React.Component {
                     <hr/>
                     <Row>
                         <Col xs="9" className={'col-espacement'}>
-                            <h5 className={'text-primary'}>
-                                Les signes d'alerte qui doivent vous faire consulter votre médecin traitant ou votre
-                                pédiatre:
-                            </h5>
+                            <p className={'bold'}>
+                                Les signes d'alerte qui doivent vous faire consulter votre médecin traitant :
+                            </p>
                             <p>
                                 Si dans les jours qui suivent, vous ressentez :
                             </p>
@@ -113,17 +111,11 @@ export default class SectionTwo extends React.Component {
                                 <li>cauchemars, souvenirs de l'accident qui reviennent sans cesse.</li>
                             </ul>
                             <br/><br/>
-                            <h5 className={'text-primary'}>
+                            <p className={'bold'}>
                                 Dans les jours qui suivent, vous devez :
-                            </h5>
+                            </p>
                             <ul>
-                                <li><strong>Vous reposer: </strong>il est important de limiter
-                                    ses activités. S’il est fatigué il ne doit pas
-                                    forcer, faire des pauses.
-                                    L’arrêt de l’école peut être nécessaire 1
-                                    ou plusieurs jours en fonction des
-                                    symptômes et de la gravité du TC, pour
-                                    permettre de se reposer à la maison.
+                                <li><strong>Vous reposer: </strong>il est important de limiter ses activités. Si vous vous sentez fatigués, ne forcez pas, faites des pauses.
                                 </li>
                                 <li><strong>Ne pas pratiquer d'activité sportive : </strong>Il faut attendre
                                     4 semaines avant de reprendre le
@@ -143,14 +135,14 @@ export default class SectionTwo extends React.Component {
                             </p>
                             <p> Un saignement dans le cerveau est rare mais grave. Il survient habituellement dans les
                                 premières heures
-                                après l'accident, mais il est préférable de surveiller votre enfant pendant 48 heures.
+                                après l'accident, mais il est préférable de surveiller la personne pendant 48 heures.
                                 Et s'i l'un des « signes
                                 d’alerte qui doivent vous faire appeler le
                                 15 » cité <a href="#appel15">ci-dessus</a> apparaît, vous ne devez pas perdre de temps.
                                 Le service du SAMU est le plus compétent pour juger de ce risque.
-                                Il pourra alors soit choisir de : venir sur place, vous envoyer une ambulance, vous
+                                Il pourra alors choisir de : venir sur place, vous envoyer une ambulance, vous
                                 demander de venir consulter
-                                aux urgence, ou chez votre médecin traitant.<br/>
+                                aux urgences, ou chez votre médecin traitant.<br/>
                                 Un scanner n'est pas toujours nécessaire, il expose à des radiations ionisantes.</p>
                             <p className={'text-danger'}>
                                 Dans les semaines et mois à venir :

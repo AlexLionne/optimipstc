@@ -17,6 +17,8 @@ import ChatBot from '../../../ChatBot'
 
 import '../../../../css/index.css';
 import header2 from '../../../../assets/images/header2.png';
+import glasgow from '../../../../assets/images/score_glasgow.png'
+
 
 export default class SectionTwo extends React.Component {
     constructor(props) {
@@ -40,7 +42,7 @@ export default class SectionTwo extends React.Component {
                     <Row className={'row-top-3'}>
                         <Col xs="9" className={"action-responsive"}>
                             <h2 className={'titre'}>
-                                Le Traumatisme crânien
+                                Le traumatisme crânien : généralités
                             </h2>
                             <p>
                                 Il s’agit d’une altération du fonctionnement cérébral provoqué par une force externe.
@@ -55,7 +57,7 @@ export default class SectionTwo extends React.Component {
                             <p>
                                 On utilise un classement en fonction de la gravité globale du traumatisme :
                             </p>
-
+                            <br/>
                             <p className={'bold colorPrimary'}>TC léger :</p>
                             <p>les troubles neurologiques suite au choc ont duré peu de temps, il peut s’agir d'une
                                 perte
@@ -68,28 +70,28 @@ export default class SectionTwo extends React.Component {
                             <p className={'bold colorPrimary'}>TC modéré et sévère :</p>
                             <p>les troubles neurologiques sont importants et durables, ils nécessitent l’intervention
                                 des services de secours pour une hospitalisation la plus rapide possible.
-                                Le TC sera dit sévère si le score Glasgow à l’arrivée des secours est entre 3 et 8. Le
+                                Le traumatisme crânien sera dit sévère si le score Glasgow à l’arrivée des secours est entre 3 et 8. Le
                                 blessé est dans le coma.
-                                Le TC sera dit modéré si le score Glasgow à l’arrivée des secours est entre 9 et 12. Le
+                                Le traumatisme crânien sera dit modéré si le score Glasgow à l’arrivée des secours est entre 9 et 12. Le
                                 blessé n’est pas dans le coma mais il présente des signes d’atteinte neurologique
-                            </p><br/>
+                            </p><br/><br/>
                             <p>
                                 Tout âge et sévérité confondus, on compte environ 150 000 traumatismes crâniens par an
                                 en France.
                                 Parmi eux, environ 80% sont légers, 11% modérés et 9% sévères.<br/>
-                                Ces chiffres sont probablement sous-évalués car il ya beaucoup de traumatimes crâniens
+                                Ces chiffres sont probablement sous-évalués car il y a beaucoup de traumatismes crâniens
                                 minimes qui ne sont pas recensés dans les études.
-                            </p>
+                            </p><br/>
                             <h3 className={'bold colorPrimary'}>
                                 Les causes
                             </h3>
-                            <p>Jusqu'à récemment, la cause principale eétait l'accident de la route, touchant
+                            <p>Jusqu'à récemment, la cause principale était l'accident de la route, touchant
                                 principalement les hommes de 15 à 25 ans.
                                 <br/>Les autres causes fréquentes dans cette tranche d'âge sont les accidents de sports,
                                 les agressions.
                             </p>
                             <p>
-                                Les autres populations particulièrement touchées sont les personnes agées, avec les
+                                Les autres populations particulièrement touchées sont les personnes âgées avec les
                                 chutes, et les très jeunes enfants
                                 avec les accidents domestiques et les maltraitances.
                             </p>
@@ -101,23 +103,21 @@ export default class SectionTwo extends React.Component {
                             <p>
                                 En revanche, le nombre de traumatismes crâniens chez les personnes âgées est en
                                 augmentation, notamment en raison de l'augmentation de l'espérance de vie.
-                                Les personnages âgées vivent de manière autonome plus longtemps, mais le risque de chute
+                                Les personnes âgées vivent de manière autonome plus longtemps, mais le risque de chute
                                 augmente proportionnellement. De plus, beaucoup d'entres elles suivent des
                                 traitements pouvant favoriser un saignement cérébral lors d'une chute.
                             </p>
-                            La mortalité secondaire aux TC ne diminue pas.
-                            <br/><br/>
+                            La mortalité secondaire aux traumatismes crâniens ne diminue pas.
+                            <br/><br/><br/>
                             <h3 className={'bold colorPrimary'}>
                                 Evolution et conséquences
                             </h3>
                             Les séquelles sont très variables et dépendent en partie de l'importance des lésions
-                            cérébrales et de l'âge du patient.
+                            cérébrales et de l'âge du patient.<br/><br/>
                             <p className={'liste'}>
-                                <strong>Pour les traumatismes crâniens sévères, </strong>le risque de décès est
-                                important durant la phase de coma, 50%
+                                <u>Pour les traumatismes crâniens sévères</u>, le risque de mortalité est important durant <span className="green">la phase de coma</span>. Il y a 50% de décès dans les premières semaines suivant l'accident. 50%
                                 de ces derniers décèdent dans les premières semaines après l'accident.<br/>
-                                Chez les blessés qui survivent, la sortie du coma, qui correspond à l'ouverture
-                                spontanée des yeux, est suivie de la phase d'éveil. On distingue 3 stades :
+                                Chez les blessés qui survivent, la sortie du coma correspond à l’ouverture spontanée des yeux. Elle est suivie de <span className="green">la phase d’éveil</span> qui évolue en 3 stades :
                                 <br/><br/>
                                 <ul>
                                     <li>
@@ -145,16 +145,41 @@ export default class SectionTwo extends React.Component {
                                 relationnelle. Il respire de manière autonome (avec une trachéotomie parfois), est
                                 alimenté par une sonde ou par voie orale, mais la communication reste inexistante ou
                                 très limitée. L’éveil est encore possible plusieurs mois après l’accident. Au-delà d’un
-                                an on parle d’ « état végétatif chronique », cela concerne 2 à 4% des TC sévères.
+                                an on parle d’ « état végétatif chronique », cela concerne 2 à 4% des traumatismes crâniens sévères.
                             </p>
                             <p>
                                 Il faut souligner qu’il est impossible de prévoir la durée de la phase d’éveil qui peut
                                 varier de quelques jours à quelques mois.<br/>
                                 Il y a souvent des lésions non neurologiques qui s’associent : des fractures osseuses,
                                 des lésions viscérales thoracique ou abdominale, qui peuvent compliquer la situation.
-                            </p>
+                            </p><br/><br/>
+                            <br/>
+                            Globalement, la récupération après un traumatisme crânien sévère est :
+                            <br/><br/>
+                            <ul>
+                                <li>
+                                    bonne récupération dans 20 à 30% des cas. Le blessé est capable de retrouver une vie
+                                    sociale et professionnelle, il a récupéré la quasi-totalité de ses capacités
+                                    antérieures.
+                                </li>
+                                <li>
+                                    handicap modéré dans 15 à 20% des cas. Le patient est autonome dans les activités
+                                    quotidiennes mais il persiste des déficiences. La vie sociale et professionnelle
+                                    doit être adaptée aux séquelles.
+                                </li>
+                                <li>
+                                    handicap grave dans 7 à 15% des cas. Le patient est dépendant dans les activités
+                                    quotidiennes, il doit être aidé d’une tierce personne.
+                                </li>
+                                <li>
+                                    état végétatif chronique dans 2 à 4 % des cas
+                                </li>
+                                <li>
+                                    Décès dans 50% des cas
+                                </li>
+                            </ul>
                             <p className={'liste'}>
-                                Pour les traumatismes crâniens modérés ou sévères, <strong>les séquelles
+                                <u>Pour les traumatismes crâniens modérés ou sévères</u>, <strong>les séquelles
                                 neurologiques </strong>secondaires aux lésions cérébrales peuvent être très diverses et
                                 imprévisibles. Elles sont de type :
                                 <br/><br/>
@@ -188,33 +213,9 @@ export default class SectionTwo extends React.Component {
                                     </li>
                                 </ul>
                             </p>
-                            <br/>
-                            Après un traumatisme crânien sévère :
                             <br/><br/>
-                            <ul>
-                                <li>
-                                    bonne récupération dans 20 à 30% des cas. Le blessé est capable de retrouver une vie
-                                    sociale et professionnelle, il a récupéré la quasi-totalité de ses capacités
-                                    antérieures.
-                                </li>
-                                <li>
-                                    handicap modéré dans 15 à 20% des cas. Le patient est autonome dans les activités
-                                    quotidiennes mais il persiste des déficiences. La vie sociale et professionnelle
-                                    doit être adaptée aux séquelles.
-                                </li>
-                                <li>
-                                    handicap grave dans 7 à 15% des cas. Le patient est dépendant dans les activités
-                                    quotidiennes, il doit être aidé d’une tierce personne.
-                                </li>
-                                <li>
-                                    état végétatif chronique dans 2 à 4 % des cas
-                                </li>
-                                <li>
-                                    Décès dans 50% des cas
-                                </li>
-                            </ul>
                             <p>
-                                Pour les traumatismes crâniens légers, les troubles sont moins visibles au premier plan,
+                                <u>Pour les traumatismes crâniens légers</u>, les troubles sont moins visibles au premier plan,
                                 et vont surtout concerner
                                 les troubles de la concentration, les maux de tête, la fatigue, l'anxiété, etc.<br/>
                                 Dans la grande majorité des cas, les symptômes vont disparaître progressivement.<br/>
@@ -224,66 +225,12 @@ export default class SectionTwo extends React.Component {
                     </Row>
                 </Container>
                 <ChatBot/>
-                <Modal className={'glasgow_modal'} isOpen={this.state.modal} fade={false}>
-                    <ModalHeader>Score de Glasgow</ModalHeader>
+                <Modal className={'tc_modal'} size="lg" isOpen={this.state.modal} fade={false}>
+                    <ModalHeader>Le score de Glasgow</ModalHeader>
                     <ModalBody>
-                        <p>
-                            L’échelle de coma de Glasgow est beaucoup utilisée dans la phase initiale. Il s’agit d’une
-                            échelle qui évalue l’état de conscience du patient. En fonction de l’ouverture des yeux, de
-                            la réponse verbale et de la réponse motrice on obtient un score total qui varie de 3 à 15.
-                        </p>
-
-                        <Table>
-                            <thead>
-                            <tr>
-                                <th>Score</th>
-                                <th>Ouverture des yeux</th>
-                                <th>Meilleure réponse verbale</th>
-                                <th>Meilleure réponse motrice</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>Obéit aux ordres</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>-</td>
-                                <td>Orientée</td>
-                                <td> Localise la douleur</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Spontanée</td>
-                                <td>Confuse</td>
-                                <td>Flexion orientée à la douleur</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>À la demande</td>
-                                <td>Innapropriée</td>
-                                <td>Flexion à la douleur</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>À la douleur</td>
-                                <td>Incompréhensibke</td>
-                                <td>Extension à la douleur</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Aucune</td>
-                                <td>Aucune</td>
-                                <td>Aucune</td>
-                            </tr>
-                            </tbody>
-                        </Table>
+                        <img src={glasgow} width={'100%'}></img>
                     </ModalBody>
                     <ModalFooter>
-                        <Button className={'buttonPrimary'}>Voir plus d'informations</Button>
                         <Button onClick={this.triggerModal} className={'buttonSecondary'}>Fermer</Button>
                     </ModalFooter>
                 </Modal>

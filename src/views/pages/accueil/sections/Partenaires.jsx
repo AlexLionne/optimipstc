@@ -20,7 +20,6 @@ export default class SectionTwo extends React.Component {
         super(props);
     }
 
-
     render() {
         var open = 3;
         return (
@@ -28,18 +27,18 @@ export default class SectionTwo extends React.Component {
             <section className={'section'}>
                 <img style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
                      width={'auto'} src={header2}/>
-                <Container fluid className={'second-container-set'}>
+                <Container fluid className={'container-set'}>
                     <h2>
                         Nos partenaires / Instances
                     </h2>
                     <Row>
                         <Col xs="12" xl="9">
                             <div className={'margin-historique'}>
-                                <Card>
+                                <Card className={'container-set'}>
                                     <Collapsible trigger="Agence Régionale de Santé Occitanie" className={'clp1'}>
                                         <div className={'img-center'}>
                                             <a href="https://www.occitanie.ars.sante.fr" target="_blank">
-                                                <img src={ars} alt="ARS" className={'img-equipe'}></img>
+                                                <img src={ars} alt="ARS" className={'img-partenaires'}></img>
                                             </a>
                                         </div>
                                         <p>L’Agence Régionale de Santé de la région Occitanie (ARS) qui agit en
@@ -90,7 +89,7 @@ export default class SectionTwo extends React.Component {
                                     <Collapsible trigger="FHU sur les Handicaps Cognitifs, Psychiques et Sensoriels" className={'clp3'}>
                                         <div className={'img-center'}>
                                             <a href="http://tmbi.fr/fhu-hopes/" target="_blank">
-                                                <img src={chu} alt="FHU HoPeS" className={'img-equipe'}></img>
+                                                <img src={chu} alt="FHU HoPeS" className={'img-partenaires'}></img>
                                             </a>
                                         </div>
                                         <p>
@@ -117,7 +116,7 @@ export default class SectionTwo extends React.Component {
                                     <Collapsible trigger="CHU Toulouse" className={'clp4'}>
                                         <div className={'img-center'}>
                                             <a href="https://www.chu-toulouse.fr" target="_blank">
-                                                <img src={chu} alt="CHU Toulouse" className={'img-equipe'}></img>
+                                                <img src={chu} alt="CHU Toulouse" className={'img-partenaires'}></img>
                                             </a>
                                         </div>
                                         <CardText>Au cœur de la région Occitanie Ouest et d’une agglomération au taux de
@@ -144,8 +143,7 @@ export default class SectionTwo extends React.Component {
                                         <div className={'img-center'}>
                                             <a href="http://www.chu-montpellier.fr/fr/patients-et-visiteurs/"
                                                target="_blank">
-                                                <img top src={chum} alt="CHU Montpellier"
-                                                     className={'img-equipe'}></img>
+                                                <img top src={chum} alt="CHU Montpellier" className={'img-partenaires'}></img>
                                             </a>
                                         </div>
                                         <p>Lieu historique d'exercice de la médecine, avec la plus vieille faculté du
@@ -169,7 +167,7 @@ export default class SectionTwo extends React.Component {
                                     <Collapsible trigger="Ecole d'Ingénieurs ISIS" className={'clp6'}>
                                         <div className={'img-center'}>
                                             <a href="http://isis.univ-jfc.fr" target="_blank">
-                                                <img src={isis} alt="École ISIS" className={'img-equipe'}></img>
+                                                <img src={isis} alt="École ISIS" className={'img-partenaires'}></img>
                                             </a>
                                         </div>
                                         <CardText>L’école d’ingénieurs ISIS Castres est une entité de l’Institut
@@ -200,7 +198,7 @@ export default class SectionTwo extends React.Component {
                                     <Collapsible trigger="Institut de Recherche Informatique de Toulouse" className={'clp7'}>
                                         <div className={'img-center'}>
                                             <a href="https://www.irit.fr" target="_blank">
-                                                <img src={irit} alt="IRIT" className={'img-equipe'}></img>
+                                                <img src={irit} alt="IRIT" className={'img-partenaires'}></img>
                                             </a>
                                         </div>
                                         <p>L’Institut de Recherche en Informatique de Toulouse (IRIT, CNRS/UMR 5505)
@@ -237,8 +235,7 @@ export default class SectionTwo extends React.Component {
                                     <Collapsible trigger="Association YMCA" className={'clp9'}>
                                         <div className={'img-center'}>
                                             <a href="https://ymca.fr" target="_blank">
-                                                <img src={ymca} alt="Association YMCA"
-                                                     className={'img-equipe-inserm'}></img>
+                                                <img src={ymca} alt="Association YMCA" className={'img-equipe-inserm'}></img>
                                             </a>
                                         </div>
                                         <p>L’Association YMCA de Colomiers qui accueille et accompagne toute personne en
@@ -255,8 +252,7 @@ export default class SectionTwo extends React.Component {
                                     <Collapsible trigger="Association UnafTC" className={'clp10'}>
                                         <div className={'img-center'}>
                                             <a href="http://www.traumacranien.org" target="_blank">
-                                                <img src={unaftc} alt="Association UnafTC"
-                                                     className={'img-equipe-unaftc'}></img>
+                                                <img src={unaftc} alt="Association UnafTC" className={'img-equipe-unaftc'}></img>
                                             </a>
                                         </div>
                                         <p>L'Union Nationale des Associations de Familles de Traumatisés crâniens et de

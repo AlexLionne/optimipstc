@@ -19,6 +19,7 @@ import tb2 from '../../../../../../assets/images/tb2a.png'
 import tb3 from '../../../../../../assets/images/tb3a.png'
 
 import Parcours from '../../../../../pages/accueil/sections/Parcours'
+import SportController from "../../../../../SportController";
 
 export default class SectionTwo extends React.Component {
     constructor(props) {
@@ -56,16 +57,14 @@ export default class SectionTwo extends React.Component {
 
                             <h2 className={'titre TCL'}>
                                 Le Traumatisme crânien léger chez l'adulte
-                            </h2>
+                            </h2><br/><br/>
                             <h3 className={'bold colorPrimary'}>
                                 Définition
                             </h3>
                             <p>
-                                Il n'ya pas de consensus sur la définition du traumatisme crânien léger mais des
-                                critères peuvent être retenus, comme un
-                                état de vigilance entre
+                                Il n'y a pas de consensus sur la définition du traumatisme crânien léger mais la plus utilisée est celle-ci : un traumatisme crânien avec un état de vigilance entre
                                 <a onClick={this.triggerModalGlasgow} href={"#"} className={'link'}> Glasgow </a>
-                                13 et 15 (lors de l'accès aux soins ou 30 minutes après le traumatisme crânien).
+                                13 et 15 lors de l'accès aux soins ou 30 minutes après le traumatisme crânien.
                                 <br/><br/>
                                 Ce score peut être associé à :
                             </p>
@@ -130,7 +129,7 @@ export default class SectionTwo extends React.Component {
                                 <li><strong>Rassurer,</strong> expliquer que la pathologie régresse dans la majorité des
                                     cas.
                                 </li>
-                                <li><strong>faire une contre-indication aux activités sportives</strong> pendant un
+                                <li><strong>contre-indiquer aux activités sportives</strong> pendant un
                                     mois,
                                     réduire les activités pour favoriser le repos. Un arrêt de travail peut être
                                     justifié.
@@ -138,7 +137,7 @@ export default class SectionTwo extends React.Component {
                                 <li>faire une prise en charge symptomatique des douleurs.</li>
                             </ul>
                             <p>L'évolution est favorable dans 90% des cas en moins de 3 à 6 mois.<br/>
-                                Mais si les troubles persistent à un mois du TC : il faut orienter le patient vers une
+                                Mais si les troubles persistent à un mois du traumatisme crânien : il faut orienter le patient vers une
                                 <strong>consultation de neurologie ou de médecine physique et réadaptation.</strong>
                                 Cela permettra d'évaluer la nécessité d'un bilan neuropsychologique et/ou d'une
                                 rééducation spécifique.<br/>
@@ -174,6 +173,7 @@ export default class SectionTwo extends React.Component {
                     </Row>
                     <hr/>
                 </Container>
+                <SportController/>
                 <Modal className={'tc_modal'} size="lg" isOpen={this.state.modalGlasgow} fade={false}>
                     <ModalHeader>Le score de Glasgow</ModalHeader>
                     <ModalBody>

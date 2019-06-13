@@ -250,11 +250,11 @@ class Index extends React.Component {
                                                     case 'organisme_gestionnaire':
                                                         textual_key = "Organisme gestionnaire";
                                                         break;
-                                                    case 'catégorie':
-                                                        textual_key = "Catégorie";
+                                                    case 'categorie':
+                                                        textual_key = "categorie";
                                                         break;
-                                                    case 'sous_catégorie':
-                                                        textual_key = "Sous-catégorie";
+                                                    case 'sous_categorie':
+                                                        textual_key = "Sous-categorie";
                                                         break;
                                                     case 'adresse':
                                                         textual_key = "Adresse";

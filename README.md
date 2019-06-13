@@ -348,7 +348,7 @@ Base de données
 - [ ] Une colonne adulte : oui/non 
 - [ ] Une colonne personne âgée : oui/non
 Contenu
-- [ ] Créer une page sport = dans les TC léger moyen (cas particulier) == lien cliquable qui renvoie sur la page
+- [ ] Créer une page sport = dans lesMASléger moyen (cas particulier) == lien cliquable qui renvoie sur la page
 - [x] Créer le Chatbot, montrer un chabot fonctionnel et expliquer comment le modifier
 - [x] Faires des illustrations (photos, avatars ? le tout libre de droit) qui pourront être ré exploité dans tout le site
 - [x] Refaire la page d’accueil

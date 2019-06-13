@@ -1,13 +1,13 @@
 class Struture {
 
 
-    constructor(date, denomination_structure, organisme_gestionnaire, catégorie, sous_catégorie, adresse, cp, ville, téléphone, fax, contact_mail, site_internet, statut_structure,
+    constructor(date, denomination_structure, organisme_gestionnaire, categorie, sous_categorie, adresse, cp, ville, téléphone, fax, contact_mail, site_internet, statut_structure,
                 activites, age, nécessite_une_notification_MDPH, demande_effectue_patient_entourage, document_medical_a_remplir_par_medecin, latitude, longitude) {
         this.date = date;
         this.denomination_structure = denomination_structure;
         this.organisme_gestionnaire = organisme_gestionnaire;
-        this.catégorie = catégorie;
-        this.sous_catégorie = sous_catégorie;
+        this.categorie = categorie;
+        this.sous_categorie = sous_categorie;
         this.adresse = adresse;
         this.cp = cp;
         this.ville = ville;

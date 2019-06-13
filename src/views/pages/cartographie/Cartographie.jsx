@@ -1,34 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react'
+import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 
-import Geocoder from 'react-mapbox-gl-geocoder'
-import ReactMapboxGl, {Feature, Layer} from "react-mapbox-gl";
+import Geocoder from 'react-map-gl-geocoder';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import styles from '../../../css/styles';
-import '../../../css/container.css'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faInfo, faMailBulk, faMap, faPhone, faSearch, faUser} from '@fortawesome/free-solid-svg-icons'
+import '../../../css/container.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {  faInfo} from '@fortawesome/free-solid-svg-icons'
+import {  faPhone } from '@fortawesome/free-solid-svg-icons'
+import {  faMap } from '@fortawesome/free-solid-svg-icons'
+import {  faMailBulk } from '@fortawesome/free-solid-svg-icons'
+import {  faSearch } from '@fortawesome/free-solid-svg-icons'
+import {  faUser } from '@fortawesome/free-solid-svg-icons'
 import Autocomplete from "../../Autocomplete"
-import firebase from "../../../firebase";
+import * as structuresOcc from "../../../models/datas.json";
+import marker_img from '../../../assets/images/hospital.png'
+import img_mas from '../../../assets/images/img_mas.png'
+import img_fam from '../../../assets/images/img_fam.png'
+import img_hos from '../../../assets/images/img_hos.png'
+import img_ssr from '../../../assets/images/img_ssr.png'
+
 import axios from 'axios';
 import _ from 'lodash';
 
 import {
-    Button,
     Card,
-    CardBody,
-    CardHeader,
+    CardBody, CardHeader,
     CardSubtitle,
-    Col,
-    Collapse,
-    Container,
-    Dropdown,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    ListGroup,
-    ListGroupItem,
-    Row
+    Col, Collapse,
+    Container, DropdownItem, Dropdown, DropdownMenu, DropdownToggle, ListGroup, ListGroupItem,
+    Row, Button, CardTitle
 } from "reactstrap";
-const database = firebase.database();
+
 export default class TCSevere extends React.Component {
 
     constructor() {
@@ -38,16 +42,26 @@ export default class TCSevere extends React.Component {
         this.state = {
             dropdownOpen: false,
             value: "",
-            codes: [],
+            codes:[],
             collapse: false,
             hover: null,
             markers: [],
-            markers_zips: [],
+            markers_zips:[],
             types: [],
             lng: 1.4333,
             zoom: [10],
             selected: null,
-            lat: 43.6000
+            lat: 43.6000,
+            filtre: "NaN",
+            filtre_age: "NaN",
+            viewport: {
+                width: 400,
+                height: 400,
+                latitude: 43.6000,
+                longitude: 1.4333,
+                zoom: 8
+            },
+            selectedStructure: null
         };
 
         axios.get('http://localhost:8888/')
@@ -62,105 +76,132 @@ export default class TCSevere extends React.Component {
 
     }
 
-    componentWillMount(){
-        const ref = firebase.database().ref('structures');
-        ref.on('value', snapshot =>{
-            this.setState({
-                structures: snapshot.val()
-            })
-        })
-
-    }
-
     toggle() {
         this.setState(prevState => ({
             dropdownOpen: !prevState.dropdownOpen
         }));
     }
 
+    mapRef = React.createRef();
 
-    flyTo = (marker) => {
+    componentDidMount() {
+        window.addEventListener('resize', this.resize)
+        this.resize();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.resize)
+    }
+
+    resize = () => {
+        this.handleViewportChange({
+            width: "100%",
+            height: 800
+        })
+    };
+
+    handleViewportChange = (viewport) => {
+        this.setState({
+            viewport: { ...this.state.viewport, ...viewport }
+        })
+    };
+
+    // if you are happy with Geocoder default settings, you can just use handleViewportChange directly
+    handleGeocoderViewportChange = (viewport) => {
+        const geocoderDefaultOverrides = { transitionDuration: 1000 }
+
+        return this.handleViewportChange({
+            ...viewport,
+            ...geocoderDefaultOverrides
+        })
+    };
+
+    setStructure = (str) =>{
+        this.setState({selectedStructure: str});
+    };
+
+    flyTo = (marker)=>{
         //scroll to top
         //Fly to marker
-        Object.keys(marker).map((key, i) => {
+        Object.keys(marker).map((key,i)=>{
             console.log(key);
         });
         window.scrollTo(0, 0);
-        this.setState({lng: marker.longitude, lat: marker.latitude, zoom: [15], selected: marker})
+        this.setState({lng:marker.longitude,lat:marker.latitude,zoom:[15],selected:marker})
         //display card info
     };
 
-    getIcon = (marker) => {
-        if (marker.type === "Lieu de Vie") {
+    getIcon = (marker)=>{
+        if(marker.type === "Lieu de Vie"){
             return "garden-15";
-        } else if (marker.type === "Association") {
+        }else if(marker.type === "Association"){
             return "marker-15";
-        } else if (marker.type === "Centre de Soins de Suite et de Réadaptation") {
+        }else if(marker.type === "Centre de Soins de Suite et de Réadaptation"){
             return "marker-15";
-        } else if (marker.type === "Secteur Médico-Social") {
+        }else if(marker.type === "Secteur Médico-Social"){
             return "marker-15";
-        } else if (marker.type === "Service de Rééducation Neurologique") {
+        }else if(marker.type === "Service de Rééducation Neurologique"){
             return "marker-15";
-        } else if (marker.type === "Service de Rééducation Polyvalent") {
+        }else if(marker.type === "Service de Rééducation Polyvalent"){
             return "marker-15";
-        } else {
+        }else{
             //marker par defaut
             return "marker-15";
         }
     };
 
-    getNames = () => {
+    getNames = () =>{
         const grouped = _.groupBy(this.state.markers, lieu => lieu.nom);
         let array = [];
-        Object.keys(grouped).map((key, idx) => {
+        Object.keys(grouped).map((key,idx) => {
             array[key] = Object.keys(grouped)[idx]
         });
-        this.setState({markers_names: Object.keys(grouped)});
+        this.setState({markers_names:Object.keys(grouped)});
     };
-    getZip = () => {
+    getZip = () =>{
         let code_array = [];
         let grouped;
         this.state.markers.map((marker, id) => {
             axios.get(
-                "https://api.mapbox.com/geocoding/v5/mapbox.places/" + marker.longitude + "," + marker.latitude + ".json?access_token=sk.eyJ1Ijoib3B0aW1pcHMtdGMiLCJhIjoiY2p3N2gxaDVuMGEzNjQ2bzd2bGp5NmZqMyJ9.0LHiTH1srTZnSa1IdBiAQw")
+                "https://api.mapbox.com/geocoding/v5/mapbox.places/" + marker.longitude + "," + marker.latitude + ".json?access_token=pk.eyJ1Ijoib3B0aW1pcHN0YyIsImEiOiJjanFwZTkzNXMwMG1oNDJydHNqbnRnb3Y3In0.ltciym2mWxIxH-4hJIHKRw")
                 .then(res => {
-                    let code = {marker: marker, code: res.data.features[1].text, region: res.data.features[3].text};
+                    let code = {marker:marker,code:res.data.features[1].text,region:res.data.features[3].text};
                     code_array.push(code);
 
-                    if (code_array.length === this.state.markers.length) {
+                    if(code_array.length === this.state.markers.length){
                         grouped = _.groupBy(code_array, code => code.region);
                         let array = [];
-                        Object.keys(grouped).map((key, id) => {
+                        Object.keys(grouped).map((key,id) => {
                             let markers = [];
-                            Object.values(grouped)[id].map((marker, idx) => {
-                                markers.push({structure: marker.marker, code: marker.code});
+                            Object.values(grouped)[id].map((marker,idx)=>{
+                                markers.push({structure : marker.marker, code:marker.code});
                             });
-                            array.push({markers: markers, region: key});
+                            array.push({markers : markers,region:key});
                         });
-                        this.setState({markers_zips: array});
+                        this.setState({markers_zips:array});
                     }
                 });
         });
     };
-    getMails = () => {
+    getMails = () =>{
         const grouped = _.groupBy(this.state.markers, lieu => lieu.mail);
         let array = [];
-        Object.keys(grouped).map((key, idx) => {
+        Object.keys(grouped).map((key,idx) => {
             array[key] = Object.keys(grouped)[idx]
         });
-        this.setState({markers_mails: Object.keys(grouped)});
+        this.setState({markers_mails:Object.keys(grouped)});
     };
-    getTypes = () => {
+    getTypes = () =>{
         const grouped = _.groupBy(this.state.markers, lieu => lieu.type);
         let array = [];
-        Object.keys(grouped).map((key, idx) => {
+        Object.keys(grouped).map((key,idx) => {
             array[key] = Object.keys(grouped)[idx]
         });
-        this.setState({markers_types: Object.keys(grouped)});
+        this.setState({markers_types:Object.keys(grouped)});
     };
 
-    icon = (key) => {
-        switch (key) {
+    icon = (key)=>{
+        switch(key){
             case 'type' :
                 return faInfo;
             case 'num_tel' :
@@ -179,192 +220,691 @@ export default class TCSevere extends React.Component {
                 return faInfo;
         }
     };
+
     onSelect = (value) => {
         this.setState({value: value});
-        this.setState({lng: value.longitude});
-        this.setState({lat: value.latitude});
-    };
-    onStyleLoad = (map: any) => {
-        map.addSource('museums', {
-            type: 'vector',
-            url: 'mapbox://mapbox.2opop9hr'
-        });
-        map.addLayer({
-            'id': 'museums',
-            'type': 'circle',
-            'source': 'museums',
-            'layout': {
-                'visibility': 'visible'
-            },
-            'paint': {
-                'circle-radius': 8,
-                'circle-color': 'rgba(55,148,179,1)'
-            },
-            'source-layer': 'museum-cusco'
-        });
+        this.setState({longitude: value.longitude});
+        this.setState({latitude: value.latitude});
     };
 
     render() {
 
-        const Map = ReactMapboxGl({
-            accessToken: "pk.eyJ1Ijoib3B0aW1pcHMtdGMiLCJhIjoiY2p3N2d5OTdkMGVuZzRhcWh4a3ZvNnBoZyJ9.VSgYcQ5wRChWFU4KSqmzUA"
-        });
-
         return (
             <section>
-                <Container>
-                    <Row>
-
-                        <Col style={styles.map} sm="12" md={{size: 12, offset: 0}}>
-                            <h2 style={styles.section_titre}>
-                                Filtres de recherche
-                            </h2>
-                            <Card className={'filtre'}>
-                            <div>
-                                <div className='clearfix pad1'>
-                                    <Geocoder
-                                     mapboxApiAccessToken="pk.eyJ1Ijoib3B0aW1pcHMtdGMiLCJhIjoiY2p3N2d5OTdkMGVuZzRhcWh4a3ZvNnBoZyJ9.VSgYcQ5wRChWFU4KSqmzUA"
-                                     onSelected={this.onSelect}
-                                     viewport={true}/>
-                                </div>
-                            </div>
-                            </Card>
-                            <div style={styles.map_filter}>
-                                <Autocomplete placeholder="Nom"
-                                              suggestions={this.state.markers_names}/>
-                            </div>
-                            <Row style={styles.marginBottom}>
-                                <Col xs="6" sm="6">
-                                    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                                        <DropdownToggle caret>
-                                            Département
-                                        </DropdownToggle>
-                                        <DropdownMenu style={styles.dropdown}>
-                                            <Row>
-                                                {this.state.markers_zips.length > 0 ?
-                                                    this.state.markers_zips.map((marker, i) => {
-                                                        return (
-                                                            <Col xs="4">
-                                                                <DropdownItem key={i}>{marker.region}</DropdownItem>
-                                                                {/*marker.markers.map((m,i)=>{
-                                                                            return (<DropdownItem key={i} header>{m.code}</DropdownItem>)
-                                                                        })*/}
-                                                            </Col>
-                                                        )
-
-                                                    })
-                                                    :
-
-                                                    console.log(this.state.markers_zips.length)}
-                                            </Row>
-                                        </DropdownMenu>
-                                    </Dropdown>
-
-                                </Col>
-                                <Col xs="6" sm="6">
-                                    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                                        <DropdownToggle caret>
-                                            Type de structure
-                                        </DropdownToggle>
-                                        <DropdownMenu style={styles.dropdown}>
-                                            <Row>
-                                                {this.state.types.length > 0 ?
-                                                    this.state.type.map((type, i) => {
-                                                        return (
-                                                            <Col xs="4">
-                                                                <DropdownItem key={i}>{type}</DropdownItem>
-                                                                {/*marker.markers.map((m,i)=>{
-                                                                            return (<DropdownItem key={i} header>{m.code}</DropdownItem>)
-                                                                        })*/}
-                                                            </Col>
-                                                        )
-
-                                                    })
-                                                    :
-                                                    console.log(this.state.markers_zips.length)}
-                                            </Row>
-                                        </DropdownMenu>
-                                    </Dropdown>
-
-                                </Col>
-                            </Row>
-                            <Row style={styles.marginBottom}>
-                                <Col sm={{size: 2, order: 2, offset: 10}}>
-                                    <Button style={styles.w_100} onClick={this.query} outline
-                                            color="primary">Rechercher</Button>
-                                </Col>
-                            </Row>
-                            <DropdownItem style={styles.divider_margin} divider/>
-                            <button onClick={Map.style='mapbox://styles/optimips-tc/cjw7k2wut02uo1dnz4mu8ibal'}>test</button>
-                            <Map
-
-                                movingMethod="jumpTo"
-                                zoom={this.state.zoom}
-                                style="mapbox://styles/optimips-tc/cjw97dur7096z1cl61f6tkids"
-                                center={[this.state.lng, this.state.lat]}
-                                containerStyle={{
-                                    height: "500px",
-                                    width: "100%",
-                                    borderRadius: '2px',
-                                    position: 'relative'
-                                }} >
-
-                                {this.state.selected !== null ?
-                                    <Card style={styles.cardMap}>
-                                        <CardHeader onClick={null}
-                                                    style={styles.cardHeader}>{this.state.selected.nom}</CardHeader>
-                                        <CardBody>
-                                            <ListGroup flush>
-                                                {Object.keys(this.state.selected).map((key, i) => {
-                                                    if (!Number.isInteger(parseInt(key)) &&
-                                                        !key.match(/^(id|longitude|latitude|created_at|updated_at|nom)$/) && this.state.selected[key] !== ""
-                                                        && this.state.selected[key] !== "Non communiqué"
-                                                    ) {
-                                                        if (key.match(/^(site_web)$/)) {
-                                                            return (
-                                                                <ListGroupItem tag="a" target="_blank"
-                                                                               href={"http://" + this.state.selected[key]}>
-                                                                    <FontAwesomeIcon style={styles.icon_left}
-                                                                                     icon={this.icon(key)}/>
-                                                                    <p style={styles.inline}>
-                                                                        {key} : {this.state.selected[key]}</p>
-                                                                </ListGroupItem>
-                                                            );
-                                                        } else {
-                                                            return (
-                                                                <ListGroupItem tag="p"> <FontAwesomeIcon
-                                                                    style={styles.icon_left} icon={this.icon(key)}/> <p
-                                                                    style={styles.inline}> {this.state.selected[key]}</p>
-                                                                </ListGroupItem>
-                                                            );
-                                                        }
-                                                    }
-                                                })}
-                                            </ListGroup>
-                                        </CardBody>
-
-                                    </Card>
-                                    : null}
-
-                                <Layer
-                                    type="symbol"
-                                    layout={{
-                                        'icon-image': ['get', 'icon'],
-                                        'icon-size': 1.5
-                                    }}
-                                    id="marker">
-                                    {
-                                        this.state.markers.map((marker, idx) => {
-                                            return (
-                                                <Feature
-                                                    key={idx}
-                                                    properties={{icon: this.getIcon(marker)}}
-                                                    coordinates={[marker.longitude, marker.latitude]}/>
-                                            );
-                                        })
+                <Container fluid>
+                    <Row className={'row-top-5'}>
+                        <Col xs="12" xl="12">
+                            <ReactMapGL
+                                ref={this.mapRef}
+                                {...this.state.viewport}
+                                onViewportChange={this.handleViewportChange}
+                                mapboxApiAccessToken="pk.eyJ1Ijoib3B0aW1pcHN0YyIsImEiOiJjanFwZTkzNXMwMG1oNDJydHNqbnRnb3Y3In0.ltciym2mWxIxH-4hJIHKRw">
+                                <Geocoder
+                                    mapRef={this.mapRef}
+                                    onViewportChange={this.handleGeocoderViewportChange}
+                                    mapboxApiAccessToken="pk.eyJ1Ijoib3B0aW1pcHN0YyIsImEiOiJjanFwZTkzNXMwMG1oNDJydHNqbnRnb3Y3In0.ltciym2mWxIxH-4hJIHKRw"
+                                />
+                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                    <DropdownToggle caret>
+                                        Filtres
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem header>Filtres par catégorie</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre: "Service de Médecine & Chirurgie"});
+                                            this.setState({filtre_age: "NaN"});
+                                        }}>Service de Médecine & Chirurgie</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre: "Structures de Rééducation"});
+                                            this.setState({filtre_age: "NaN"});
+                                        }}>Structures de Rééducation</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre: "Structure médico-sociales & Lieux de vie"});
+                                            this.setState({filtre_age: "NaN"});
+                                        }}>Structure médico-sociales & Lieux de vie</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre: "Association & Structures occupationnelles"});
+                                            this.setState({filtre_age: "NaN"});
+                                        }}>Association & Structures occupationnelles</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre: "Réinsertion professionnelle"});
+                                            this.setState({filtre_age: "NaN"});
+                                        }}>Réinsertion professionnelle</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre: "Service d'Accompagnement à Domicile"});
+                                            this.setState({filtre_age: "NaN"});
+                                        }}>Service d'Accompagnement à Domicile</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre: "Accompagnement scolaire"});
+                                            this.setState({filtre_age: "NaN"});
+                                        }}>Accompagnement scolaire</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre: "Structures de psychiatrie et accompagnement psychologique"});
+                                            this.setState({filtre_age: "NaN"});
+                                        }}>Structures de psychiatrie et accompagnement psychologique</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre: "Professionnels libéraux (formés au TC)"});
+                                            this.setState({filtre_age: "NaN"});
+                                        }}>Professionnels libéraux (formés au TC)</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre: "NaN"});
+                                            this.setState({filtre_age: "NaN"});
+                                        }}>Réinitialiser</DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem header>Filtres par âge</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre_age: "Enfants"});
+                                        }}>Enfant</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre_age: "Adultes"});
+                                        }}>Adulte</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre_age: "Personnes âgées"});
+                                        }}>Personnes âgées</DropdownItem>
+                                        <DropdownItem onClick={(e) => {
+                                            e.preventDefault();
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({filtre_age: "NaN"});
+                                        }}>Réinitialiser</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                                {structuresOcc.features.map((structure) => {
+                                    let ret = null;
+                                    let icon;
+                                    if(structure.properties.denomination_structure.includes("FAM")){
+                                        icon = img_fam;
                                     }
-                                </Layer>
-                            </Map>
+                                    else if(structure.properties.denomination_structure.includes("MAS")){
+                                        icon = img_mas;
+                                    }
+                                    else if(structure.properties.denomination_structure.includes("SSR")){
+                                        icon = img_ssr;
+                                    }
+                                    else if(structure.properties.denomination_structure.includes("CHU")){
+                                        icon = img_hos;
+                                    }
+                                    else if(structure.properties.denomination_structure.includes("Hospitalier")){
+                                        icon = img_hos;
+                                    }
+                                    else if(structure.properties.denomination_structure.includes("Clinique")||(structure.properties.denomination_structure.includes("clinique"))){
+                                        icon = img_hos;
+                                    }
+                                    else if(structure.properties.denomination_structure.includes("Hôpital")){
+                                        icon = img_hos;
+                                    }
+                                    else{
+                                        icon = marker_img;
+                                    }
+                                    switch(this.state.filtre){
+                                        case 'NaN':
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    ret =
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = structure.properties.type_personne.includes(this.state.filtre_age) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = structure.properties.type_personne.includes(this.state.filtre_age) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = structure.properties.type_personne.includes(this.state.filtre_age) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Structure médico-sociales & Lieux de vie":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Service de Médecine & Chirurgie":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Structures de Rééducation":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                            <Marker key={structure.denomination_structure}
+                                                                    latitude={structure.geometry.coordinates[1]}
+                                                                    longitude={structure.geometry.coordinates[0]}>
+                                                                <div><button onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    // eslint-disable-next-line no-undef
+                                                                    this.setState({selectedStructure: structure});
+                                                                }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                            </Marker>
+                                                            : null;
+                                                            break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Association & Structures occupationnelles":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                            <Marker key={structure.denomination_structure}
+                                                                    latitude={structure.geometry.coordinates[1]}
+                                                                    longitude={structure.geometry.coordinates[0]}>
+                                                                <div><button onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    // eslint-disable-next-line no-undef
+                                                                    this.setState({selectedStructure: structure});
+                                                                }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                            </Marker>
+                                                            : null;
+                                                            break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Réinsertion professionnelle":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                            <Marker key={structure.denomination_structure}
+                                                                    latitude={structure.geometry.coordinates[1]}
+                                                                    longitude={structure.geometry.coordinates[0]}>
+                                                                <div><button onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    // eslint-disable-next-line no-undef
+                                                                    this.setState({selectedStructure: structure});
+                                                                }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                            </Marker>
+                                                            : null;
+                                                            break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Accompagnement scolaire":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Structures de psychiatrie et accompagnement psychologique":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Professionnels libéraux (formés au TC)":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Marker key={structure.denomination_structure}
+                                                                latitude={structure.geometry.coordinates[1]}
+                                                                longitude={structure.geometry.coordinates[0]}>
+                                                            <div><button onClick={(e) => {
+                                                                e.preventDefault();
+                                                                // eslint-disable-next-line no-undef
+                                                                this.setState({selectedStructure: structure});
+                                                            }} className="marker-btn"><img src={icon} alt="Structure"/> </button></div>
+                                                        </Marker>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                    }
+                                    return ret;
+                                })};
+                                        {this.state.selectedStructure ? (
+                                            <Popup
+                                            latitude={this.state.selectedStructure.geometry.coordinates[1]}
+                                            longitude={this.state.selectedStructure.geometry.coordinates[0]}
+                                            onClose={() => {
+                                                this.setState({selectedStructure: null});
+                                            }}
+                                            >
+                                                <div>
+                                                    <h3><a href={this.state.selectedStructure.properties.site_internet} target="_blank">
+                                                        <strong>Structure : </strong>{this.state.selectedStructure.properties.denomination_structure}</a>
+                                                    </h3>
+                                                    <p>
+                                                        <strong>Catégorie : </strong><p>{this.state.selectedStructure.properties.categorie}</p>
+                                                        <strong>Sous-catégorie : </strong><p>{this.state.selectedStructure.properties.sous_categorie}</p>
+                                                        <strong>Adresse : </strong><p>{this.state.selectedStructure.properties.adresse} {this.state.selectedStructure.properties.cp} {this.state.selectedStructure.properties.ville}</p>
+                                                        <strong>Téléphone : </strong><p>{this.state.selectedStructure.properties.telephone}</p>
+                                                        <strong>Mail : </strong><p>{this.state.selectedStructure.properties.contact_mail}</p>
+                                                        <strong>Statut structure : </strong><p>{this.state.selectedStructure.properties.statut_structure}</p>
+                                                        <strong>Activités : </strong><p>{this.state.selectedStructure.properties.activites}</p>
+                                                        <strong>Tranche d'âge prise en charge : </strong><p>{this.state.selectedStructure.properties.type_personne}</p>
+                                                        <strong>Nécessite une notification MDPH : </strong><p>{this.state.selectedStructure.properties.necessite_une_notification_MDPH}</p>
+                                                        <strong>La demande doit être effectuée par le patient ou l'entourage : </strong><p>{this.state.selectedStructure.properties.demande_effectue_patient_entourage}</p>
+                                                        <strong>Un document médical doit être rempli par le médecin traitant : </strong><p>{this.state.selectedStructure.properties.document_medical_a_remplir_par_medecin}</p>
+                                                    </p>
+                                                </div>
+                                            </Popup>
+                                        ) : null}
+                                    </ReactMapGL>
                         </Col>
                     </Row>
                 </Container>
@@ -376,33 +916,759 @@ export default class TCSevere extends React.Component {
                                 Liste des structures
                             </h2>
                         </Col>
-                        {
-                            this.state.markers.map((marker, i) => {
-                                return (
-                                    <Col xs="6" sm="3">
-                                        <Card style={styles.cardItem}>
-                                            <CardHeader onClick={() => this.flyTo(marker)}
-                                                        style={styles.cardHeader}>{marker.nom}</CardHeader>
-                                            <CardBody>
-                                                <CardSubtitle style={styles.subtitle}>{marker.adresse}</CardSubtitle>
-                                                <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
-                                                    <DropdownItem style={styles.divider_margin} divider/>
-                                                    Anim pariatur cliche reprehenderit,
-                                                    enim eiusmod high life accusamus terry richardson ad squid. Nihil
-                                                    anim keffiyeh helvetica, craft beer labore wes anderson cred
-                                                    nesciunt sapiente ea proident.
-                                                </Collapse>
-                                            </CardBody>
-                                            <img width="100%"
-                                                 src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
-                                                 alt="Card image cap"/>
-                                        </Card>
-                                    </Col>
-
-                                )
-                            })
-                        }
-
+                            {structuresOcc.features.map((structure) => {
+                                    let ret = null;
+                                    switch(this.state.filtre){
+                                        case 'NaN':
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    ret =
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = structure.properties.type_personne.includes(this.state.filtre_age) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = structure.properties.type_personne.includes(this.state.filtre_age) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = structure.properties.type_personne.includes(this.state.filtre_age) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Structure médico-sociales & Lieux de vie":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Service de Médecine & Chirurgie":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Structures de Rééducation":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Association & Structures occupationnelles":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Réinsertion professionnelle":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Accompagnement scolaire":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Structures de psychiatrie et accompagnement psychologique":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                        case "Professionnels libéraux (formés au TC)":
+                                            switch(this.state.filtre_age){
+                                                case 'NaN':
+                                                    console.log(structure.properties.categorie === this.state.filtre);
+                                                    ret = (structure.properties.categorie === this.state.filtre) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Adultes':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Enfants':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                                case 'Personnes âgées':
+                                                    ret = ((structure.properties.type_personne.includes(this.state.filtre_age)) && (structure.properties.categorie === this.state.filtre)) ?
+                                                        <Col xs="6" sm="3">
+                                                            <Card style={styles.cardItem}>
+                                                                <CardHeader onClick={()=>this.flyTo(structure)} style={styles.cardHeader}>{structure.properties.denomination_structure}</CardHeader>
+                                                                <CardBody>
+                                                                    <CardSubtitle style={styles.subtitle}>{structure.properties.adresse}<br/>{structure.properties.cp}<br/>{structure.properties.ville}</CardSubtitle>
+                                                                    <Collapse style={styles.subtitle} isOpen={this.state.collapse}>
+                                                                        <DropdownItem style={styles.divider_margin}divider />
+                                                                        Anim pariatur cliche reprehenderit,
+                                                                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                                                                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                                                        nesciunt sapiente ea proident.
+                                                                    </Collapse>
+                                                                </CardBody>
+                                                                <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                                            </Card>
+                                                        </Col>
+                                                        : null;
+                                                    break;
+                                            }
+                                            return ret;
+                                    }
+                                    return ret;
+                                })};
                     </Row>
                 </Container>
             </section>

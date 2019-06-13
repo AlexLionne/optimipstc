@@ -46,7 +46,7 @@ export default class SectionTwo extends React.Component {
                                 </CardTitle>
                                 <CardBody className={"TCL-interface"}>
                                     <img src={child} className={'img-avatar'}></img><br/>
-                                    <Button className={'button-interface'} color="link" href="/accueil/sections/parcours/parcoursenfant">Traumatisme
+                                    <Button className={'button-interface'} color="link" href="/accueil/sections/parcours/parcoursenfantinterface">Traumatisme
                                         crânien modéré ou sévère chez l'enfant.</Button><br/>
                                 </CardBody>
                             </Card>

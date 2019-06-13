@@ -90,10 +90,10 @@ export default class SectionTwo extends React.Component {
                     <hr/>
                     <Row>
                         <Col xs="9" className={'col-espacement'}>
-                            <h5 className={'text-primary'}>
+                            <p className={'bold'}>
                                 Les signes d'alerte qui doivent vous faire consulter votre médecin traitant ou votre
                                 pédiatre:
-                            </h5>
+                            </p>
                             <p>
                                 Si dans les jours qui suivent, votre enfant se plaint de :
                             </p>
@@ -109,9 +109,9 @@ export default class SectionTwo extends React.Component {
                                 <li>cauchemars, souvenirs de l'accident qui reviennent sans cesse.</li>
                             </ul>
                             <br/><br/>
-                            <h5 className={'text-primary'}>
+                            <p className={'bold'}>
                                 Dans les jours qui suivent, votre enfant doit:
-                            </h5>
+                            </p>
                             <ul>
                                 <li><strong>Se reposer : </strong>il est important de limiter
                                     ses activités. S’il est fatigué il ne doit pas
@@ -139,13 +139,13 @@ export default class SectionTwo extends React.Component {
                             <p> Un saignement dans le cerveau est rare mais grave. Il survient habituellement dans les
                                 premières heures
                                 après l'accident, mais il est préférable de surveiller votre enfant pendant 48 heures.
-                                Et s'i l'un des « signes
+                                Et si l'un des « signes
                                 d’alerte qui doivent vous faire appeler le
                                 15 » cité <a href="#appel15">ci-dessus</a> apparaît, vous ne devez pas perdre de temps.
                                 Le service du SAMU est le plus compétent pour juger de ce risque.
-                                Il pourra alors soit choisir de : venir sur place, vous envoyer une ambulance, vous
+                                Il pourra alors choisir de : venir sur place, vous envoyer une ambulance, vous
                                 demander de venir consulter
-                                aux urgence, ou chez votre médecin traitant.<br/>
+                                aux urgences, ou chez votre médecin traitant.<br/>
                                 Un scanner n'est pas toujours nécessaire, il expose à des radiations ionisantes.</p>
                             <p className={'text-danger'}>
                                 Dans les semaines et mois à venir :
