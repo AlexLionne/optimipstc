@@ -18,24 +18,55 @@ export default class SectionTwo extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            open1: false,
+            open2: false,
+            open3: false,
+            open4: false,
+            open5: false,
+            open6: false,
+            open7: false,
+            open8: false,
+            open9: false,
+            open10: false
+        }
     }
 
     render() {
         var open = 3;
         return (
-
             <section className={'section'}>
                 <img style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
                      width={'auto'} src={header2}/>
-                <Container fluid className={'container-set'}>
+                <Container fluid className={'container-set-bis'}>
+                    <Row className="row-top-5">
                     <h2>
                         Nos partenaires / Instances
                     </h2>
+                    </Row>
                     <Row>
                         <Col xs="12" xl="9">
                             <div className={'margin-historique'}>
                                 <Card className={'container-set'}>
-                                    <Collapsible trigger="Agence Régionale de Santé Occitanie" className={'clp1'}>
+                                    <Collapsible
+                                        open={this.state.open1}
+                                                 onOpening={() => {
+                                                     // eslint-disable-next-line no-undef
+                                                     this.setState({open1: true});
+                                                     this.setState({open2: false});
+                                                     this.setState({open3: false});
+                                                     this.setState({open4: false});
+                                                     this.setState({open5: false});
+                                                     this.setState({open6: false});
+                                                     this.setState({open7: false});
+                                                     this.setState({open8: false});
+                                                     this.setState({open9: false});
+                                                     this.setState({open10: false});
+                                                 }}
+                                                 onClosing={() => {
+                                                     this.setState({open1: false});
+                                                 }}
+                                        trigger="Agence Régionale de Santé Occitanie" className={'clp1'}>
                                         <div className={'img-center'}>
                                             <a href="https://www.occitanie.ars.sante.fr" target="_blank">
                                                 <img src={ars} alt="ARS" className={'img-partenaires'}></img>
@@ -49,7 +80,22 @@ export default class SectionTwo extends React.Component {
                                             l’offre de soins de premier recours et dans les établissements de santé,
                                             accompagnement dans les structures médico-sociales.</p>
                                     </Collapsible>
-                                    <Collapsible
+                                    <Collapsible open={this.state.open2}
+                                        onOpening={() => {
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({open1: false});
+                                            this.setState({open2: true});
+                                            this.setState({open3: false});
+                                            this.setState({open4: false});
+                                            this.setState({open5: false});
+                                            this.setState({open6: false});
+                                            this.setState({open7: false});
+                                            this.setState({open8: false});
+                                            this.setState({open9: false});
+                                            this.setState({open10: false});
+                                        }}
+                                                 onClosing={() =>
+                                                     this.setState({open2: false})}
                                         trigger="Institut des Handicaps Neurologiques, Psychiatriques et Sensoriels " className={'clp2'}>
                                         <div className={'img-center'}>
                                             <a href="https://www.chu-toulouse.fr/-institut-des-handicaps-neurologiques-"
@@ -86,7 +132,25 @@ export default class SectionTwo extends React.Component {
                                             </ul>
                                         </p>
                                     </Collapsible>
-                                    <Collapsible trigger="FHU sur les Handicaps Cognitifs, Psychiques et Sensoriels" className={'clp3'}>
+                                    <Collapsible
+                                        open={this.state.open3}
+                                        onOpening={() => {
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({open1: false});
+                                            this.setState({open2: false});
+                                            this.setState({open3: true});
+                                            this.setState({open4: false});
+                                            this.setState({open5: false});
+                                            this.setState({open6: false});
+                                            this.setState({open7: false});
+                                            this.setState({open8: false});
+                                            this.setState({open9: false});
+                                            this.setState({open10: false});
+                                        }}
+                                        onClosing={() => {
+                                            this.setState({open3: false});
+                                        }}
+                                        trigger="FHU sur les Handicaps Cognitifs, Psychiques et Sensoriels" className={'clp3'}>
                                         <div className={'img-center'}>
                                             <a href="http://tmbi.fr/fhu-hopes/" target="_blank">
                                                 <img src={chu} alt="FHU HoPeS" className={'img-partenaires'}></img>
@@ -113,7 +177,25 @@ export default class SectionTwo extends React.Component {
                                             réadaptation.
                                         </p>
                                     </Collapsible>
-                                    <Collapsible trigger="CHU Toulouse" className={'clp4'}>
+                                    <Collapsible
+                                        open={this.state.open4}
+                                        onOpening={() => {
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({open1: false});
+                                            this.setState({open2: false});
+                                            this.setState({open3: false});
+                                            this.setState({open4: true});
+                                            this.setState({open5: false});
+                                            this.setState({open6: false});
+                                            this.setState({open7: false});
+                                            this.setState({open8: false});
+                                            this.setState({open9: false});
+                                            this.setState({open10: false});
+                                        }}
+                                        onClosing={() => {
+                                            this.setState({open4: false});
+                                        }}
+                                        trigger="CHU Toulouse" className={'clp4'}>
                                         <div className={'img-center'}>
                                             <a href="https://www.chu-toulouse.fr" target="_blank">
                                                 <img src={chu} alt="CHU Toulouse" className={'img-partenaires'}></img>
@@ -139,7 +221,25 @@ export default class SectionTwo extends React.Component {
                                             l'Innovation (DRDI) CHU de Toulouse et la Direction des systèmes
                                             d’information et de l’organisation (DSIO) CHU de Toulouse.</CardText>
                                     </Collapsible>
-                                    <Collapsible trigger="CHU Montpellier" className={'clp5'}>
+                                    <Collapsible
+                                        open={this.state.open5}
+                                        onOpening={() => {
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({open1: false});
+                                            this.setState({open2: false});
+                                            this.setState({open3: false});
+                                            this.setState({open4: false});
+                                            this.setState({open5: true});
+                                            this.setState({open6: false});
+                                            this.setState({open7: false});
+                                            this.setState({open8: false});
+                                            this.setState({open9: false});
+                                            this.setState({open10: false});
+                                        }}
+                                        onClosing={() => {
+                                            this.setState({open5: false});
+                                        }}
+                                        trigger="CHU Montpellier" className={'clp5'}>
                                         <div className={'img-center'}>
                                             <a href="http://www.chu-montpellier.fr/fr/patients-et-visiteurs/"
                                                target="_blank">
@@ -164,7 +264,25 @@ export default class SectionTwo extends React.Component {
                                             soit de promotion CHU, soit de promotion industrielle, soit de promotion en
                                             partenariat avec un autre établissement public.</p>
                                     </Collapsible>
-                                    <Collapsible trigger="Ecole d'Ingénieurs ISIS" className={'clp6'}>
+                                    <Collapsible
+                                        open={this.state.open6}
+                                        onOpening={() => {
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({open1: false});
+                                            this.setState({open2: false});
+                                            this.setState({open3: false});
+                                            this.setState({open4: false});
+                                            this.setState({open5: false});
+                                            this.setState({open6: true});
+                                            this.setState({open7: false});
+                                            this.setState({open8: false});
+                                            this.setState({open9: false});
+                                            this.setState({open10: false});
+                                        }}
+                                        onClosing={() => {
+                                            this.setState({open6: false});
+                                        }}
+                                        trigger="Ecole d'Ingénieurs ISIS" className={'clp6'}>
                                         <div className={'img-center'}>
                                             <a href="http://isis.univ-jfc.fr" target="_blank">
                                                 <img src={isis} alt="École ISIS" className={'img-partenaires'}></img>
@@ -195,7 +313,25 @@ export default class SectionTwo extends React.Component {
                                             permettent de réduire les écarts entre la communauté d’ingénierie, les
                                             acteurs socio-économiques ainsi que la communauté industrielle.</CardText>
                                     </Collapsible>
-                                    <Collapsible trigger="Institut de Recherche Informatique de Toulouse" className={'clp7'}>
+                                    <Collapsible
+                                        open={this.state.open7}
+                                        onOpening={() => {
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({open1: false});
+                                            this.setState({open2: false});
+                                            this.setState({open3: false});
+                                            this.setState({open4: false});
+                                            this.setState({open5: false});
+                                            this.setState({open6: false});
+                                            this.setState({open7: true});
+                                            this.setState({open8: false});
+                                            this.setState({open9: false});
+                                            this.setState({open10: false});
+                                        }}
+                                        onClosing={() => {
+                                            this.setState({open7: false});
+                                        }}
+                                        trigger="Institut de Recherche Informatique de Toulouse" className={'clp7'}>
                                         <div className={'img-center'}>
                                             <a href="https://www.irit.fr" target="_blank">
                                                 <img src={irit} alt="IRIT" className={'img-partenaires'}></img>
@@ -218,7 +354,25 @@ export default class SectionTwo extends React.Component {
                                             d’apprentissage automatique (machine learning), et du développement des
                                             réseaux neuronaux artificiels (deep learning)</p>
                                     </Collapsible>
-                                    <Collapsible trigger="Institut National de la Santé et de la Recherche Médicale" className={'clp8'}>
+                                    <Collapsible
+                                        open={this.state.open8}
+                                        onOpening={() => {
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({open1: false});
+                                            this.setState({open2: false});
+                                            this.setState({open3: false});
+                                            this.setState({open4: false});
+                                            this.setState({open5: false});
+                                            this.setState({open6: false});
+                                            this.setState({open7: false});
+                                            this.setState({open8: true});
+                                            this.setState({open9: false});
+                                            this.setState({open10: false});
+                                        }}
+                                        onClosing={() => {
+                                            this.setState({open8: false});
+                                        }}
+                                        trigger="Institut National de la Santé et de la Recherche Médicale" className={'clp8'}>
                                         <div className={'img-center'}>
                                             <a href="http://www.u1027.inserm.fr" target="_blank">
                                                 <img src={inserm} alt="INSERM" className={'img-equipe-inserm'}></img>
@@ -232,7 +386,25 @@ export default class SectionTwo extends React.Component {
                                             analyser les enjeux médicaux et sociétaux dans les domaines des maladies
                                             chroniques et des handicaps aux différents âges de la vie.</p>
                                     </Collapsible>
-                                    <Collapsible trigger="Association YMCA" className={'clp9'}>
+                                    <Collapsible
+                                        open={this.state.open9}
+                                        onOpening={() => {
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({open1: false});
+                                            this.setState({open2: false});
+                                            this.setState({open3: false});
+                                            this.setState({open4: false});
+                                            this.setState({open5: false});
+                                            this.setState({open6: false});
+                                            this.setState({open7: false});
+                                            this.setState({open8: false});
+                                            this.setState({open9: true});
+                                            this.setState({open10: false});
+                                        }}
+                                        onClosing={() => {
+                                            this.setState({open9: false});
+                                        }}
+                                        trigger="Association YMCA" className={'clp9'}>
                                         <div className={'img-center'}>
                                             <a href="https://ymca.fr" target="_blank">
                                                 <img src={ymca} alt="Association YMCA" className={'img-equipe-inserm'}></img>
@@ -249,7 +421,25 @@ export default class SectionTwo extends React.Component {
                                             vie de tous les jours ; (5) des modules de formation des publics en
                                             situation de handicap.</p>
                                     </Collapsible>
-                                    <Collapsible trigger="Association UnafTC" className={'clp10'}>
+                                    <Collapsible
+                                        open={this.state.open10}
+                                        onOpening={() => {
+                                            // eslint-disable-next-line no-undef
+                                            this.setState({open1: false});
+                                            this.setState({open2: false});
+                                            this.setState({open3: false});
+                                            this.setState({open4: false});
+                                            this.setState({open5: false});
+                                            this.setState({open6: false});
+                                            this.setState({open7: false});
+                                            this.setState({open8: false});
+                                            this.setState({open9: false});
+                                            this.setState({open10: true});
+                                        }}
+                                        onClosing={() => {
+                                            this.setState({open10: false});
+                                        }}
+                                        trigger="Association UnafTC" className={'clp10'}>
                                         <div className={'img-center'}>
                                             <a href="http://www.traumacranien.org" target="_blank">
                                                 <img src={unaftc} alt="Association UnafTC" className={'img-equipe-unaftc'}></img>

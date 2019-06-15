@@ -354,10 +354,7 @@ class App extends React.Component {
                                                 Carte
                                             </DropdownItem>
                                             <DropdownItem>
-                                                Types de structures
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                Soins
+                                                Liste des structures
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>

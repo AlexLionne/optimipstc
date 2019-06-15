@@ -30,7 +30,7 @@ export default class SectionTwo extends React.Component {
                         <Col xs="9" xl="4">
                             <Card className={'container-set reposition text-center'}>
                                 <CardTitle className={'titre'}>
-                                    Vous êtes un professionnel ?
+                                    Vous êtes un professionnel
                                 </CardTitle>
                                 <CardBody className={"TCL-interface"}>
                                     <img src={doctor} className={'img-avatar'}></img><br/>
@@ -44,7 +44,7 @@ export default class SectionTwo extends React.Component {
                         <Col xs="9" xl="4">
                             <Card className={'container-set reposition text-center'}>
                                 <CardTitle className={'titre'}>
-                                    Vous êtes un particulier ?
+                                    Vous êtes un particulier
                                 </CardTitle>
                                 <CardBody className={"TCL-interface"}>
                                     <img src={child} className={'img-avatar'}></img><br/>

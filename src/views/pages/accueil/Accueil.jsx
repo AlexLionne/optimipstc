@@ -15,8 +15,6 @@ export default class App extends React.Component {
         return (
             <div className={'root'}>
                 <Introduction/>
-                <DropdownItem divider/>
-                <ChatBot/>
             </div>
         );
     }

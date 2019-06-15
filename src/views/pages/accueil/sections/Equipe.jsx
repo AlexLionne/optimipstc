@@ -17,11 +17,13 @@ import {
 import '../../../../css/index.css';
 import '../../../../css/container.css'
 import header2 from '../../../../assets/images/header2.png';
-import deborah from '../../../../assets/images/deborah.PNG'
-import jeremie from '../../../../assets/images/jeremie.PNG'
-import christophe from '../../../../assets/images/christophe.PNG'
+import deborah from '../../../../assets/images/deborah.jpg'
+import jeremie from '../../../../assets/images/jeremie.jpg'
+import christophe from '../../../../assets/images/christophe.jpg'
 import claire from '../../../../assets/images/claire.JPG'
 import imen from '../../../../assets/images/imen.jpg'
+import alice from '../../../../assets/images/alice.jpg'
+import sebastien from '../../../../assets/images/sebastien.jpg'
 
 export default class SectionTwo extends React.Component {
     constructor(props) {
@@ -34,7 +36,8 @@ export default class SectionTwo extends React.Component {
             modalClaire: false,
             modalDeborah: false,
             modalJeremie: false,
-            modalChristophe: false
+            modalChristophe: false,
+            modalSebastien: false
         }
     }
 
@@ -61,6 +64,9 @@ export default class SectionTwo extends React.Component {
     };
     triggerModalChristophe = () => {
         this.setState({modalChristophe: !this.state.modalChristophe})
+    };
+    triggerModalSebastien = () => {
+        this.setState({modalSebastien: !this.state.modalSebastien})
     };
 
     render() {
@@ -106,7 +112,7 @@ export default class SectionTwo extends React.Component {
                                 <Media>
                                     <Media left>
                                         <a onClick={this.triggerModalAlice} href={"#"} className={'link'}>
-                                        <Media object src={deborah} alt="Alice Julien" className={'img-equipe'}/>
+                                        <Media object src={alice} alt="Alice Julien" className={'img-equipe'}/>
                                         </a>
                                     </Media>
                                     <Media body>
@@ -203,6 +209,20 @@ export default class SectionTwo extends React.Component {
                                         </p>
                                     </Media>
                                 </Media>
+                        <Media>
+                            <Media left>
+                                <a onClick={this.triggerModalSebastien} href={"#"} className={'link'}> <Media object src={sebastien} alt="Sébastien Déjean" className={'img-equipe'}/></a><br/>
+                            </Media>
+                            <Media body>
+                                <Media heading>
+                                    <p className={'equipe-nom'}>
+                                        Sébastien Déjean
+                                    </p>
+                                </Media>
+                                <p className={'equipe-texte'}>
+                                    Ingénieur de recherche à l'institut de mathématiques de Toulouse (IMT)                               </p>
+                            </Media>
+                        </Media>
                     </Row>
                 </Container>
                 <Modal className={'tc_modal'} isOpen={this.state.modalImen} fade={false} centered>
@@ -235,7 +255,14 @@ export default class SectionTwo extends React.Component {
                 <Modal className={'tc_modal'} isOpen={this.state.modalAlice} fade={false} centered>
                     <ModalHeader>Alice Julien</ModalHeader>
                     <ModalBody>
-                        oui
+                        Médecin de Médecine Physique et Réadaptation. Sa
+                        pratique s'oriente vers la rééducation neurologique et durant son
+                        internat elle commence à s'intéresser à la pathologie du traumatisme
+                        crânien. C'est ainsi qu'elle a rejoint le projet Optimips-TC et écrit sa
+                        thèse de médecine sur le sujet. Elle a écrit le contenu médical et
+                        social de ce site internet, a participé à la création de la cartographie
+                        et souhaite développer une équipe de coordination pour la prise en
+                        charge des traumatisés crâniens dans la région.
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={this.triggerModalAlice} className={'buttonSecondary'}>Fermer</Button>
@@ -244,7 +271,13 @@ export default class SectionTwo extends React.Component {
                 <Modal className={'tc_modal'} isOpen={this.state.modalDeborah} fade={false} centered>
                     <ModalHeader>Deborah Meligne</ModalHeader>
                     <ModalBody>
-                        oui
+                        Cheffe de projet de la Fédération Hospitalo-Universitaire dédiée aux
+                        Handicaps Cognitifs, Psychiques et Sensoriels (FHU HoPeS), Déborah
+                        Méligne est, avec les Prs Arbus et Pariente, à l'initiative du projet
+                        OPTIMIPS-TC. Ses missions consistent à accompagner cliniciens et
+                        chercheurs dans la conception et la mise en place de leurs projets de
+                        recherche et de soin, elle a donc œuvré à la mise en œuvre de ce projet
+                        collaboratif régional.
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={this.triggerModalDeborah} className={'buttonSecondary'}>Fermer</Button>
@@ -275,6 +308,15 @@ export default class SectionTwo extends React.Component {
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={this.triggerModalChristophe} className={'buttonSecondary'}>Fermer</Button>
+                    </ModalFooter>
+                </Modal>
+                <Modal className={'tc_modal'} isOpen={this.state.modalSebastien} fade={false} centered>
+                    <ModalHeader>Sébastien Déjean</ModalHeader>
+                    <ModalBody>
+                        Ingénieur de recherche à l'institut de mathématiques de Toulouse (IMT). Il s'intéresse particulièrement à l'analyse statistique de données et aux techniques d'intégration de données. Il entretient de nombreuses collaborations dans le cadre de projets de recherche interdisciplinaires. Ses domaines d'interaction privilégiés sont la biologie et la recherche d'information. Il est membre du consortium du projet OPTIMIPS, représentant scientifique côté IMT. Il apporte à ce projet sa vision sur l'analyse de données et sur l'indispensable préparation des données préalable à toute analyse statistique.
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button onClick={this.triggerModalSebastien} className={'buttonSecondary'}>Fermer</Button>
                     </ModalFooter>
                 </Modal>
             </section>

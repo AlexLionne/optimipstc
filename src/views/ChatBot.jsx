@@ -219,7 +219,7 @@ export default class Bot extends React.Component {
         super(props);
 
         this.state = {
-            isOpen: true,
+            isOpen: false,
             current_question: 0,
         };
     }
