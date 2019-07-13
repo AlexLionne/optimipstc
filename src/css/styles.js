@@ -35,7 +35,8 @@ const styles = {
         fontWeight: 'italic'
     },
     cardItem: {
-        marginTop: '24px'
+        marginTop: '24px',
+        cursor: 'pointer'
     },
     cardMap: {
         float: 'right',
@@ -73,10 +74,10 @@ const styles = {
     },
     card_detail: {
         zIndex: 100,
-        width: '30%',
+        width: '18%',
         position: 'absolute',
-        top: '20%',
-        left: '5%',
+        top: '41%',
+        left: '1%',
         margin: 'auto',
         border: 'none',
         borderRadius: '6px',

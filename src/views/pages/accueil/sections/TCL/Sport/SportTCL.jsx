@@ -32,7 +32,7 @@ export default class SectionTwo extends React.Component {
                 <img style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
                      width={'auto'} src={header2}/>
                 <Container fluid className={'container-justify'}>
-                    <Row>
+                    <Row className={'row-equipe'}>
                         <Col xs="12" xl="9">
                             <div className={'action-responsive'}>
                             <h2 className={'titre TCL'}>
@@ -52,8 +52,8 @@ export default class SectionTwo extends React.Component {
                             </p>
                             <p>
                                 Le pratiquant peut développer un syndrome post-commotionnel
-                                (voir <a href="/accueil/sections/TCL/Utilisateur/adult">traumatismes crâniens
-                                légers). </a>
+                                (voir <a href="/accueil/sections/TCL/Utilisateur/adult">traumatisme crânien
+                                léger). </a>
                                 Même si les cas sont heureusement très rares, il y a des risques de mort subite dans les
                                 suites immédiates,
                                 sur le terrain ou dans les 24h.

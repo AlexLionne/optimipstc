@@ -33,7 +33,7 @@ export default class SectionTwo extends React.Component {
                 <img style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
                      width={'auto'} src={header2}/>
                 <Container fluid className={'container-justify'}>
-                    <Row>
+                    <Row className={'row-equipe'}>
                         <Col xs="12" xl="9">
                             <div className={'action-responsive'}>
                             <h2 className={'titre TCL'}>
@@ -89,7 +89,7 @@ export default class SectionTwo extends React.Component {
                     </Row>
                     <hr/>
                     <Row>
-                        <Col xs="9" className={'col-espacement'}>
+                        <Col xs="12" xl="9" className={'col-espacement'}>
                             <p className={'bold'}>
                                 Les signes d'alerte qui doivent vous faire consulter votre médecin traitant ou votre
                                 pédiatre:
@@ -118,7 +118,7 @@ export default class SectionTwo extends React.Component {
                                     forcer, faire des pauses.
                                     L’arrêt de l’école peut être nécessaire 1
                                     ou plusieurs jours en fonction des
-                                    symptômes et de la gravité du TC, pour
+                                    symptômes et de la gravité du traumatisme crânien, pour
                                     permettre de se reposer à la maison.
                                 </li>
                                 <li><strong>Ne pas pratiquer d'activité sportive : </strong>Il faut attendre

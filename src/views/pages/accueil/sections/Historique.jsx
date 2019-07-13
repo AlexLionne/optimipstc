@@ -26,7 +26,7 @@ export default class SectionTwo extends React.Component {
                 <Container fluid>
                     <Row>
                         <Col xs="12" xl="9">
-                            <div className={'margin-historique'}>
+                            <div className={'row-equipe'}>
                                 <Card className={'container-set'}>
                                     <CardTitle className={'titre'}>
                                         Historique

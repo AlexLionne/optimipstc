@@ -43,12 +43,14 @@ export default class SectionTwo extends React.Component {
     render() {
         return (
             <section className={'section grandtexte'}>
-                <img style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
+                <div className="img-responsive">
+                <img id="hiddenImg" style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
                      width={'auto'} src={header2}/>
+                </div>
                 <Container fluid className={'second-container-set'}>
                     <div className={'margin-historique'}>
                         <Row>
-                            <Col xs='9'>
+                            <Col xs='12' xl="9">
                                 <div className={'action-responsive'}>
                                 <h2 className={'titre'}>
                                     Projets sur l’Optimisation du Parcours de Soin des Patients Traumatisés Crâniens
@@ -59,29 +61,28 @@ export default class SectionTwo extends React.Component {
                                 </p>
                                 </div>
                                 <div className={'img-center'}>
-                                    <a onClick={this.triggerModalHandi} href={"#"} className={'link'}> <img src={fhandi}
+                                    <button className={'link btn-equipe'} onClick={this.triggerModalHandi}> <img src={fhandi}
                                                                                                             alt='Fondation Malakoff Médéric'
                                                                                                             className={'img-actions'}></img>
-                                    </a>
-                                    <a onClick={this.triggerModalIRSP} href={"#"} className={'link'}> <img src={IRSP}
+                                    </button>
+                                    <button className={'link btn-equipe'} onClick={this.triggerModalIRSP}> <img src={IRSP}
                                                                                                            alt='IRSeP'
                                                                                                            className={'img-actions'}></img>
-                                    </a>
+                                    </button>
                                 </div>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs='9'>
                                 <div className={'img-center'}>
-                                    <a onClick={this.triggerModalARS} href={"#"} className={'link'}> <img
-                                        src={ars_action} alt='ARS' className={'img-actions'}></img> </a>
-                                    <a onClick={this.triggerModalRoche} href={"#"} className={'link'}> <img src={roche}
+                                    <button className={'link btn-equipe'} onClick={this.triggerModalARS}> <img
+                                        src={ars_action} alt='ARS' className={'img-actions'}></img> </button>
+                                    <button className={'link btn-equipe'} onClick={this.triggerModalRoche}> <img src={roche}
                                                                                                             alt='Fondation Roche'
                                                                                                             className={'img-actions'}></img>
-                                    </a>
+                                    </button>
                                 </div>
                             </Col>
-
                         </Row>
                     </div>
                 </Container>

@@ -38,6 +38,7 @@ export default class SectionTwo extends React.Component {
                 <img style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
                      width={'auto'} src={header2}/>
                 <Container className={'container-set'}>
+                    <Row className="row-equipe">
                     <Col xs='12' xl='9'>
                         <div className={'action-responsive'}>
                         <h1 className='titre'>Vous êtes un patient</h1>
@@ -52,10 +53,11 @@ export default class SectionTwo extends React.Component {
                             les projets de recherches en cours, etc.
                         </p>
                         <h2 id="titre-espace">Vous avez une question ?</h2>
-                        <a target='_blank' href="mailto:soulhokib@gmail.com?subject=Contact public depuis OPTIMIPS"><Button
+                        <a target='_blank' href="mailto:cartoccitanie.tc@gmail.com?subject=Contact public depuis OPTIMIPS"><Button
                             color="secondary">Nous contacter</Button></a>
                         </div>
                     </Col>
+                    </Row>
                 </Container>
             </section>
         );

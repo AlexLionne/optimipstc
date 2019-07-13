@@ -5,6 +5,7 @@ import firebase from "./firebase";
 import {reactLocalStorage} from 'reactjs-localstorage';
 
 import "./css/index.css";
+import "./css/container.css";
 import {
     Badge,
     Collapse,
@@ -21,9 +22,11 @@ import {
 import Accueil from './views/pages/accueil/Accueil'
 import Admin from './views/pages/admin/Index'
 import Historique from './views/pages/accueil/sections/Historique'
+import Bibliographie from './views/pages/accueil/sections/Bibliographie'
 import Actions from './views/pages/accueil/sections/Actions'
 import Definition from './views/pages/accueil/sections/Definition'
 import Equipe from './views/pages/accueil/sections/Equipe'
+import ListeStructures from './views/pages/accueil/sections/ListeStructures'
 import Partenaires from './views/pages/accueil/sections/Partenaires'
 import Public from './views/pages/accueil/sections/contact/Public'
 import Pro from './views/pages/accueil/sections/contact/Pro'
@@ -40,7 +43,6 @@ import Interface from "./views/pages/accueil/sections/TCL/Utilisateur/Interface"
 import Cartographie from "./views/pages/cartographie/Cartographie";
 import ParcoursMedicalAdulte from "./views/pages/accueil/sections/Parcours/ParcoursMedicalAdulte";
 import ParcoursMedicalEnfant from "./views/pages/accueil/sections/Parcours/ParcoursMedicalEnfant";
-import ParcoursVieAdulte from "./views/pages/accueil/sections/Parcours/ParcoursVieAdulte";
 import ParcoursAdulteInterface from "./views/pages/accueil/sections/Parcours/ParcoursAdulteInterface";
 import ParcoursEnfantPEC from "./views/pages/accueil/sections/Parcours/ParcoursEnfantPEC";
 import ParcoursEnfantMed from "./views/pages/accueil/sections/Parcours/ParcoursEnfantMed";
@@ -48,6 +50,7 @@ import ParcoursAdultePEC from "./views/pages/accueil/sections/Parcours/ParcoursA
 import ParcoursAdulteMed from "./views/pages/accueil/sections/Parcours/ParcoursAdulteMed";
 import InterfaceParcours from "./views/pages/accueil/sections/Parcours/InterfaceParcours";
 import ParcoursEnfantInterface from "./views/pages/accueil/sections/Parcours/ParcoursEnfantInterface";
+
 //session : 1H
 const connection_max_time = 3600;
 const WEB_DATA = '/web_data';
@@ -294,18 +297,14 @@ class App extends React.Component {
             <Route
                 render={({location}) => (
                     <div className={'root'}>
-
                         {this.state.error ?
                             <Notification verbose={'error'} message={'Impossible de se connecter'}/> : null}
-                        <Navbar className={this.state.activeItem !== 10 ? 'navigation_bar' : 'navigation_bar low'} dark
+                        <Nav tabs className={this.state.activeItem !== 10 ? 'navigation_bar' : 'navigation_bar low'} dark
                                 expand="md">
-                            <NavbarBrand href="/accueil/accueil">OptimipsTC</NavbarBrand>
-                            <NavbarToggler onClick={this.toggle}/>
-                            <Collapse isOpen={this.state.isOpen} navbar>
-                                <Nav className="mr-auto" navbar>
+                            <NavLink className="white-text" href="/accueil/accueil">OptimipsTC</NavLink>
                                     <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle
-                                            className={this.state.activeItem === 1 ? 'nav_link_active' : 'nav_link'}
+                                            className="white-text"
                                             nav>
                                             Présentation
                                         </DropdownToggle>
@@ -326,7 +325,7 @@ class App extends React.Component {
                                     </UncontrolledDropdown>
                                     <UncontrolledDropdown
                                         className={this.state.activeItem === 2 ? 'nav_link_active' : null} nav>
-                                        <DropdownToggle nav>
+                                        <DropdownToggle nav className="white-text">
                                             Le traumatisme crânien
                                         </DropdownToggle>
                                         <DropdownMenu left="true" className={'nav_dropdown'}>
@@ -346,25 +345,25 @@ class App extends React.Component {
                                     </UncontrolledDropdown>
                                     <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle
-                                            className={this.state.activeItem === 3 ? 'nav_link_active' : null} nav>
+                                            className="white-text" nav>
                                             Cartographie
                                         </DropdownToggle>
                                         <DropdownMenu left="true" className={'nav_dropdown'}>
                                             <DropdownItem href="/cartographie">
                                                 Carte
                                             </DropdownItem>
-                                            <DropdownItem>
+                                            <DropdownItem href="/accueil/sections/listestructures">
                                                 Liste des structures
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>
                                     <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle
-                                            className={this.state.activeItem === 4 ? 'nav_link_active' : null} nav>
+                                            className="white-text" nav>
                                             Archives
                                         </DropdownToggle>
                                         <DropdownMenu left="true" className={'nav_dropdown'}>
-                                            <DropdownItem>
+                                            <DropdownItem href="/accueil/sections/bibliographie">
                                                 Documents de références
                                             </DropdownItem>
                                             <DropdownItem>
@@ -377,7 +376,7 @@ class App extends React.Component {
                                     </UncontrolledDropdown>
                                     <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle
-                                            className={this.state.activeItem === 6 ? 'nav_link_active' : 'nav_link'}
+                                            className="white-text"
                                             nav>
                                             Contact
                                         </DropdownToggle>
@@ -390,12 +389,9 @@ class App extends React.Component {
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>
-
-
                                     <div className={'right'}>
                                         {
                                             reactLocalStorage.get('uid') ?
-
                                                 <UncontrolledDropdown nav inNavbar>
                                                     <DropdownToggle className={'nav_link'} nav>
                                                         <Avatar/>
@@ -404,7 +400,9 @@ class App extends React.Component {
                                                                 className={'background_color_secondary'}>{reactLocalStorage.getObject('notifications').notifications.length}</Badge> : null}
                                                     </DropdownToggle>
                                                     {(() => {
-
+                                                        if(window.location.pathname === "/"){
+                                                            window.location.pathname = "/accueil/accueil";
+                                                        };
                                                         let super_admin = reactLocalStorage.get('super_admin');
                                                         if (super_admin === 'true') {
                                                             return (
@@ -463,18 +461,18 @@ class App extends React.Component {
                                                 : <NavLink className={'nav_link_active'} href="/login"
                                                 >Connexion</NavLink>}
                                     </div>
-                                </Nav>
-                            </Collapse>
-                        </Navbar>
+                        </Nav>
                         <Switch>
                             <Route path="/admin" render={() => <Admin notifications={this.state.notifications}
                                                                       uid={reactLocalStorage.get('uid')}/>}/>
                             <Route path="/cartographie" render={() => <Cartographie/>}/>
                             <Route path="/accueil/accueil" render={() => <Accueil/>}/>
                             <Route path="/accueil/sections/historique" render={() => <Historique/>}/>
+                            <Route path="/accueil/sections/bibliographie" render={() => <Bibliographie/>}/>
                             <Route path="/accueil/sections/actions" render={() => <Actions/>}/>
                             <Route path="/accueil/sections/definition" render={() => <Definition/>}/>
                             <Route path="/accueil/sections/equipe" render={() => <Equipe/>}/>
+                            <Route path="/accueil/sections/listestructures" render={() => <ListeStructures/>}/>
                             <Route path="/accueil/sections/TCL/Utilisateur/interface" render={() => <Interface/>}/>
                             <Route path="/accueil/sections/TCL/Utilisateur/enfant" render={() => <Enfant/>}/>
                             <Route path="/accueil/sections/TCL/Utilisateur/adult" render={() => <Adult/>}/>
@@ -488,8 +486,6 @@ class App extends React.Component {
                                    render={() => <ParcoursMedicalAdulte/>}/>
                             <Route path="/accueil/sections/parcours/parcoursmedicalenfant"
                                    render={() => <ParcoursMedicalEnfant/>}/>
-                            <Route path="/accueil/sections/parcours/parcoursvieadulte"
-                                   render={() => <ParcoursVieAdulte/>}/>
                             <Route path="/accueil/sections/parcours/parcoursenfantinterface" render={() => <ParcoursEnfantInterface/>}/>
                             <Route path="/accueil/sections/parcours/parcoursenfantpec" render={() => <ParcoursEnfantPEC/>}/>
                             <Route path="/accueil/sections/parcours/parcoursenfantmed" render={() => <ParcoursEnfantMed/>}/>

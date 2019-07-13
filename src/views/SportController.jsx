@@ -19,11 +19,49 @@ export default class Bot extends React.Component {
         super(props);
 
         this.state = {
-            isOpen: true,
+            count:0,
+            delay:10000,
+            isOpen: false,
             current_question: 0,
         };
     }
 
+    componentDidMount() {
+        this.interval = setInterval(this.tick, this.state.delay);
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.delay !== this.state.delay) {
+            clearInterval(this.interval);
+            this.interval = setInterval(this.tick, this.state.delay);
+        }
+    }
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+    tick = () => {
+        this.setState({
+            count: this.state.count + 1
+        });
+        if(this.state.count % 2 === 0){
+            this.setState({isOpen: false});
+            this.setState({delay: 120000});
+        }
+        else{
+            this.setState({isOpen: true});
+        }
+    };
+
+    url = (id) => {
+        this.setState({current_question: id});
+    };
+    back = () => {
+        if (this.state.current_question > 0) {
+            this.setState({current_question: this.state.current_question - 1});
+        } else {
+            this.setState({current_question: 0});
+        }
+
+    };
     openCard = () => {
         this.setState({isOpen: !this.state.isOpen});
     };
@@ -31,13 +69,13 @@ export default class Bot extends React.Component {
     render() {
         return (
             <div className={'sport'}>
-                <CardAnim className={'chatbot_card'} pose={this.state.isOpen ? 'visible' : 'hidden'}>
+                <CardAnim className={'sport-card'} pose={this.state.isOpen ? 'visible' : 'hidden'}>
                     <Card className={'chatbot_container'}>
                         <CardBody>
                             <CardTitle className={'sport_title'}>
                                 Particularités de la commotion cérébrale en pratique sportive
                             </CardTitle>
-                            <Button color="info" href='/accueil/sections/TCL/Sport/sporttcl'>En savoir plus</Button>
+                            <Button color="info" className="witdh-90" href='/accueil/sections/TCL/Sport/sporttcl'>En savoir plus</Button>
                         </CardBody>
                     </Card>
                 </CardAnim>

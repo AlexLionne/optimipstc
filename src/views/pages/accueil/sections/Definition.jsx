@@ -39,8 +39,8 @@ export default class SectionTwo extends React.Component {
                 <img style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
                      width={'auto'} src={header2}/>
                 <Container fluid className={'container-set-bis'}>
-                    <Row className={'row-top-3'}>
-                        <Col xs="9" className={"action-responsive"}>
+                    <Row className={'row-equipe'}>
+                        <Col xs="12" xl="9" className={"action-responsive"}>
                             <h2 className={'titre'}>
                                 Le traumatisme crânien : généralités
                             </h2>
@@ -58,7 +58,7 @@ export default class SectionTwo extends React.Component {
                                 On utilise un classement en fonction de la gravité globale du traumatisme :
                             </p>
                             <br/>
-                            <p className={'bold colorPrimary'}>TC léger :</p>
+                            <p className={'bold colorPrimary'}>Traumatisme crânien léger :</p>
                             <p>les troubles neurologiques suite au choc ont duré peu de temps, il peut s’agir d'une
                                 perte
                                 de connaissance, d'une confusion, d'une crise d'épilepsie, etc.</p>
@@ -67,7 +67,7 @@ export default class SectionTwo extends React.Component {
                             <a onClick={this.triggerModal} href={"#"} className={'link'}> Glasgow initial </a>est entre
                             13 et 15.
                             <br/><br/>
-                            <p className={'bold colorPrimary'}>TC modéré et sévère :</p>
+                            <p className={'bold colorPrimary'}>Traumatisme crânien modéré et sévère :</p>
                             <p>les troubles neurologiques sont importants et durables, ils nécessitent l’intervention
                                 des services de secours pour une hospitalisation la plus rapide possible.
                                 Le traumatisme crânien sera dit sévère si le score Glasgow à l’arrivée des secours est entre 3 et 8. Le
@@ -115,8 +115,7 @@ export default class SectionTwo extends React.Component {
                             Les séquelles sont très variables et dépendent en partie de l'importance des lésions
                             cérébrales et de l'âge du patient.<br/><br/>
                             <p className={'liste'}>
-                                <u>Pour les traumatismes crâniens sévères</u>, le risque de mortalité est important durant <span className="green">la phase de coma</span>. Il y a 50% de décès dans les premières semaines suivant l'accident. 50%
-                                de ces derniers décèdent dans les premières semaines après l'accident.<br/>
+                                <u>Pour les traumatismes crâniens sévères</u>, le risque de mortalité est important durant <span className="green">la phase de coma</span>. Il y a 50% de décès dans les premières semaines suivant l'accident. <br/>
                                 Chez les blessés qui survivent, la sortie du coma correspond à l’ouverture spontanée des yeux. Elle est suivie de <span className="green">la phase d’éveil</span> qui évolue en 3 stades :
                                 <br/><br/>
                                 <ul>
@@ -175,7 +174,7 @@ export default class SectionTwo extends React.Component {
                                     état végétatif chronique dans 2 à 4 % des cas
                                 </li>
                                 <li>
-                                    Décès dans 50% des cas
+                                    décès dans 50% des cas
                                 </li>
                             </ul>
                             <p className={'liste'}>

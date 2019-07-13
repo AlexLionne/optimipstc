@@ -1,0 +1,1180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0e282aac-aab7-4f32-95f1-094ebd868145" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ChatBot.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ChatBot.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SportController.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SportController.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Actions.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/Actions.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Definition.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/Definition.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Equipe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/Equipe.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Historique.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/Historique.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Introduction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/Introduction.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/InterfaceParcours.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/InterfaceParcours.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursAdulte.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursAdulte.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursMedicalAdulte.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursMedicalAdulte.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursMedicalEnfant.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursMedicalEnfant.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursVieAdulte.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursVieEnfant.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/Partenaires.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/Partenaires.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Professionnel/AdultPro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Professionnel/AdultPro.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Professionnel/EnfantPro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Professionnel/EnfantPro.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Sport/SportTCL.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Sport/SportTCL.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Adult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Adult.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Enfant.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Enfant.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Interface.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Interface.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/accueil/sections/contact/Public.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/accueil/sections/contact/Public.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/cartographie/Cartographie.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/cartographie/Cartographie.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/parcoursSoins.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/parcoursSoins.jsx" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/css/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4416">
+              <caret line="184" column="12" selection-start-line="184" selection-start-column="12" selection-end-line="184" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Interface.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="74" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursMedicalAdulte.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15288">
+              <caret line="667" column="125" selection-start-line="667" selection-end-line="668" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/models/datas.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="16536">
+              <caret line="689" column="53" selection-start-line="689" selection-start-column="53" selection-end-line="689" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursMedicalEnfant.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="14784">
+              <caret line="636" column="42" selection-start-line="636" selection-start-column="42" selection-end-line="636" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Bibliographie.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="90" column="46" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/pages/cartographie/Cartographie.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="175" column="27" selection-start-line="175" selection-start-column="27" selection-end-line="175" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Historique.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="3" selection-start-line="3" selection-end-line="5" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7536">
+              <caret line="365" column="95" selection-start-line="365" selection-start-column="95" selection-end-line="365" selection-end-column="95" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Partenaires.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8280">
+              <caret line="361" column="86" selection-start-line="361" selection-start-column="84" selection-end-line="361" selection-end-column="86" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>telephone</find>
+      <find>media</find>
+      <find>button-interface</find>
+      <find>sport_image</find>
+      <find>width</find>
+      <find>titre</find>
+      <find>Collapse</find>
+      <find>container-set-i</find>
+      <find>pm</find>
+      <find>action-responsive</find>
+      <find>accompagnant</find>
+      <find>row-equipe</find>
+      <find>webkit</find>
+      <find>container-set-interface</find>
+      <find>SIPFP</find>
+      <find>img-avatar</find>
+      <find>if ((structure.properties.denomination_structure.toLowerCase().includes(this.state.filtre_barre)) || (structure.properties.sous_categorie.toLowerCase().includes(this.state.filtre_barre))) {</find>
+      <find>if ((structure.properties.denomination_structure.toLowerCase().includes(this.state.filtre_barre)) || (structure.properties.sous_categorie.toLowerCase().includes(this.state.filtre_barre))|| (structure.properties.cp.toLowerCase().includes(this.state.filtre_barre))|| (structure.properties.adresse.toLowerCase().includes(this.state.filtre_barre))|| (structure.properties.ville.toLowerCase().includes(this.state.filtre_barre))) {</find>
+      <find>img-loupe</find>
+      <find>recherche</find>
+      <find>position-responsive-bar</find>
+      <find>btn-close</find>
+      <find>right</find>
+      <find>href={&quot;#&quot;}</find>
+      <find>aides tec</find>
+      <find>btn-close-cb</find>
+      <find>psychologue</find>
+      <find>dECAZEVILL</find>
+      <find>MP</find>
+      <find>MPR P</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>&quot;categorie&quot;: &quot;Service de Médecine &amp; Chirurgie&quot;,</replace>
+      <replace>&quot;categorie&quot;: &quot;Structures de Rééducation&quot;,</replace>
+      <replace>&quot;categorie&quot;: &quot;Association &amp; Structures occupationnelles&quot;,</replace>
+      <replace>&quot;categorie&quot;: &quot;Réinsertion professionnelle&quot;,</replace>
+      <replace>&quot;categorie&quot;: &quot;Service d'Accompagnement à Domicile&quot;,</replace>
+      <replace>&quot;categorie&quot;: &quot;Accompagnement scolaire&quot;,</replace>
+      <replace>&quot;categorie&quot;: &quot;Structures de psychiatrie et accompagnement psychologique&quot;,</replace>
+      <replace>telephone</replace>
+      <replace>&quot;nom et coordonnees&quot;</replace>
+      <replace>&quot;necessite_une_notification_MDPH&quot;</replace>
+      <replace>MAS</replace>
+      <replace>Traumatisme crânien</replace>
+      <replace>structure.properties.cp === this.state.filtre_barre</replace>
+      <replace>Services de Médecine &amp; Chirurgie</replace>
+      <replace>Structures de Rééducation</replace>
+      <replace>Associations &amp; Structures Occupationnelles</replace>
+      <replace>SRéinsertion Professionnelle</replace>
+      <replace>Service d'Accompagnement à Domicile</replace>
+      <replace>Accompagnement Scolaire</replace>
+      <replace>Structures de Psychiatrie et d’Accompagnement Psychologique</replace>
+      <replace>Professionnels libéraux (formés au TC)</replace>
+      <replace>Unité d'Éveil</replace>
+      <replace>Institut Médico-Éducatif (IME)</replace>
+      <replace>Service d’Aide Médico-Sociale pour Adulte Handicapé (SAMSAH)</replace>
+      <replace>Structures Médico-sociales &amp; Lieux de vie</replace>
+      <replace />
+      <replace>necessite_une_orientation_MDPH</replace>
+      <replace>if ((structure.properties.denomination_structure.toLowerCase().includes(this.state.filtre_barre)) || (structure.properties.sous_categorie.toLowerCase().includes(this.state.filtre_barre))|| (structure.properties.cp.toLowerCase().includes(this.state.filtre_barre))|| (structure.properties.adresse.toLowerCase().includes(this.state.filtre_barre))|| (structure.properties.ville.toLowerCase().includes(this.state.filtre_barre))) {</replace>
+      <replace>if((structure.properties.adresse.toLowerCase().includes(this.state.filtre_barre))||(structure.properties.cp.toString().includes(this.state.filtre_barre))||(structure.properties.ville.toLowerCase().includes(this.state.filtre_barre))||(structure.properties.denomination_structure.toLowerCase().includes(this.state.filtre_barre))||(structure.properties.sous_categorie.toLowerCase().includes(this.state.filtre_barre))){</replace>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/models/Struture.js" />
+        <option value="$PROJECT_DIR$/build/src/views/pages/accueil/sections/Actions.jsx" />
+        <option value="$PROJECT_DIR$/build/src/views/pages/accueil/sections/TCL/Professionnel/AdultPro.jsx" />
+        <option value="$PROJECT_DIR$/build/src/views/pages/accueil/sections/TCL/Professionnel/EnfantPro.jsx" />
+        <option value="$PROJECT_DIR$/build/src/views/pages/accueil/sections/Definition.jsx" />
+        <option value="$PROJECT_DIR$/build/src/views/ChatBot.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursEnfantPEC.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/ChatBotBlock.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursAdultePEC.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/Accueil.jsx" />
+        <option value="$PROJECT_DIR$/src/firebase.js" />
+        <option value="$USER_HOME$/Downloads/glennflanagan-react-collapsible-2.6.0-0-gaab7824/glennflanagan-react-collapsible-aab7824/example/_src/js/index.js" />
+        <option value="$PROJECT_DIR$/src/views/pages/cartographie/ListeStructures.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursAdulte.jsx" />
+        <option value="$PROJECT_DIR$/src/views/SportController.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/contact/Pro.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/contact/Public.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursVieEnfant.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursVieAdulte.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursEnfantMed.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursAdulteMed.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/InterfaceParcours.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Equipe.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Historique.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Actions.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Definition.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Adult.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Enfant.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Professionnel/AdultPro.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Professionnel/EnfantPro.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/ListeStructures.jsx" />
+        <option value="$PROJECT_DIR$/src/views/ChatBotBlock.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Introduction.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Sport/SportTCL.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Interface.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours.jsx" />
+        <option value="$PROJECT_DIR$/src/views/parcoursSoins.jsx" />
+        <option value="$PROJECT_DIR$/src/css/styles.js" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursAdulteInterface.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursEnfantInterface.jsx" />
+        <option value="$USER_HOME$/Downloads/optimipstc-master/optimipstc-master/src/views/ChatBot.jsx" />
+        <option value="$PROJECT_DIR$/src/views/ChatBot.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/cartographie/Cartographie.jsx" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Partenaires.jsx" />
+        <option value="$PROJECT_DIR$/src/css/index.css" />
+        <option value="$PROJECT_DIR$/src/models/datas.json" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursMedicalAdulte.jsx" />
+        <option value="$PROJECT_DIR$/src/css/container.css" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursMedicalEnfant.jsx" />
+        <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/views/pages/accueil/sections/Bibliographie.jsx" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="accueil" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="accueil" type="462c0819:PsiDirectoryNode" />
+              <item name="sections" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="accueil" type="462c0819:PsiDirectoryNode" />
+              <item name="sections" type="462c0819:PsiDirectoryNode" />
+              <item name="contact" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="accueil" type="462c0819:PsiDirectoryNode" />
+              <item name="sections" type="462c0819:PsiDirectoryNode" />
+              <item name="Parcours" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="accueil" type="462c0819:PsiDirectoryNode" />
+              <item name="sections" type="462c0819:PsiDirectoryNode" />
+              <item name="TCL" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="accueil" type="462c0819:PsiDirectoryNode" />
+              <item name="sections" type="462c0819:PsiDirectoryNode" />
+              <item name="TCL" type="462c0819:PsiDirectoryNode" />
+              <item name="Professionnel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="accueil" type="462c0819:PsiDirectoryNode" />
+              <item name="sections" type="462c0819:PsiDirectoryNode" />
+              <item name="TCL" type="462c0819:PsiDirectoryNode" />
+              <item name="Sport" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="accueil" type="462c0819:PsiDirectoryNode" />
+              <item name="sections" type="462c0819:PsiDirectoryNode" />
+              <item name="TCL" type="462c0819:PsiDirectoryNode" />
+              <item name="Utilisateur" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimipstc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimipstc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="cartographie" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="editorconfig.notification" value="View&#10;" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/map.geojson" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Soul\WebstormProjects\optimipstc\src\views\pages\accueil\sections\TCL\Utilisateur" />
+      <recent name="C:\Users\Soul\WebstormProjects\optimipstc\src\views\pages\accueil\sections" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Soul\WebstormProjects\optimipstc\src\views" />
+      <recent name="C:\Users\Soul\WebstormProjects\optimipstc\src\views\pages\accueil\sections\TCL\Utilisateur" />
+      <recent name="C:\Users\Soul\WebstormProjects\optimipstc\src\views\pages\accueil\sections" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="Accueil.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="Accueil.jsx" working-dir="$PROJECT_DIR$/src/views/pages/accueil">
+      <method v="2" />
+    </configuration>
+    <configuration name="Cartographie.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="Cartographie.jsx" working-dir="$PROJECT_DIR$/src/views/pages/cartographie">
+      <method v="2" />
+    </configuration>
+    <configuration name="View.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="View.jsx" working-dir="$PROJECT_DIR$/src/views">
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+        <item itemvalue="Node.js.Cartographie.jsx" />
+        <item itemvalue="Node.js.View.jsx" />
+        <item itemvalue="Node.js.Accueil.jsx" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0e282aac-aab7-4f32-95f1-094ebd868145" name="Default Changelist" comment="" />
+      <created>1557130472540</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1557130472540</updated>
+      <workItem from="1557130473734" duration="2594000" />
+      <workItem from="1557141035525" duration="1079000" />
+      <workItem from="1557142132330" duration="1382000" />
+      <workItem from="1557212901635" duration="17823000" />
+      <workItem from="1557385459066" duration="12020000" />
+      <workItem from="1557400892197" duration="35000" />
+      <workItem from="1557406224636" duration="4697000" />
+      <workItem from="1557472672497" duration="8164000" />
+      <workItem from="1557675805654" duration="658000" />
+      <workItem from="1557731852125" duration="9514000" />
+      <workItem from="1557747085879" duration="5066000" />
+      <workItem from="1557753150150" duration="2943000" />
+      <workItem from="1557756175698" duration="131000" />
+      <workItem from="1557756329726" duration="228000" />
+      <workItem from="1557817373243" duration="81000" />
+      <workItem from="1557817491052" duration="21254000" />
+      <workItem from="1557904845959" duration="14764000" />
+      <workItem from="1557996290192" duration="1950000" />
+      <workItem from="1558077872229" duration="10616000" />
+      <workItem from="1558176638356" duration="180000" />
+      <workItem from="1558177859819" duration="1042000" />
+      <workItem from="1558339947759" duration="2471000" />
+      <workItem from="1558352437339" duration="9566000" />
+      <workItem from="1558423603671" duration="506000" />
+      <workItem from="1558434525794" duration="2664000" />
+      <workItem from="1558438600573" duration="81000" />
+      <workItem from="1558438731239" duration="428000" />
+      <workItem from="1558439233472" duration="81000" />
+      <workItem from="1558439635047" duration="275000" />
+      <workItem from="1558441858712" duration="1640000" />
+      <workItem from="1558444172455" duration="2520000" />
+      <workItem from="1558514567639" duration="2245000" />
+      <workItem from="1558519436108" duration="216000" />
+      <workItem from="1558519668929" duration="4743000" />
+      <workItem from="1558526455475" duration="25000" />
+      <workItem from="1558526559983" duration="1594000" />
+      <workItem from="1558596799304" duration="1570000" />
+      <workItem from="1558684026910" duration="10156000" />
+      <workItem from="1558942654032" duration="219000" />
+      <workItem from="1558942954930" duration="2525000" />
+      <workItem from="1558955978437" duration="3087000" />
+      <workItem from="1558959466903" duration="86000" />
+      <workItem from="1558959612066" duration="654000" />
+      <workItem from="1559027398478" duration="1017000" />
+      <workItem from="1559029992008" duration="5798000" />
+      <workItem from="1559044686314" duration="2897000" />
+      <workItem from="1559114870055" duration="4454000" />
+      <workItem from="1559119802995" duration="6000" />
+      <workItem from="1559120819447" duration="5350000" />
+      <workItem from="1559137100107" duration="334000" />
+      <workItem from="1559244273021" duration="244000" />
+      <workItem from="1559245342747" duration="7000" />
+      <workItem from="1559245367548" duration="28000" />
+      <workItem from="1559246252556" duration="35000" />
+      <workItem from="1559547010593" duration="3701000" />
+      <workItem from="1559562105888" duration="2025000" />
+      <workItem from="1559564239562" duration="3795000" />
+      <workItem from="1559632276449" duration="9166000" />
+      <workItem from="1559648240702" duration="3411000" />
+      <workItem from="1559653033657" duration="2829000" />
+      <workItem from="1559719476188" duration="5474000" />
+      <workItem from="1559807309628" duration="7068000" />
+      <workItem from="1559898824315" duration="2108000" />
+      <workItem from="1560236779056" duration="9869000" />
+      <workItem from="1560410654984" duration="14537000" />
+      <workItem from="1560496832138" duration="14129000" />
+      <workItem from="1560520198319" duration="20000" />
+      <workItem from="1560520328490" duration="5000" />
+      <workItem from="1560595081595" duration="281000" />
+      <workItem from="1560597631506" duration="518000" />
+      <workItem from="1560601888551" duration="147000" />
+      <workItem from="1560683257796" duration="711000" />
+      <workItem from="1560693946905" duration="602000" />
+      <workItem from="1560756194199" duration="6111000" />
+      <workItem from="1560773076134" duration="6073000" />
+      <workItem from="1560928411912" duration="2995000" />
+      <workItem from="1560932177690" duration="3829000" />
+      <workItem from="1560942899812" duration="5067000" />
+      <workItem from="1560948042273" duration="71000" />
+      <workItem from="1560948144825" duration="141000" />
+      <workItem from="1560956065543" duration="175000" />
+      <workItem from="1561102012579" duration="7488000" />
+      <workItem from="1561115942656" duration="7973000" />
+      <workItem from="1561192062131" duration="783000" />
+      <workItem from="1561360097340" duration="12737000" />
+      <workItem from="1561448023000" duration="4422000" />
+      <workItem from="1561452783825" duration="468000" />
+      <workItem from="1561461069520" duration="5147000" />
+      <workItem from="1561467898561" duration="29000" />
+      <workItem from="1561531145639" duration="995000" />
+      <workItem from="1561532847839" duration="441000" />
+      <workItem from="1561539131796" duration="1629000" />
+      <workItem from="1561548013632" duration="1550000" />
+      <workItem from="1561619675122" duration="1742000" />
+      <workItem from="1561627782604" duration="653000" />
+      <workItem from="1561636768751" duration="5334000" />
+      <workItem from="1561705668557" duration="5065000" />
+      <workItem from="1561719736123" duration="3949000" />
+      <workItem from="1561809423485" duration="93000" />
+    </task>
+    <task id="LOCAL-00001" summary="TCL creation">
+      <created>1557829248481</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1557829248481</updated>
+    </task>
+    <task id="LOCAL-00002" summary="UPDATE">
+      <created>1558442371084</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1558442371084</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Responsive update">
+      <created>1558701326337</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1558701326337</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Responsive update">
+      <created>1559244497841</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1559244497841</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Mapping update">
+      <created>1560410920004</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560410920004</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Mapping update">
+      <created>1560601940429</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1560601940429</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="349099000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.9055375" visible="true" weight="0.12223393" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" sideWeight="0.094462544" side_tool="true" weight="0.2553419" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32441473" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49786323" visible="true" weight="0.20847268" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.46376812" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.33110368" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5032051" side_tool="true" weight="0.2984234" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32998884" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25266525" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.9055375" visible="true" weight="0.29452056" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" sideWeight="0.094462544" side_tool="true" weight="0.2553419" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32441473" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49786323" visible="true" weight="0.20847268" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.46376812" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.33110368" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5032051" side_tool="true" weight="0.2984234" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32998884" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25266525" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.php" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="TCL creation" />
+    <MESSAGE value="UPDATE" />
+    <MESSAGE value="Responsive update" />
+    <MESSAGE value="Mapping update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mapping update" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Interface.jsx</url>
+          <line>27</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/node_modules/react-map-gl-geocoder/dist/mapbox-gl-geocoder.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="21" selection-start-line="21" selection-end-line="34" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serviceWorker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2739">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.firebaserc">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/firebase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="50" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/glennflanagan-react-collapsible-2.6.0-0-gaab7824/glennflanagan-react-collapsible-aab7824/example/_src/js/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2184">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursAdultePEC.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/cartographie/ListeStructures.jsx" />
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursEnfant.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="25" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/service-worker.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursAdulte.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/contact/Pro.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/contact/Public.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursVieEnfant.jsx" />
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursVieAdulte.jsx" />
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursAdulteMed.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/EditView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Equipe.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="215" column="40" selection-start-line="215" selection-start-column="40" selection-end-line="215" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Actions.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="84" column="34" selection-start-line="84" selection-start-column="34" selection-end-line="84" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Definition.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="41" column="25" lean-forward="true" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Professionnel/AdultPro.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="53" column="49" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Professionnel/EnfantPro.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="54" column="49" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/SportController.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1584">
+          <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Adult.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/Accueil.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Introduction.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="22" column="58" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/ChatBotBlock.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="244" column="53" selection-start-line="244" selection-start-column="53" selection-end-line="244" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Sport/SportTCL.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/styles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/parcoursSoins.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7248">
+          <caret line="314" column="42" selection-start-line="314" selection-start-column="42" selection-end-line="314" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="788">
+          <caret line="295" column="24" selection-start-line="295" selection-start-column="24" selection-end-line="295" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/InterfaceParcours.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="54" column="74" selection-start-line="54" selection-start-column="74" selection-end-line="54" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/optimipstc-master/optimipstc-master/src/views/ChatBot.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="121" column="27" lean-forward="true" selection-end-line="134" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/ListeStructures.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6192">
+          <caret line="294" column="44" selection-start-line="294" selection-start-column="44" selection-end-line="294" selection-end-column="459" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursAdulteInterface.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="29" selection-start-line="29" selection-end-line="70" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/reactstrap/src/Button.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursEnfantInterface.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="59" column="135" selection-start-line="59" selection-start-column="135" selection-end-line="59" selection-end-column="135" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/ChatBot.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="275" selection-start-line="275" selection-end-line="277" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursEnfantMed.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Enfant.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="35" column="24" selection-end-line="214" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/container.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6888">
+          <caret line="287" column="17" selection-start-line="287" selection-start-column="17" selection-end-line="287" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4416">
+          <caret line="184" column="12" selection-start-line="184" selection-start-column="12" selection-end-line="184" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/TCL/Utilisateur/Interface.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursMedicalAdulte.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15288">
+          <caret line="667" column="125" selection-start-line="667" selection-end-line="668" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/datas.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16536">
+          <caret line="689" column="53" selection-start-line="689" selection-start-column="53" selection-end-line="689" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Parcours/ParcoursMedicalEnfant.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14784">
+          <caret line="636" column="42" selection-start-line="636" selection-start-column="42" selection-end-line="636" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Historique.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" selection-start-line="3" selection-end-line="5" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7536">
+          <caret line="365" column="95" selection-start-line="365" selection-start-column="95" selection-end-line="365" selection-end-column="95" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Partenaires.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8280">
+          <caret line="361" column="86" selection-start-line="361" selection-start-column="84" selection-end-line="361" selection-end-column="86" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/accueil/sections/Bibliographie.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="90" column="46" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/pages/cartographie/Cartographie.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="175" column="27" selection-start-line="175" selection-start-column="27" selection-end-line="175" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

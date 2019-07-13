@@ -27,27 +27,35 @@ export default class SectionTwo extends React.Component {
                      width={'auto'} src={header2}/>
                 <Container fluid>
                     <Row className={'justify-content-start'}>
-                        <Col xs="9" xl="4" className={'no-gutter'}>
+                        <Col xs="12" xl="4">
                             <Card className={'container-set reposition text-center'}>
                                 <CardTitle className={'titre'}>
-                                    Vous êtes un adulte ?
+                                    <a href="/accueil/sections/parcours/parcoursadulteinterface">
+                                    Vous êtes un <br/>adulte ?
+                                    </a>
                                 </CardTitle>
                                 <CardBody className={"TCL-interface"}>
-                                    <img src={woman} className={'img-avatar'}></img><br/>
-                                    <Button className={'button-interface'} color="link" href="/accueil/sections/parcours/parcoursadulte">Traumatisme
-                                        crânien modéré ou sévère chez l'adulte.</Button>
+                                    <a href="/accueil/sections/parcours/parcoursadulteinterface">
+                                        <img src={woman} className={'img-avatar'}></img>
+                                    </a><br/>
+                                    <Button className={'button-interface'} color="link" href="/accueil/sections/parcours/parcoursadulteinterface">Traumatisme
+                                        crânien modéré ou sévère <br/>chez l'adulte.</Button>
                                 </CardBody>
                             </Card>
                         </Col>
-                        <Col xs="9" xl="4">
+                        <Col xs="12" xl="4">
                             <Card className={'container-set reposition text-center'}>
                                 <CardTitle className={'titre'}>
-                                    Vous êtes un enfant ?
+                                    <a href="/accueil/sections/parcours/parcoursenfantinterface">
+                                    Vous êtes un <br/>enfant ?
+                                    </a>
                                 </CardTitle>
                                 <CardBody className={"TCL-interface"}>
-                                    <img src={child} className={'img-avatar'}></img><br/>
+                                    <a href="/accueil/sections/parcours/parcoursenfantinterface">
+                                        <img src={child} className={'img-avatar'}></img>
+                                    </a><br/>
                                     <Button className={'button-interface'} color="link" href="/accueil/sections/parcours/parcoursenfantinterface">Traumatisme
-                                        crânien modéré ou sévère chez l'enfant.</Button><br/>
+                                        crânien modéré ou sévère <br/>chez l'enfant.</Button><br/>
                                 </CardBody>
                             </Card>
                         </Col>

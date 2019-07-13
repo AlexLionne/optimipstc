@@ -1,0 +1,46 @@
+{
+  "type": "section",
+  "className": "section section_1",
+  "id": 1,
+  "children": [
+    {
+      "type": "Container",
+      "onClick": "triggered",
+      "className": "container",
+      "id": 4,
+      "children": [
+        {
+          "id": 5,
+          "type": "Row",
+          "children": [
+            {
+              "id": 6,
+              "type": "Col",
+              "xs": "6",
+              "children": [
+                {
+                  "id": 7,
+                  "type": "div",
+                  "className": "sous_titre",
+                  "children": [
+                    {
+                      "id": 8,
+                      "type": "h2",
+                      "className": "titre",
+                      "children": "OPTIMIPS - TC"
+                    },
+                    {
+                      "id": 10,
+                      "type": "p",
+                      "children": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa dolorum et id illo iste laborum nostrum numquam officia quam quia, quibusdam sint unde velit voluptatem. A aut consequatur fuga inventore maiores nostrum quos repellat vero. Assumenda, aut commodi consectetur deserunt distinctio dolorem, ex expedita, fugiat illum impedit ipsam libero obcaecati odio pariatur repellat rerum veritatis voluptas voluptatum! Est fugit illo iusto praesentium saepe? Corporis delectus modi quidem sed. Ab cupiditate debitis dicta, error exercitationem ipsum iste qui quo rem saepe sapiente sunt. Aspernatur dolorum fugit mollitia necessitatibus soluta, veniam voluptate. Ab, asperiores, omnis! Eos fugit inventore quasi unde veniam?"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+  <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle
+                                            className={this.state.activeItem === 4 ? 'nav_link_active' : null} nav>
+                                            Archives
+                                        </DropdownToggle>
+                                        <DropdownMenu left="true" className={'nav_dropdown'}>
+                                            <DropdownItem>
+                                                Documents de références
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                Médiathèque
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                Agenda
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle
+                                            className={this.state.activeItem === 5 ? 'nav_link_active' : 'nav_link'}
+                                            nav>
+                                            Liens amis
+                                        </DropdownToggle>
+                                        <DropdownMenu left="true" className={'nav_dropdown'}>
+                                            <DropdownItem>
+                                                ARS
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                CHU Toulouse / CHU Montpellier / CHU Nîme
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                Associations (qui ?)
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle
+                                            className={this.state.activeItem === 6 ? 'nav_link_active' : 'nav_link'}
+                                            nav>
+                                            Contact
+                                        </DropdownToggle>
+                                        <DropdownMenu left="true" className="nav_dropdown">
+                                            <DropdownItem href="/contact">
+                                                Vous êtes un professionnel
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                Vous êtes un patient
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                      <UncontrolledDropdown nav inNavbar>
+                                                                            <DropdownToggle
+                                                                                className={this.state.activeItem === 1 ? 'nav_link_active' : 'nav_link'}
+                                                                                nav>
+                                                                                Présentation
+                                                                            </DropdownToggle>
+                                                                            <DropdownMenu left="true" className={'nav_dropdown'}>
+                                                                                <DropdownItem href="/presentation#definition">
+                                                                                    Historique
+                                                                                </DropdownItem>
+                                                                                <DropdownItem>
+                                                                                    Nos actions
+                                                                                </DropdownItem>
+                                                                                <DropdownItem>
+                                                                                    Nos partenaires / Instances
+                                                                                </DropdownItem>
+                                                                                <DropdownItem>
+                                                                                    Équipe de coordination
+                                                                                </DropdownItem>
+                                                                            </DropdownMenu>
+                                                                        </UncontrolledDropdown>
+                                                                        <UncontrolledDropdown
+                                                                            className={this.state.activeItem === 2 ? 'nav_link_active' : null} nav>
+                                                                            <DropdownToggle nav>
+                                                                                Le traumatisme crânien
+                                                                            </DropdownToggle>
+                                                                            <DropdownMenu left="true" className={'nav_dropdown'}>
+                                                                                <DropdownItem onClick={this.login}>
+                                                                                    Léger
+                                                                                </DropdownItem>
+                                                                                <DropdownItem>
+                                                                                    Modéré et Sévère
+                                                                                </DropdownItem>
+                                                                                <DropdownItem>
+                                                                                    Du sportif
+                                                                                </DropdownItem>
+                                                                            </DropdownMenu>
+                                                                        </UncontrolledDropdown>

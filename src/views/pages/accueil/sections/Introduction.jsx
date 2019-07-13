@@ -18,31 +18,35 @@ export default class SectionOne extends React.Component {
                         </Col>
                     </Row>
                     <hr/>
-                    <Row>
-                        <p>
-                            Bienvenue<br/>
+                    <Row className="margin-5">
+                        <Col xl="6" xs="12">
+                        <p className={'titre margin-top-10'}>
+                            <strong>Bienvenue</strong>
+                        </p>
+                            <p className="intro-text">
                             Dans le cadre d'un projet soutenu par l'Agence Régionale de Santé Occitanie, le projet
                             OPTIMIPS-TC (pour Optimiser le Parcours de Soin du Patients atteint de Traumatisme
-                            Cranien) est né en 2018.<br/>
+                            Cranien) est né en 2018.<br/><br/>
                             Ce site internet présente le réseau Traumatisme Crânien d'Occitanie, ses actualités et
                             vous oriente vers des outils, une cartographie des structures de la région prenant en
                             charge les personnes ayant subies un traumatisme crânien et des documents
-                            ressources.<br/>
-                            Bonne visite<br/>
+                            ressources.<br/><br/>
+                            <strong>Bonne visite</strong><br/>
                         </p>
-                    </Row>
-                    <hr/>
-                    <Row>
-                        <Col>
-                            <ChatBotBlock/>
                         </Col>
-                        <Col>
+                        <Col xl="6" xs="12" >
+                            <Row>
+                            <ChatBotBlock/>
                             <Card className={'container-set-bis text-center size-set'}>
                                 <CardTitle className={'titre'}>
+                                    <a href="/cartographie">
                                     Cartographie
+                                    </a>
                                 </CardTitle>
                                 <CardBody className={"TCL-interface"}>
-                                    <img src={clinic} className={'img-clinique'}></img><br/>
+                                    <a href="/cartographie">
+                                    <img src={clinic} className={'img-clinique'}></img>
+                                    </a><br/>
                                     Une cartographie des différents établissements de Santé de la région Occitanie liés au traumatisme crânien est mise à votre disposition
                                     <br/>
                                     <Button className={'button-interface'} color="link" href="/cartographie">
@@ -50,6 +54,7 @@ export default class SectionOne extends React.Component {
                                     </Button><br/>
                                 </CardBody>
                             </Card>
+                            </Row>
                         </Col>
                     </Row>
                     <hr/>

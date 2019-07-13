@@ -26,11 +26,11 @@ export default class SectionTwo extends React.Component {
                 <img style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
                      width={'auto'} src={header2}/>
                 <Container fluid>
-                    <Row className={'justify-content-start'}>
-                        <Col xs="9" xl="4">
-                            <Card className={'container-set reposition text-center'}>
+                    <Row className={'row-equipe '}>
+                        <Col xs="12" xl="4">
+                            <Card className={'container-set-interface text-center'}>
                                 <CardTitle className={'titre'}>
-                                    Vous êtes un professionnel
+                                    Vous êtes un <br/>professionnel
                                 </CardTitle>
                                 <CardBody className={"TCL-interface"}>
                                     <img src={doctor} className={'img-avatar'}></img><br/>
@@ -41,10 +41,10 @@ export default class SectionTwo extends React.Component {
                                 </CardBody>
                             </Card>
                         </Col>
-                        <Col xs="9" xl="4">
-                            <Card className={'container-set reposition text-center'}>
+                        <Col xs="12" xl="4">
+                            <Card className={'container-set-interface text-center'}>
                                 <CardTitle className={'titre'}>
-                                    Vous êtes un particulier
+                                    Vous êtes un <br/>particulier
                                 </CardTitle>
                                 <CardBody className={"TCL-interface"}>
                                     <img src={child} className={'img-avatar'}></img><br/>

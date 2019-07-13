@@ -32,7 +32,6 @@ h4 {
 
 .color_primary {
     color: #686de0 !important;
-
 }
 
 .color_secondary {
@@ -94,7 +93,21 @@ h4 {
     right: 12px;
     margin: auto;
     display: inline-block;
+    cursor: pointer;
 }
+
+.chatbot_image img{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.chatbot_image:hover img{
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
 
 .chatbot_card {
     width: 800px; /*TODO : responsive*/
@@ -162,6 +175,36 @@ h4 {
     right: 12px;
 }
 
+.btn-close-cb{
+    height:15px;
+    width:15px;
+    background-color:white;
+}
+.btn-close-collapse{
+    height:30px;
+    width:30px;
+    background-color:white;
+    margin-bottom:10px;
+}
+.width-90{
+    width:90%;
+}
+
+.sport_image:hover{
+    cursor: pointer;
+}
+
+.sport_image img{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.sport_image:hover img{
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
 .sport_title {
     margin-bottom: 5px;
     color: green;
@@ -737,6 +780,10 @@ body, #root {
     width: 50%;
 }
 @media all and (max-width:900px) {
+    .right {
+        position: relative;
+        top: 0px;
+    }
     .chatbot_card {
         width:500px; /*TODO : responsive*/
         margin-right: 24px;
@@ -764,6 +811,10 @@ body, #root {
     }
 }
 @media all and (max-width:600px) {
+    .right {
+        position: relative;
+        top: 0px;
+    }
     .chatbot_card {
         width:400px; /*TODO : responsive*/
         margin-right: 24px;

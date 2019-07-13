@@ -24,6 +24,8 @@ import claire from '../../../../assets/images/claire.JPG'
 import imen from '../../../../assets/images/imen.jpg'
 import alice from '../../../../assets/images/alice.jpg'
 import sebastien from '../../../../assets/images/sebastien.jpg'
+import maelle from '../../../../assets/images/maelle.jpg'
+import xavier from '../../../../assets/images/xavier.jpg'
 
 export default class SectionTwo extends React.Component {
     constructor(props) {
@@ -73,12 +75,12 @@ export default class SectionTwo extends React.Component {
         return (
             <section className={'section'}>
                 <Container fluid>
-                    <Row className={'equipe-top'}>
+                    <Row className={'row-equipe'}>
                                 <Media>
                                     <Media left>
-                                        <a onClick={this.triggerModalXavier} href={"#"} className={'link'}>
-                                        <Media object src={deborah} alt="Xavier de Boissezon" className={'img-equipe'}/>
-                                        </a>
+                                        <button className={'link btn-equipe'} onClick={this.triggerModalXavier}>
+                                        <Media object src={xavier} alt="Xavier de Boissezon" className={'img-equipe'}/>
+                                        </button>
                                     </Media>
                                     <Media body>
                                         <Media heading>
@@ -94,9 +96,9 @@ export default class SectionTwo extends React.Component {
                                 </Media>
                                 <Media>
                                     <Media left>
-                                        <a onClick={this.triggerModalMaelle} href={"#"} className={'link'}>
-                                        <Media object src={deborah} alt="Maëlle Biotteau" className={'img-equipe'}/>
-                                        </a>
+                                        <button className={'link btn-equipe'} onClick={this.triggerModalMaelle}>
+                                        <Media object src={maelle} alt="Maëlle Biotteau" className={'img-equipe'}/>
+                                        </button>
                                     </Media>
                                     <Media body>
                                         <Media heading>
@@ -111,9 +113,9 @@ export default class SectionTwo extends React.Component {
                                 </Media>
                                 <Media>
                                     <Media left>
-                                        <a onClick={this.triggerModalAlice} href={"#"} className={'link'}>
+                                        <button className={'link btn-equipe'} onClick={this.triggerModalAlice} >
                                         <Media object src={alice} alt="Alice Julien" className={'img-equipe'}/>
-                                        </a>
+                                        </button>
                                     </Media>
                                     <Media body>
                                         <Media heading>
@@ -128,9 +130,9 @@ export default class SectionTwo extends React.Component {
                                 </Media>
                             <Media>
                                 <Media left>
-                                    <a onClick={this.triggerModalClaire} href={"#"} className={'link'}>
+                                    <button className={'link btn-equipe'} onClick={this.triggerModalClaire}>
                                     <Media object src={claire} alt="Claire Jourdan" className={'img-equipe'}/>
-                                    </a>
+                                    </button>
                                 </Media>
                                 <Media body>
                                     <Media heading>
@@ -145,9 +147,9 @@ export default class SectionTwo extends React.Component {
                             </Media>
                                 <Media>
                                     <Media left>
-                                        <a onClick={this.triggerModalDeborah} href={"#"} className={'link'}>
+                                        <button className={'link btn-equipe'} onClick={this.triggerModalDeborah}>
                                         <Media object src={deborah} alt="Déborah Meligne" className={'img-equipe'}/>
-                                        </a>
+                                        </button>
                                     </Media>
                                     <Media body>
                                         <Media heading>
@@ -162,9 +164,9 @@ export default class SectionTwo extends React.Component {
                                 </Media>
                                 <Media>
                                     <Media left>
-                                        <a onClick={this.triggerModalJeremie} href={"#"} className={'link'}>
+                                        <button className={'link btn-equipe'} onClick={this.triggerModalJeremie}>
                                         <Media object src={jeremie} alt="Jérémie Pariente" className={'img-equipe'}/>
-                                        </a>
+                                        </button>
                                     </Media>
                                     <Media body>
                                         <Media heading>
@@ -179,9 +181,9 @@ export default class SectionTwo extends React.Component {
                                 </Media>
                                 <Media>
                                     <Media left>
-                                        <a onClick={this.triggerModalChristophe} href={"#"} className={'link'}>
+                                        <button className={'link btn-equipe'} onClick={this.triggerModalChristophe}>
                                         <Media object src={christophe} alt="Christophe Arbus" className={'img-equipe'}/>
-                                        </a>
+                                        </button>
                                     </Media>
                                     <Media body>
                                         <Media heading>
@@ -196,7 +198,7 @@ export default class SectionTwo extends React.Component {
                                 </Media>
                                 <Media>
                                     <Media left>
-                                        <a onClick={this.triggerModalImen} href={"#"} className={'link'}> <Media object src={imen} alt="Imen Megdiche" className={'img-equipe'}/></a><br/>
+                                        <button className={'link btn-equipe'}onClick={this.triggerModalImen}> <Media object src={imen} alt="Imen Megdiche" className={'img-equipe'}/></button><br/>
                                     </Media>
                                     <Media body>
                                         <Media heading>
@@ -211,7 +213,7 @@ export default class SectionTwo extends React.Component {
                                 </Media>
                         <Media>
                             <Media left>
-                                <a onClick={this.triggerModalSebastien} href={"#"} className={'link'}> <Media object src={sebastien} alt="Sébastien Déjean" className={'img-equipe'}/></a><br/>
+                                <button className={'link btn-equipe'} onClick={this.triggerModalSebastien}> <Media object src={sebastien} alt="Sébastien Déjean" className={'img-equipe'}/></button><br/>
                             </Media>
                             <Media body>
                                 <Media heading>
@@ -237,7 +239,15 @@ export default class SectionTwo extends React.Component {
                 <Modal className={'tc_modal'} isOpen={this.state.modalMaelle} fade={false} centered>
                     <ModalHeader>Maëlle Biotteau</ModalHeader>
                     <ModalBody>
-                        oui
+                        Cheffe de projet d'OPTIMIPS-TC pour la Fédération
+                        Hospitalo-Universitaire des Handicaps Cognitifs, Psychiques et
+                        Sensoriels. En collaboration avec le Pr Xavier de Boissezon, elle défini
+                        les axes de recherche, organise et soutien le travail tout en
+                        recherchant les partenariats et collaborations les plus fructueuses au
+                        service de l'optimisation du parcours de soin du patient traumatisé
+                        crânien en région Occitanie. Elle assure également le bon fonctionnement
+                        de l'équipe, encadre les acteurs et participe à la mise en place et au
+                        suivi des projets.
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={this.triggerModalMaelle} className={'buttonSecondary'}>Fermer</Button>
@@ -246,7 +256,16 @@ export default class SectionTwo extends React.Component {
                 <Modal className={'tc_modal'} isOpen={this.state.modalXavier} fade={false} centered>
                     <ModalHeader>Xavier de Boissezon</ModalHeader>
                     <ModalBody>
-                        oui
+                        Xavier de Boissezon est professeur de Médecine Physique et de
+                        Réadaptation (MPR) au CHU de Toulouse et à l’Université Paul Sabatier -
+                        Toulouse 3. Son activité clinique est orientée sur les maladies
+                        neurologiques (Accident Vasculaire Cérébraux, Traumatismes Crâniens,
+                        Blessés Médullaires, etc.) et les troubles cognitifs ou moteurs qui s’en
+                        suivent. Son activité de recherche est centrée sur les outils
+                        d’évaluation et de rééducation des troubles du langage et des fonctions
+                        exécutives. Fort de plusieurs années d'expérience au contact des
+                        patients traumatisés crâniens et des difficultés liées à leurs parcours
+                        de soins et de vie, il est l'investigateur principal de ce projet.
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={this.triggerModalXavier} className={'buttonSecondary'}>Fermer</Button>
@@ -304,7 +323,14 @@ export default class SectionTwo extends React.Component {
                 <Modal className={'tc_modal'} isOpen={this.state.modalChristophe} fade={false} centered>
                     <ModalHeader>Christophe Arbus</ModalHeader>
                     <ModalBody>
-                        oui
+                        Médecin, professeur de Psychiatrie au CHU de
+                        Toulouse. La gériatrie, la neuropsychiatrie, la dépression sont ses axes
+                        de recherches majeurs. En lien avec sa pratique clinique, il a pu
+                        constater l'ampleur du travail à accomplir en psychiatrie, et en lien
+                        avec les autres services de médecine, afin de mieux accompagner le
+                        patient traumatisé crânien. Co-fondateur avec le Pr Pariente et Déborah
+                        Méligne de la FHU HoPeS qui œuvre pour les handicaps invisibles, il est
+                        avec eux deux à l'initiative du projet OPTIMIPS-TC.
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={this.triggerModalChristophe} className={'buttonSecondary'}>Fermer</Button>

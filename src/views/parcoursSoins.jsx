@@ -321,7 +321,6 @@ class ParcoursSoins extends React.Component {
                             {this.state.node !== null ? this.state.node.data.text : null}
                         </CardText>
                     </CardBody>
-                    <CardImg top width="100%" src={test} alt="Card image cap"/>
                 </Card>
             </CardAnim>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Card, CardBody, CardText, CardTitle} from 'reactstrap';
 import '../css/index.css';
+import close from '../assets/images/close-button.png';
 import chatBot from '../assets/chat_bot_button.svg'
 import posed from 'react-pose';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -37,12 +38,12 @@ const questions = [
     {
         text: "Bien noté. Quelle était la gravité de votre traumatisme crânien ?",
         actions: [
-            {text: "Traumatisme crânien Léger : vous n'êtes pas resté hospitalisé après le traumatisme crânien", link: 3},
+            {text: "Traumatisme crânien Léger : vous n'êtes pas resté \n hospitalisé après le traumatisme crânien", link: 3},
             {
-                text: "Traumatisme crânien Modéré : il a fallu vous hospitaliser après le traumatisme crânien mais vous n'êtes pas passés en service de réanimation",
+                text: "Traumatisme crânien Modéré : il a fallu vous \n hospitaliser après le traumatisme crânien mais vous n'êtes pas passés en service de réanimation",
                 link: 6
             },
-            {text: "Traumatisme crânien Sévère : vous avez fait un séjour en  réanimation à la suite du traumatisme crânien", link: 6},
+            {text: "Traumatisme crânien Sévère : vous avez fait un séjour \n en  réanimation à la suite du traumatisme crânien", link: 6},
         ],
         links: []
     },
@@ -82,25 +83,25 @@ const questions = [
         actions: [],
         links: [{
             text: "Le traumatisme crânien modéré ou sévère chez l'enfant",
-            href: "/accueil/sections/TCL/Utilisateur/enfant"
+            href: "/accueil/sections/parcours/parcoursenfantinterface"
         }]
     },
     {
         actions: [],
         links: [{
             text: "Le traumatisme crânien modéré ou sévère chez l'adulte",
-            href: "/accueil/sections/TCL/Utilisateur/adult"
+            href: "/accueil/sections/parcours/parcoursadulteinterface"
         }]
     },
     {
         text: "Bien noté ! Quelle était la gravité du traumatisme crânien de votre proche ?",
         actions: [
-            {text: "Traumatisme crânien Léger : il ou elle n’est pas resté hospitalisé après le traumatisme crânien ", link: 10},
+            {text: "Traumatisme crânien Léger : il ou elle n’est pas resté  \nhospitalisé après le traumatisme crânien ", link: 10},
             {
-                text: "Traumatisme crânien Modéré : il a fallu l’hospitaliser après le traumatisme crânien mais il ou elle n’est pas passé en service de réanimation ",
+                text: "Traumatisme crânien Modéré : il a fallu  \nl’hospitaliser après le traumatisme crânien mais il ou elle n’est pas passé en service de réanimation ",
                 link: 13
             },
-            {text: "Traumatisme crânien Sévère : il ou elle a fait un séjour en réanimation à la suite du traumatisme crânien ", link: 13},
+            {text: "Traumatisme crânien Sévère : il ou elle a fait un séjour \n en réanimation à la suite du traumatisme crânien ", link: 13},
         ],
         links: []
     },
@@ -140,26 +141,26 @@ const questions = [
         actions: [],
         links: [{
             text: "Le traumatisme crânien modéré ou sévère chez l'enfant",
-            href: "/accueil/sections/TCL/Utilisateur/enfant"
+            href: "/accueil/sections/parcours/parcoursenfantinterface"
         }]
     },
     {
         actions: [],
         links: [{
             text: "Le traumatisme crânien modéré ou sévère chez l'adulte",
-            href: "/accueil/sections/TCL/Utilisateur/adult"
+            href: "/accueil/sections/parcours/parcoursadulteinterface"
         }]
     },
     {
         text: "Bien noté ! \n" +
             "Sur quelle gravité de traumatisme crânien souhaitez vous des renseignements ?",
         actions: [
-            {text: "Traumatisme crânien Léger : la personne n’est pas restée hospitalisé après le traumatisme crânien ", link: 17},
+            {text: "Traumatisme crânien Léger : la personne n’est pas restée \n hospitalisé après le traumatisme crânien ", link: 17},
             {
-                text: "Traumatisme crânien Modéré : il a fallu l’hospitaliser après le traumatisme crânien mais elle n’est pas passé en service de réanimation ",
+                text: "Traumatisme crânien Modéré : il a fallu \n l’hospitaliser après le traumatisme crânien mais elle n’est pas passé en service de réanimation ",
                 link: 20
             },
-            {text: "Traumatisme crânien Sévère : la personne a fait un séjour en réanimation à la suite du traumatisme crânien", link: 20},
+            {text: "Traumatisme crânien Sévère : la personne a fait un séjour \n en réanimation à la suite du traumatisme crânien", link: 20},
         ],
         links: []
     },
@@ -201,14 +202,14 @@ const questions = [
         actions: [],
         links: [{
             text: "Le traumatisme crânien modéré ou sévère chez l'enfant",
-            href: "/accueil/sections/TCL/Professionnel/enfantpro"
+            href: "/accueil/sections/parcours/parcoursenfantinterface"
         }]
     },
     {
         actions: [],
         links: [{
             text: "Le traumatisme crânien modéré ou sévère chez l'adulte",
-            href: "/accueil/sections/TCL/Professionnel/adultpro"
+            href: "/accueil/sections/parcours/parcoursadulteinterface"
         }]
     },
 ];
@@ -219,10 +220,37 @@ export default class Bot extends React.Component {
         super(props);
 
         this.state = {
+            count:0,
+            delay:10000,
             isOpen: false,
             current_question: 0,
         };
     }
+
+    componentDidMount() {
+        this.interval = setInterval(this.tick, this.state.delay);
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.delay !== this.state.delay) {
+            clearInterval(this.interval);
+            this.interval = setInterval(this.tick, this.state.delay);
+        }
+    }
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+    tick = () => {
+        this.setState({
+            count: this.state.count + 1
+        });
+        if(this.state.count % 2 === 0){
+            this.setState({isOpen: false});
+            this.setState({delay: 120000});
+        }
+        else{
+            this.setState({isOpen: true});
+        }
+    };
 
     url = (id) => {
         this.setState({current_question: id});
@@ -244,6 +272,11 @@ export default class Bot extends React.Component {
             <div className={'chatbot'}>
                 <CardAnim className={'chatbot_card'} pose={this.state.isOpen ? 'visible' : 'hidden'}>
                     <Card className={'chatbot_container'}>
+                        <CardTitle>
+                            <Button color="link" className="right btn-close-cb" onClick={() => {
+                                this.setState({isOpen: false});
+                            }}><img src={close} alt="Close button"></img></Button>
+                        </CardTitle>
                         <CardBody>
                             <CardText>
                                 {

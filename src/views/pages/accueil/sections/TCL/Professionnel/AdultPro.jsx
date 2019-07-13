@@ -51,10 +51,8 @@ export default class SectionTwo extends React.Component {
                 <img style={{position: 'absolute', top: 0, bottom: 0, right: 0, margin: 'auto'}} height={'100%'}
                      width={'auto'} src={header2}/>
                 <Container fluid className={'container-justify'}>
-                    <Row>
-                        <Col xs="9">
-                            <div className={'action-responsive'}>
-
+                    <Row className={'row-equipe'}>
+                        <Col xs="12" xl="9">
                             <h2 className={'titre TCL'}>
                                 Le Traumatisme crânien léger chez l'adulte
                             </h2><br/><br/>
@@ -102,9 +100,9 @@ export default class SectionTwo extends React.Component {
                                 issus des recommandations SFMU de 2012² :
                             </p>
                             <div className={'orientation'}>
-                                <img src={tb1}></img>
-                                <img src={tb2}></img>
-                                <img src={tb3}></img>
+                                <img className="img-size-tcl" src={tb1}></img>
+                                <img className="img-size-tcl" src={tb2}></img>
+                                <img className="img-size-tcl" src={tb3}></img>
                             </div>
                             <br/>
                             <br/>
@@ -168,7 +166,6 @@ export default class SectionTwo extends React.Component {
                                 nouveau-né, l’enfant et l’adulte: Société française de médecine d’urgence », Ann. Fr.
                                 Médecine Urgence, vol. 2, no 3, p. 199‑214, mai 2012.<br/>
                             </p>
-                            </div>
                         </Col>
                     </Row>
                     <hr/>
