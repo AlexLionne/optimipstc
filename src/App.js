@@ -468,6 +468,7 @@ class App extends React.Component {
                             <Route path="/cartographie" render={() => <Cartographie/>}/>
                             <Route path="/accueil/accueil" render={() => <Accueil/>}/>
                             <Route path="/" exact render={() => <Accueil/>}/>
+                            /** test **/
                             <Route path="/accueil/sections/historique" render={() => <Historique/>}/>
                             <Route path="/accueil/sections/bibliographie" render={() => <Bibliographie/>}/>
                             <Route path="/accueil/sections/actions" render={() => <Actions/>}/>
